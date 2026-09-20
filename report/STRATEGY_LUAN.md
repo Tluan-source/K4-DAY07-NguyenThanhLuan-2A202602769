@@ -39,7 +39,7 @@ Cùng Heading 1400, mock chỉ lấy đúng tài liệu trong top-3 ở 2/5 câu
 
 “Đủ bằng chứng” nghĩa là các chuỗi kiểm chứng khai báo trong `bench.py` xuất hiện trong các chunk của tài liệu gold đã được truy xuất. Gold chỉ dùng sau bước xếp hạng. Đây là phép kiểm proxy có thể bỏ sót cách diễn đạt tương đương hoặc đánh giá thiếu quan hệ ngữ nghĩa; chưa chấm câu trả lời của LLM và không tương đương điểm rubric /10.
 
-Năm câu hiện tại cũng được dùng để chọn kích thước, nên kết quả không phải accuracy trên tập kiểm tra độc lập. Cần Long cung cấp thêm câu chưa dùng để tuning để kiểm tra khả năng tổng quát. Nội dung chính sách và gold answer chưa được xác minh lại với website nguồn trong lần chạy này.
+Năm câu hiện tại cũng được dùng để chọn kích thước, nên kết quả không phải accuracy trên tập kiểm tra độc lập. Cần bổ sung câu hỏi chưa dùng để tuning nếu muốn kiểm tra khả năng tổng quát. Nội dung chính sách và gold answer cũng nên được xác minh lại với website nguồn khi cập nhật corpus.
 
 ## Tái chạy
 
