@@ -1,9 +1,14 @@
 # Báo Cáo Nhóm — Lab 7: Embedding & Vector Store
 
-**Nhóm/lớp:** K4-L3B  
-**Bản tổng hợp trong repo:** Nguyễn Thành Luân — 2A202602769  
+**Nhóm/lớp:** K4-L3B (G-66)  
+**Thành viên nhóm:**  
+- Thái Phúc Tiến
+- Nguyễn Thành Luân (Bản tổng hợp trong repo — 2A202602769)
+- Trần Đình Duy
+- Nguyễn Đức Long  
 **Chủ đề:** Chính sách thương mại điện tử — Trả hàng/Hoàn tiền Shopee  
 **Ngày:** 20/09/2026
+
 
 > Báo cáo này tổng hợp corpus, benchmark và các cấu hình chunking đã chạy trong repo. Các kết quả chất lượng bên dưới dùng TF-IDF lexical baseline; không được diễn giải thành semantic/LLM accuracy.
 
