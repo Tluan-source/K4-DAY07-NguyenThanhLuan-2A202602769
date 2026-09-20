@@ -1,0 +1,53 @@
+[
+  {
+    "doc_id": "shopee-buyer-return-request-guide",
+    "strategies": {
+      "fixed_size": {
+        "count": 3,
+        "avg_length": 685.6666666666666
+      },
+      "by_sentences": {
+        "count": 6,
+        "avg_length": 341.1666666666667
+      },
+      "recursive": {
+        "count": 4,
+        "avg_length": 512.75
+      }
+    }
+  },
+  {
+    "doc_id": "shopee-buyer-return-timeline-policy",
+    "strategies": {
+      "fixed_size": {
+        "count": 2,
+        "avg_length": 766.5
+      },
+      "by_sentences": {
+        "count": 6,
+        "avg_length": 254.16666666666666
+      },
+      "recursive": {
+        "count": 2,
+        "avg_length": 765.5
+      }
+    }
+  },
+  {
+    "doc_id": "shopee-general-return-policy",
+    "strategies": {
+      "fixed_size": {
+        "count": 6,
+        "avg_length": 901.8333333333334
+      },
+      "by_sentences": {
+        "count": 9,
+        "avg_length": 599.8888888888889
+      },
+      "recursive": {
+        "count": 6,
+        "avg_length": 900.3333333333334
+      }
+    }
+  }
+]

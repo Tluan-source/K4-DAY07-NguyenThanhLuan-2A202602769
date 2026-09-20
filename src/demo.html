@@ -1,0 +1,1931 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chunking Strategy Benchmark — Lab 07</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#EE4D2D',
+              hover: '#D73211',
+              subtle: '#FFF5F1',
+              dark: '#EA580C'
+            },
+            surface: {
+              bg: '#0B1120',
+              card: '#111827',
+              elevated: '#172033',
+              border: 'rgba(148, 163, 184, 0.12)',
+              borderHover: 'rgba(148, 163, 184, 0.24)'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-dark: #0B1120;
+      --card-dark: #111827;
+      --card-elevated: #172033;
+      --border-color: rgba(148, 163, 184, 0.12);
+      --primary-coral: #EE4D2D;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: #F8FAFC;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Custom thin scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B1120;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+
+    /* Score bar smooth transition */
+    .score-bar-fill {
+      transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Card pulse highlight when cited */
+    @keyframes chunkHighlight {
+      0% { border-color: #EE4D2D; box-shadow: 0 0 0 2px rgba(238, 77, 45, 0.4); }
+      70% { border-color: #EE4D2D; box-shadow: 0 0 0 4px rgba(238, 77, 45, 0.15); }
+      100% { border-color: rgba(148, 163, 184, 0.12); box-shadow: none; }
+    }
+    .chunk-highlight-active {
+      animation: chunkHighlight 1.6s ease-out forwards;
+    }
+
+    /* Tab active styles */
+    .nav-tab-btn.active {
+      background-color: #172033;
+      color: #F8FAFC;
+      border-color: rgba(238, 77, 45, 0.4);
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+    }
+    .nav-tab-btn.active .tab-icon {
+      color: #EE4D2D;
+    }
+
+    /* Light presentation theme: quiet surfaces, dark type, restrained accents. */
+    html {
+      color-scheme: light;
+    }
+
+    body {
+      background: #F4F6F8 !important;
+      color: #0F172A !important;
+    }
+
+    header,
+    nav {
+      background: rgba(255, 255, 255, 0.96) !important;
+      border-color: #E2E8F0 !important;
+    }
+
+    [class*="bg-[#0B1120]"] {
+      background-color: #F8FAFC !important;
+    }
+
+    [class*="bg-[#111827]"] {
+      background-color: #FFFFFF !important;
+    }
+
+    [class*="bg-[#172033]"] {
+      background-color: #F1F5F9 !important;
+    }
+
+    [class*="bg-slate-900"],
+    [class*="bg-slate-800"] {
+      background-color: #F1F5F9 !important;
+    }
+
+    [class*="bg-emerald-950"] { background-color: #ECFDF5 !important; }
+    [class*="bg-blue-950"] { background-color: #EFF6FF !important; }
+    [class*="bg-amber-950"] { background-color: #FFFBEB !important; }
+    [class*="bg-red-950"] { background-color: #FEF2F2 !important; }
+
+    [class*="border-[rgba(148,163,184"] {
+      border-color: #E2E8F0 !important;
+    }
+
+    [class*="border-slate-700"],
+    [class*="border-slate-600"] {
+      border-color: #CBD5E1 !important;
+    }
+
+    [class*="text-white"],
+    [class*="text-slate-100"],
+    [class*="text-slate-200"] {
+      color: #0F172A !important;
+    }
+
+    [class*="text-slate-300"] { color: #334155 !important; }
+    [class*="text-slate-400"] { color: #64748B !important; }
+    [class*="text-slate-500"],
+    [class*="text-slate-600"] { color: #64748B !important; }
+
+    [class*="text-orange-300"],
+    [class*="text-orange-400"] { color: #C2410C !important; }
+    [class*="text-blue-300"],
+    [class*="text-blue-400"] { color: #1D4ED8 !important; }
+    [class*="text-emerald-300"],
+    [class*="text-emerald-400"] { color: #047857 !important; }
+    [class*="text-amber-300"],
+    [class*="text-amber-400"] { color: #A16207 !important; }
+    [class*="text-red-300"],
+    [class*="text-red-400"] { color: #B91C1C !important; }
+    [class*="text-purple-400"] { color: #7E22CE !important; }
+
+    .nav-tab-btn.active {
+      background-color: #FFF7ED !important;
+      color: #9A3412 !important;
+      border-color: #FDBA74 !important;
+      box-shadow: none !important;
+    }
+
+    main section,
+    main article,
+    main [class*="rounded-xl"] {
+      box-shadow: none !important;
+    }
+
+    select,
+    textarea,
+    input {
+      color: #0F172A !important;
+      color-scheme: light;
+    }
+
+    ::-webkit-scrollbar-track { background: #F1F5F9; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; }
+    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col antialiased selection:bg-brand/30 selection:text-orange-200">
+
+  <!-- ========================================================================= -->
+  <!-- 4. REDESIGNED HEADER: Compact, Technical & Status-Driven                   -->
+  <!-- ========================================================================= -->
+  <header class="border-b border-[rgba(148,163,184,0.12)] bg-[#0B1120]/90 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      
+      <!-- Left: Identity -->
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-lg bg-gradient-to-br from-[#EE4D2D] to-[#EA580C] flex items-center justify-center font-bold text-white text-xs shadow-sm tracking-wider">
+          L3B
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700/60 font-semibold">
+              L3B · LAB 07
+            </span>
+            <h1 class="text-sm sm:text-base font-semibold text-white tracking-tight">
+              Chunking Strategy Benchmark
+            </h1>
+          </div>
+          <p class="text-xs text-slate-400 hidden sm:block">
+            So sánh 6 chiến lược · 5 benchmark queries · đo retrieval có kiểm soát
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: Compact Status Pills -->
+      <div class="flex items-center gap-2 sm:gap-2.5">
+        <!-- 45/45 Tests -->
+        <div class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#111827] border border-[rgba(148,163,184,0.12)] text-[11px] font-mono text-slate-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span>45 / 45 Tests</span>
+        </div>
+
+        <!-- 7 Documents -->
+        <div class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#111827] border border-[rgba(148,163,184,0.12)] text-[11px] font-mono text-slate-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+          <span>7 Documents</span>
+        </div>
+
+        <!-- Benchmark scope -->
+        <div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#111827] border border-[rgba(148,163,184,0.12)] text-[11px] font-mono text-slate-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+          <span>6 Strategies</span>
+        </div>
+
+        <!-- Vector Store Ready -->
+        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-[11px] font-mono text-emerald-400">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Benchmark Ready</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 5. NAVIGATION: Clean Segmented Navigation with Crisp SVG Icons            -->
+  <!-- ========================================================================= -->
+  <nav class="border-b border-[rgba(148,163,184,0.12)] bg-[#0B1120]/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex items-center justify-between">
+      
+      <div class="flex items-center gap-1.5 bg-[#111827] p-1 rounded-xl border border-[rgba(148,163,184,0.12)] overflow-x-auto w-full sm:w-auto">
+        
+        <!-- Tab 1: Playground -->
+        <button onclick="switchTab('playground')" id="nav-btn-playground" class="nav-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-2 border border-transparent whitespace-nowrap">
+          <svg class="tab-icon w-3.5 h-3.5 text-slate-400 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+          <span>RAG Playground</span>
+        </button>
+
+        <!-- Tab 2: Data Corpus -->
+        <button onclick="switchTab('corpus')" id="nav-btn-corpus" class="nav-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-2 border border-transparent whitespace-nowrap">
+          <svg class="tab-icon w-3.5 h-3.5 text-slate-400 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+            <path d="M6 6h10"></path>
+            <path d="M6 10h10"></path>
+          </svg>
+          <span>Data Corpus</span>
+          <span class="text-[10px] font-mono px-1.5 rounded bg-slate-800 text-slate-400">7</span>
+        </button>
+
+        <!-- Tab 3: Chunking -->
+        <button onclick="switchTab('chunking')" id="nav-btn-chunking" class="nav-tab-btn active px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-2 border border-transparent whitespace-nowrap">
+          <svg class="tab-icon w-3.5 h-3.5 text-slate-400 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3v18"></path>
+            <path d="M18 3v18"></path>
+            <path d="M3 12h18"></path>
+          </svg>
+          <span>Compare Chunking</span>
+        </button>
+
+        <!-- Tab 4: Metadata -->
+        <button onclick="switchTab('metadata')" id="nav-btn-metadata" class="nav-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-2 border border-transparent whitespace-nowrap">
+          <svg class="tab-icon w-3.5 h-3.5 text-slate-400 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+          </svg>
+          <span>Metadata Filter</span>
+          <span class="text-[10px] font-mono px-1 rounded bg-[#EE4D2D]/20 text-orange-400 border border-[#EE4D2D]/30 font-semibold">A/B</span>
+        </button>
+
+        <!-- Tab 5: Evaluation -->
+        <button onclick="switchTab('evaluation')" id="nav-btn-evaluation" class="nav-tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium text-slate-400 hover:text-white transition flex items-center gap-2 border border-transparent whitespace-nowrap">
+          <svg class="tab-icon w-3.5 h-3.5 text-slate-400 transition" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+          <span>Evaluation</span>
+          <span class="text-[10px] font-mono px-1.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800">45/45</span>
+        </button>
+
+      </div>
+
+      <div class="hidden xl:flex items-center gap-2 text-xs text-slate-500 font-mono">
+        <span>G66 · Tran Dinh Duy</span>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN WORKSPACE CONTAINER                                                  -->
+  <!-- ========================================================================= -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex-1 w-full space-y-6">
+
+    <!-- ======================================================================= -->
+    <!-- 6. TAB 1: PLAYGROUND (THE MAIN SECTION)                                 -->
+    <!-- ======================================================================= -->
+    <div id="section-playground" class="hidden space-y-5">
+      
+      <!-- Query Composer Card -->
+      <div class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-5 shadow-sm space-y-4">
+        
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-[#EE4D2D]"></span>
+            <span class="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
+              ASK THE KNOWLEDGE BASE
+            </span>
+          </div>
+          <span class="text-[11px] font-mono text-slate-500">
+            Press <kbd class="px-1.5 py-0.5 text-[10px] rounded bg-slate-800 border border-slate-700 text-slate-300">Ctrl</kbd> + <kbd class="px-1.5 py-0.5 text-[10px] rounded bg-slate-800 border border-slate-700 text-slate-300">Enter</kbd> to run
+          </span>
+        </div>
+
+        <!-- Query Input -->
+        <div class="relative">
+          <textarea 
+            id="query-input" 
+            rows="2"
+            class="w-full bg-[#0B1120] border border-[rgba(148,163,184,0.16)] rounded-lg px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-[#EE4D2D] focus:ring-1 focus:ring-[#EE4D2D] transition resize-none font-sans"
+            placeholder="Ask a question about Shopee return & refund policies... (e.g. thời hạn trả hàng, quy định Người bán Shopee Mall...)"
+          >Đối với yêu cầu Trả hàng/Hoàn tiền ở trạng thái Shopee đang xem xét, thời gian Shopee xử lý và gửi kết quả là bao lâu?</textarea>
+        </div>
+
+        <!-- Benchmark Query Chips -->
+        <div class="space-y-1.5">
+          <div class="text-[11px] font-mono text-slate-400 flex items-center justify-between">
+            <span>Benchmark Queries</span>
+            <span class="text-slate-500">Select a pre-validated query</span>
+          </div>
+          <div class="flex flex-wrap gap-2" id="benchmark-chips-container">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Controls Row -->
+        <div class="pt-3 border-t border-[rgba(148,163,184,0.08)] flex flex-wrap items-center justify-between gap-3">
+          
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- Metadata Filter Selector -->
+            <div class="flex items-center gap-2">
+              <label for="filter-select" class="text-xs text-slate-400 font-medium">Metadata Filter:</label>
+              <div class="relative">
+                <select id="filter-select" class="bg-[#0B1120] border border-[rgba(148,163,184,0.16)] rounded-lg px-3 py-1.5 text-xs text-slate-200 font-mono focus:outline-none focus:border-[#EE4D2D] transition cursor-pointer pr-7">
+                  <option value="none">No filter (all 48 chunks)</option>
+                  <option value="buyer" selected>audience: buyer (19 chunks)</option>
+                  <option value="seller">audience: seller (29 chunks)</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-slate-400">
+                  <svg class="w-3 h-3" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top-K Selector -->
+            <div class="flex items-center gap-2">
+              <label for="topk-select" class="text-xs text-slate-400 font-medium">Top K:</label>
+              <select id="topk-select" class="bg-[#0B1120] border border-[rgba(148,163,184,0.16)] rounded-lg px-3 py-1.5 text-xs text-slate-200 font-mono focus:outline-none focus:border-[#EE4D2D] transition cursor-pointer">
+                <option value="3" selected>3</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Primary CTA Button -->
+          <button 
+            id="btn-run-retrieval"
+            onclick="triggerSearch()" 
+            class="bg-gradient-to-r from-[#EE4D2D] to-[#EA580C] hover:from-[#D73211] hover:to-[#C2410C] text-white text-xs font-semibold px-5 py-2.5 rounded-lg shadow-sm transition flex items-center gap-2 active:scale-95"
+          >
+            <svg id="search-spinner" class="hidden animate-spin w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span id="btn-cta-text">Run Retrieval →</span>
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- 7. RAG PIPELINE VISUALIZER: Horizontal Process Steps                 -->
+      <!-- ===================================================================== -->
+      <div class="bg-[#111827]/70 border border-[rgba(148,163,184,0.12)] rounded-xl p-3.5">
+        <div class="flex items-center justify-between text-[11px] font-mono text-slate-400 mb-2">
+          <span class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+            <span>PIPELINE EXECUTION TRACE</span>
+          </span>
+          <span class="text-slate-500" id="pipeline-status">State: Ready</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-6 gap-2 text-xs">
+          
+          <div class="pipeline-step p-2 rounded-lg bg-[#0B1120] border border-emerald-500/30 text-slate-200 flex items-center gap-1.5">
+            <span class="text-emerald-400 text-xs">✓</span>
+            <div>
+              <div class="text-[10px] text-slate-400 uppercase font-mono">Stage 1</div>
+              <div class="font-medium text-[11px]">Query Input</div>
+            </div>
+          </div>
+
+          <div class="pipeline-step p-2 rounded-lg bg-[#0B1120] border border-emerald-500/30 text-slate-200 flex items-center gap-1.5">
+            <span class="text-emerald-400 text-xs">✓</span>
+            <div>
+              <div class="text-[10px] text-slate-400 uppercase font-mono">Stage 2</div>
+              <div class="font-medium text-[11px]">TF-IDF Embed</div>
+            </div>
+          </div>
+
+          <div class="pipeline-step p-2 rounded-lg bg-[#0B1120] border border-emerald-500/30 text-slate-200 flex items-center gap-1.5">
+            <span class="text-emerald-400 text-xs">✓</span>
+            <div>
+              <div class="text-[10px] text-slate-400 uppercase font-mono">Stage 3</div>
+              <div class="font-medium text-[11px]">Metadata Filter</div>
+            </div>
+          </div>
+
+          <div class="pipeline-step p-2 rounded-lg bg-[#0B1120] border border-emerald-500/30 text-slate-200 flex items-center gap-1.5">
+            <span class="text-emerald-400 text-xs">✓</span>
+            <div>
+              <div class="text-[10px] text-slate-400 uppercase font-mono">Stage 4</div>
+              <div class="font-medium text-[11px]">Vector Search</div>
+            </div>
+          </div>
+
+          <div class="pipeline-step p-2 rounded-lg bg-[#0B1120] border border-emerald-500/30 text-slate-200 flex items-center gap-1.5">
+            <span class="text-emerald-400 text-xs">✓</span>
+            <div>
+              <div class="text-[10px] text-slate-400 uppercase font-mono">Stage 5</div>
+              <div class="font-medium text-[11px]">Top-K Context</div>
+            </div>
+          </div>
+
+          <div class="pipeline-step p-2 rounded-lg bg-[#0B1120] border border-emerald-500/30 text-slate-200 flex items-center gap-1.5">
+            <span class="text-emerald-400 text-xs">✓</span>
+            <div>
+              <div class="text-[10px] text-slate-400 uppercase font-mono">Stage 6</div>
+              <div class="font-medium text-[11px]">Grounded Answer</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- 12. RETRIEVAL METRICS: Compact Metric Strip                          -->
+      <!-- ===================================================================== -->
+      <div class="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-lg bg-[#111827]/40 border border-[rgba(148,163,184,0.08)] text-xs text-slate-400">
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6 font-mono text-[11px]">
+          <div>
+            <span class="text-slate-500">Latency:</span>
+            <span class="text-slate-200 font-semibold" id="metric-latency">~1.2 ms</span>
+          </div>
+          <div>
+            <span class="text-slate-500">Top K:</span>
+            <span class="text-slate-200 font-semibold" id="metric-topk">3</span>
+          </div>
+          <div>
+            <span class="text-slate-500">Active Filter:</span>
+            <span class="text-blue-400 font-semibold" id="metric-filter">audience: buyer</span>
+          </div>
+          <div>
+            <span class="text-slate-500">Candidate Space:</span>
+            <span class="text-slate-200 font-semibold" id="metric-space">19 / 48 chunks</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 font-mono text-[11px]">
+          <span class="text-slate-500">Evaluation:</span>
+          <span class="px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800/80 font-semibold">Grounded & Verified</span>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- 8. MAIN RESULTS LAYOUT: Left 62% Retrieved, Right 38% Answer         -->
+      <!-- ===================================================================== -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+        
+        <!-- =================================================================== -->
+        <!-- 9. LEFT SIDE: RETRIEVED CONTEXT (62%)                              -->
+        <!-- =================================================================== -->
+        <div class="lg:col-span-7 space-y-3.5">
+          
+          <div class="flex items-center justify-between pb-1">
+            <div>
+              <h2 class="text-sm font-semibold text-white flex items-center gap-2">
+                <span>Retrieved Context</span>
+                <span class="text-[11px] font-mono font-normal text-slate-400" id="context-subtitle">
+                  (3 chunks retrieved · Cosine Ranking)
+                </span>
+              </h2>
+            </div>
+            <span class="text-[11px] font-mono text-slate-400" id="context-meta-badge">Filter: audience=buyer</span>
+          </div>
+
+          <!-- Retrieved Chunks Container -->
+          <div id="retrieved-chunks-list" class="space-y-3">
+            <!-- Rendered by JS -->
+          </div>
+
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- 10 & 11. RIGHT SIDE: ANSWER PANEL + EVALUATION (38%)               -->
+        <!-- =================================================================== -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <!-- KnowledgeBaseAgent Answer Card -->
+          <div class="bg-[#111827] border border-[rgba(148,163,184,0.14)] rounded-xl p-5 shadow-sm space-y-4">
+            
+            <div class="flex items-center justify-between border-b border-[rgba(148,163,184,0.1)] pb-3">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <h3 class="text-xs font-semibold text-white uppercase tracking-wider font-mono">
+                  KnowledgeBaseAgent
+                </h3>
+              </div>
+              <span class="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800">
+                ● Grounded
+              </span>
+            </div>
+
+            <!-- Answer Content -->
+            <div class="space-y-2">
+              <div class="text-[10px] font-mono uppercase text-slate-400 tracking-wider">
+                GENERATED ANSWER
+              </div>
+              <div 
+                id="generated-answer-container" 
+                class="text-sm text-slate-100 leading-relaxed bg-[#0B1120] p-4 rounded-lg border border-[rgba(148,163,184,0.12)] min-h-[110px]"
+              >
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Evidence Section -->
+            <div class="pt-2 border-t border-[rgba(148,163,184,0.08)] space-y-1.5">
+              <div class="text-[10px] font-mono uppercase text-slate-400 tracking-wider flex items-center justify-between">
+                <span>Evidence Sources</span>
+                <span class="text-slate-500">Click citation badge to inspect chunk</span>
+              </div>
+              <div id="evidence-sources-list" class="space-y-1 text-xs font-mono">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Compact Evaluation / Ground Truth Card -->
+          <div class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-4 shadow-sm space-y-3">
+            
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                <h4 class="text-xs font-semibold text-slate-200 uppercase font-mono tracking-wider">
+                  Evaluation
+                </h4>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
+                Ground Truth Alignment
+              </span>
+            </div>
+
+            <!-- Side by side comparison blocks -->
+            <div class="space-y-2 text-xs">
+              <div class="p-2.5 rounded-lg bg-[#0B1120] border border-[rgba(148,163,184,0.1)] space-y-1">
+                <div class="text-[10px] font-mono text-emerald-400 uppercase font-semibold">AI Extracted Key Fact</div>
+                <div id="eval-extracted-fact" class="text-slate-200 font-sans">
+                  <!-- Rendered by JS -->
+                </div>
+              </div>
+
+              <div class="p-2.5 rounded-lg bg-[#0B1120] border border-[rgba(148,163,184,0.1)] space-y-1">
+                <div class="text-[10px] font-mono text-amber-400 uppercase font-semibold">Benchmark Ground Truth</div>
+                <div id="eval-ground-truth" class="text-slate-300 italic font-sans text-[11.5px]">
+                  <!-- Rendered by JS -->
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1 text-[11px] font-mono text-slate-400">
+              <span class="flex items-center gap-1.5 text-emerald-400">
+                <span>✓</span>
+                <span class="font-medium">Key fact matched</span>
+              </span>
+              <span class="text-slate-500">Zero Hallucination</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    </div>
+
+    <!-- ======================================================================= -->
+    <!-- 13. TAB 2: DATA CORPUS EXPLORER                                         -->
+    <!-- ======================================================================= -->
+    <div id="section-corpus" class="hidden space-y-5">
+      
+      <div class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-5 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h2 class="text-base font-semibold text-white flex items-center gap-2">
+              <span>Data Corpus Explorer</span>
+              <span class="text-xs font-mono font-normal text-slate-400">
+                (7 Documents · 48 Heading Chunks · 25,426 Characters)
+              </span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">
+              Bộ dữ liệu chính sách Đổi trả, Hoàn tiền và Quy định Trách nhiệm Người bán Shopee. Đồng bộ 1-1 với <code class="text-slate-300 font-mono">sources.csv</code>.
+            </p>
+          </div>
+
+          <!-- Audience Filter Filter Chips -->
+          <div class="flex items-center gap-2 text-xs">
+            <button onclick="filterCorpus('all')" id="corpus-filter-all" class="corpus-filter-btn active px-3 py-1 rounded-lg bg-[#172033] text-white border border-[#EE4D2D]/40 font-medium transition">
+              All (7)
+            </button>
+            <button onclick="filterCorpus('buyer')" id="corpus-filter-buyer" class="corpus-filter-btn px-3 py-1 rounded-lg bg-[#0B1120] text-slate-400 hover:text-white border border-[rgba(148,163,184,0.12)] transition">
+              Buyer (4)
+            </button>
+            <button onclick="filterCorpus('seller')" id="corpus-filter-seller" class="corpus-filter-btn px-3 py-1 rounded-lg bg-[#0B1120] text-slate-400 hover:text-white border border-[rgba(148,163,184,0.12)] transition">
+              Seller (3)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Corpus Documents Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="corpus-grid-container">
+        <!-- Rendered by JS -->
+      </div>
+
+    </div>
+
+    <!-- ======================================================================= -->
+    <!-- 14. TAB 3: CHUNKING STRATEGIES                                          -->
+    <!-- ======================================================================= -->
+    <div id="section-chunking" class="space-y-5">
+
+      <section class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-5 shadow-sm space-y-4" aria-labelledby="compare-title">
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+          <div class="max-w-3xl">
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-1 rounded bg-[#EE4D2D]/15 text-orange-300 border border-[#EE4D2D]/30">Live benchmark</span>
+              <span id="compare-backend" class="text-[10px] font-mono px-2 py-1 rounded bg-slate-900 text-slate-400 border border-slate-700">Đang tải backend…</span>
+              <span id="compare-api-status" class="text-[10px] font-mono px-2 py-1 rounded bg-slate-900 text-slate-400 border border-slate-700">Đang đọc API config…</span>
+            </div>
+            <h2 id="compare-title" class="text-xl font-bold text-white mt-3">So sánh các phương pháp chunking trên cùng một phép đo</h2>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+              Mỗi chiến lược dùng cùng 7 tài liệu, cùng 5 câu hỏi, cùng metadata filter và cùng top-k = 3. Gold evidence chỉ được đối chiếu <strong class="text-slate-300">sau khi retrieval</strong>, không tham gia xếp hạng.
+            </p>
+          </div>
+          <button type="button" onclick="loadChunkingComparison(true)" class="px-4 py-2 rounded-lg bg-[#EE4D2D] hover:bg-[#D73211] text-white text-xs font-semibold transition whitespace-nowrap">Chạy lại benchmark</button>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          <div class="p-3 rounded-lg bg-[#0B1120] border border-[rgba(148,163,184,0.1)]"><div class="text-[10px] uppercase tracking-wider font-mono text-slate-500">Corpus</div><div id="compare-corpus-count" class="mt-1 text-lg font-bold text-white">7 tài liệu</div></div>
+          <div class="p-3 rounded-lg bg-[#0B1120] border border-[rgba(148,163,184,0.1)]"><div class="text-[10px] uppercase tracking-wider font-mono text-slate-500">Benchmark</div><div id="compare-query-count" class="mt-1 text-lg font-bold text-white">5 câu hỏi</div></div>
+          <div class="p-3 rounded-lg bg-[#0B1120] border border-[rgba(148,163,184,0.1)]"><div class="text-[10px] uppercase tracking-wider font-mono text-slate-500">Retrieval</div><div class="mt-1 text-lg font-bold text-white">Top-3 + filter</div></div>
+          <div class="p-3 rounded-lg bg-[#0B1120] border border-[rgba(148,163,184,0.1)]"><div class="text-[10px] uppercase tracking-wider font-mono text-slate-500">Chiến lược</div><div id="compare-strategy-count" class="mt-1 text-lg font-bold text-white">6 phương pháp</div></div>
+        </div>
+      </section>
+
+      <div id="compare-loading" class="p-5 rounded-xl bg-[#111827] border border-[rgba(148,163,184,0.12)] text-sm text-slate-400" role="status">Đang chạy phép đo so sánh trên toàn bộ corpus…</div>
+      <div id="compare-error" class="hidden p-4 rounded-xl bg-red-950/20 border border-red-500/30 text-sm text-red-300" role="alert"></div>
+
+      <div id="compare-content" class="hidden space-y-5">
+        <section class="space-y-3" aria-labelledby="metrics-title">
+          <div class="flex items-end justify-between gap-3 flex-wrap">
+            <div><h3 id="metrics-title" class="text-sm font-semibold text-white">Phương pháp đo lường</h3><p class="text-[11px] text-slate-500 mt-1">Các chỉ số dưới đây được áp dụng giống nhau cho mọi chiến lược.</p></div>
+            <span class="text-[10px] font-mono text-amber-300 bg-amber-950/30 border border-amber-500/20 rounded px-2 py-1">Retrieval proxy · không phải LLM accuracy</span>
+          </div>
+          <div id="metric-definitions" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3"></div>
+        </section>
+
+        <section class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-5 shadow-sm space-y-4" aria-labelledby="head-to-head-title">
+          <div class="flex items-center justify-between gap-3 flex-wrap">
+            <div><h3 id="head-to-head-title" class="text-sm font-semibold text-white">Head-to-head: độ đầy đủ bằng chứng</h3><p class="text-[11px] text-slate-500 mt-1">Thanh dài hơn tốt hơn; mỗi đơn vị tương ứng một câu hỏi benchmark.</p></div>
+            <div class="flex items-center gap-4 text-[10px] font-mono text-slate-400"><span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-blue-500"></span>Evidence@3</span><span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-sm bg-[#EE4D2D]"></span>Top-1 complete</span></div>
+          </div>
+          <div id="strategy-bars" class="space-y-4" aria-live="polite"></div>
+        </section>
+
+        <section class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl overflow-hidden shadow-sm" aria-labelledby="comparison-table-title">
+          <div class="p-4 border-b border-[rgba(148,163,184,0.1)] flex items-center justify-between gap-3 flex-wrap">
+            <div><h3 id="comparison-table-title" class="text-sm font-semibold text-white">Bảng đo đầy đủ theo chiến lược</h3><p class="text-[11px] text-slate-500 mt-1">Chất lượng retrieval, kích thước index và thời gian đo trong cùng một bảng.</p></div>
+            <select id="comparison-sort-select" onchange="renderComparisonTable()" class="bg-[#0B1120] border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-300"><option value="quality">Xếp theo chất lượng</option><option value="chunks">Xếp theo ít chunks</option><option value="latency">Xếp theo query latency</option></select>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs text-slate-300">
+              <thead class="bg-[#0B1120] text-slate-400 font-mono text-[10px] uppercase border-b border-[rgba(148,163,184,0.1)]"><tr><th class="py-3 px-4">Phương pháp / cấu hình</th><th class="py-3 px-3 text-center">Chunks</th><th class="py-3 px-3 text-center">Avg chars</th><th class="py-3 px-3 text-center">Doc Hit@3</th><th class="py-3 px-3 text-center">Evidence@3</th><th class="py-3 px-3 text-center">Top-1</th><th class="py-3 px-3 text-center">Coverage</th><th class="py-3 px-3 text-center">Query ms</th></tr></thead>
+              <tbody id="comparison-table-body" class="divide-y divide-[rgba(148,163,184,0.08)]"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-5 shadow-sm space-y-4" aria-labelledby="query-matrix-title">
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
+            <div><h3 id="query-matrix-title" class="text-sm font-semibold text-white">Drill-down theo từng câu hỏi</h3><p class="text-[11px] text-slate-500 mt-1">Xem chiến lược nào giữ trọn bằng chứng cho một tình huống cụ thể.</p></div>
+            <label class="text-[11px] text-slate-400">Benchmark query<select id="compare-query-select" onchange="renderQueryMatrix()" class="mt-1 w-full md:w-80 bg-[#0B1120] border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200"></select></label>
+          </div>
+          <div id="compare-query-text" class="p-3 rounded-lg bg-[#0B1120] border border-[rgba(148,163,184,0.1)] text-xs text-slate-300"></div>
+          <div id="query-matrix" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3" aria-live="polite"></div>
+        </section>
+
+        <section id="compare-recommendation" class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/25"></section>
+      </div>
+
+      <div class="hidden" aria-hidden="true">
+      
+      <div class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-5 shadow-sm space-y-4">
+        <div>
+          <h2 class="text-base font-semibold text-white">Chunking Strategies Design & Benchmark</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            So sánh có kiểm soát trên cùng 7 tài liệu, 5 câu hỏi và TF-IDF; cấu hình được chọn là <code class="font-mono text-orange-300">HeadingChunker(chunk_size=1400)</code>.
+          </p>
+        </div>
+
+        <!-- Educational Process Visualization -->
+        <div class="p-4 rounded-lg bg-[#0B1120] border border-[rgba(148,163,184,0.12)] space-y-3">
+          <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+            Document Ingestion Flow
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+            <div class="p-3 rounded bg-[#111827] border border-[rgba(148,163,184,0.1)] space-y-1">
+              <span class="text-[10px] font-mono text-blue-400 uppercase">1. Raw Source</span>
+              <div class="font-semibold text-white">Original Document (.md)</div>
+              <p class="text-[11px] text-slate-400">Frontmatter metadata + thân văn bản markdown</p>
+            </div>
+            <div class="p-3 rounded bg-[#111827] border border-[rgba(148,163,184,0.1)] space-y-1">
+              <span class="text-[10px] font-mono text-orange-400 uppercase">2. Chunking Engine</span>
+              <div class="font-semibold text-white">HeadingChunker 1400</div>
+              <p class="text-[11px] text-slate-400">Giữ đường dẫn heading; Recursive fallback cho mục dài</p>
+            </div>
+            <div class="p-3 rounded bg-[#111827] border border-[rgba(148,163,184,0.1)] space-y-1">
+              <span class="text-[10px] font-mono text-purple-400 uppercase">3. Representation</span>
+              <div class="font-semibold text-white">Document Chunks</div>
+              <p class="text-[11px] text-slate-400">id, content, metadata: audience, doc_id</p>
+            </div>
+            <div class="p-3 rounded bg-[#111827] border border-[rgba(148,163,184,0.1)] space-y-1">
+              <span class="text-[10px] font-mono text-emerald-400 uppercase">4. Vector Index</span>
+              <div class="font-semibold text-white">TF-IDF Baseline</div>
+              <p class="text-[11px] text-slate-400">Từ đơn + cặp từ, cosine chuẩn hóa; chạy offline</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Comparative Table -->
+      <div class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl overflow-hidden shadow-sm">
+        <div class="p-4 border-b border-[rgba(148,163,184,0.1)] bg-[#111827]">
+          <h3 class="text-sm font-semibold text-white">Quantitative Strategy Comparison (Baseline vs Custom Chunker)</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs text-slate-300">
+            <thead class="bg-[#0B1120] text-slate-400 font-mono text-[11px] uppercase border-b border-[rgba(148,163,184,0.1)]">
+              <tr>
+                <th class="py-3 px-4">Tài liệu kiểm nghiệm</th>
+                <th class="py-3 px-4">Chiến lược</th>
+                <th class="py-3 px-4">Số Chunk</th>
+                <th class="py-3 px-4">Độ dài TB (chars)</th>
+                <th class="py-3 px-4">Bảo toàn ngữ cảnh</th>
+                <th class="py-3 px-4">Đánh giá kỹ thuật</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-[rgba(148,163,184,0.08)]">
+              <tr class="hover:bg-slate-800/20">
+                <td class="py-3.5 px-4 font-medium text-white">Toàn bộ 7 tài liệu</td>
+                <td class="py-3.5 px-4 font-mono text-slate-300">FixedSize (1000, overlap=100)</td>
+                <td class="py-3.5 px-4 font-mono">31</td>
+                <td class="py-3.5 px-4 font-mono">—</td>
+                <td class="py-3.5 px-4 text-amber-400">5/5 đủ evidence@3 · 4/5 top-1</td>
+                <td class="py-3.5 px-4 text-slate-400">Ít chunk nhưng có thể cắt ngang cấu trúc mục</td>
+              </tr>
+              <tr class="hover:bg-slate-800/20">
+                <td class="py-3.5 px-4 font-medium text-white">Toàn bộ 7 tài liệu</td>
+                <td class="py-3.5 px-4 font-mono text-slate-300">Sentence (3 câu)</td>
+                <td class="py-3.5 px-4 font-mono">68</td>
+                <td class="py-3.5 px-4 font-mono">—</td>
+                <td class="py-3.5 px-4 text-red-400">1/5 đủ evidence@3 · 1/5 top-1</td>
+                <td class="py-3.5 px-4 text-slate-400">Các bước và điều kiện bị phân tán</td>
+              </tr>
+              <tr class="hover:bg-slate-800/20">
+                <td class="py-3.5 px-4 font-medium text-white">Toàn bộ 7 tài liệu</td>
+                <td class="py-3.5 px-4 font-mono text-slate-300">Recursive (1000)</td>
+                <td class="py-3.5 px-4 font-mono">33</td>
+                <td class="py-3.5 px-4 font-mono">—</td>
+                <td class="py-3.5 px-4 text-emerald-400">5/5 đủ evidence@3 · 5/5 top-1</td>
+                <td class="py-3.5 px-4 text-slate-400">Baseline mạnh, ít chunk nhất trong nhóm đạt 5/5</td>
+              </tr>
+              <tr class="hover:bg-slate-800/20">
+                <td class="py-3.5 px-4 font-medium text-white">Toàn bộ 7 tài liệu</td>
+                <td class="py-3.5 px-4 font-mono text-slate-300">Heading (600)</td>
+                <td class="py-3.5 px-4 font-mono">74</td>
+                <td class="py-3.5 px-4 font-mono">—</td>
+                <td class="py-3.5 px-4 text-amber-400">5/5 đủ evidence@3 · 1/5 top-1</td>
+                <td class="py-3.5 px-4 text-slate-400">Ngưỡng quá nhỏ làm đáp án phân tán</td>
+              </tr>
+              <tr class="hover:bg-slate-800/20 bg-[#EE4D2D]/5">
+                <td class="py-3.5 px-4 font-medium text-orange-200">Toàn bộ 7 tài liệu</td>
+                <td class="py-3.5 px-4 font-mono text-orange-400 font-semibold">Heading (1400) · Luân</td>
+                <td class="py-3.5 px-4 font-mono font-bold text-white">48</td>
+                <td class="py-3.5 px-4 font-mono text-orange-300">529.7</td>
+                <td class="py-3.5 px-4 text-emerald-400 font-semibold">5/5 đủ evidence@3 · 5/5 top-1</td>
+                <td class="py-3.5 px-4 text-orange-300">Được chọn: giữ heading, ít chunk hơn mức 1000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/25">
+          <div class="text-[10px] uppercase tracking-wider font-mono text-emerald-400">Retrieval proxy</div>
+          <div class="mt-1 text-2xl font-bold text-white">5 / 5</div>
+          <p class="mt-1 text-[11px] text-slate-400">Top-1 chứa đủ chuỗi bằng chứng với TF-IDF.</p>
+        </div>
+        <div class="p-4 rounded-xl bg-blue-950/20 border border-blue-500/25">
+          <div class="text-[10px] uppercase tracking-wider font-mono text-blue-400">Selected strategy</div>
+          <div class="mt-1 text-lg font-bold text-white">Heading 1400</div>
+          <p class="mt-1 text-[11px] text-slate-400">48 chunk; giữ đường dẫn heading cha–con.</p>
+        </div>
+        <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-500/25">
+          <div class="text-[10px] uppercase tracking-wider font-mono text-amber-400">Measurement limit</div>
+          <div class="mt-1 text-lg font-bold text-white">Chưa phải agent accuracy</div>
+          <p class="mt-1 text-[11px] text-slate-400">5 query là tập tuning; chưa chấm LLM hoặc tập hold-out.</p>
+        </div>
+      </div>
+
+    </div>
+
+    </div>
+
+    <!-- ======================================================================= -->
+    <!-- 15. TAB 4: METADATA FILTERING (THE 10-SECOND EXPLAINER)                 -->
+    <!-- ======================================================================= -->
+    <div id="section-metadata" class="hidden space-y-5">
+      
+      <div class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-5 shadow-sm space-y-3">
+        <div>
+          <h2 class="text-base font-semibold text-white">Metadata Pre-filtering: 10-Second Explainer</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Tại sao tìm kiếm ngữ nghĩa đơn thuần (Semantic/Vector Search) có thể bị nhầm lẫn khi từ khóa giữa Người Mua & Người Bán tương đồng, và cách <code class="text-slate-300 font-mono">search_with_filter()</code> giải quyết dứt điểm.
+          </p>
+        </div>
+
+        <div class="p-3.5 rounded-lg bg-[#EE4D2D]/10 border border-[#EE4D2D]/20 text-xs text-orange-200 flex items-start gap-2.5">
+          <span class="text-base">📌</span>
+          <div>
+            <strong>Benchmark Query 2:</strong> <em>"Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?"</em>
+            <div class="text-[11px] text-slate-400 mt-1">
+              Chủ thể cần hỏi: <strong>Người Bán (Seller)</strong> · Gold answer: <strong>02 ngày làm việc (48 giờ)</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side-by-side A/B Comparison -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        
+        <!-- Variant A: No Filter -->
+        <div class="bg-[#111827] border border-red-500/25 rounded-xl p-5 space-y-3 shadow-sm">
+          <div class="flex items-center justify-between pb-2 border-b border-[rgba(148,163,184,0.1)]">
+            <div>
+              <h3 class="text-xs font-bold text-red-400 uppercase font-mono tracking-wider flex items-center gap-1.5">
+                <span>❌ Variant A: No Filter</span>
+              </h3>
+              <p class="text-[11px] text-slate-400 font-mono mt-0.5">store.search(query, top_k=3)</p>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-red-950/60 text-red-300 border border-red-800">
+              Có nhiễu buyer trong top-3
+            </span>
+          </div>
+
+          <div class="space-y-2.5 text-xs">
+            <div class="p-3 bg-[#0B1120] rounded-lg border border-red-500/20 space-y-1.5">
+              <div class="flex justify-between items-center font-mono">
+                <span class="font-semibold text-slate-200">#01 shopee-seller-return-processing-policy#0</span>
+                <span class="text-emerald-400 font-bold">score 0.2983</span>
+              </div>
+              <div class="flex gap-2 text-[10px] font-mono">
+                <span class="px-1.5 py-0.2 rounded bg-amber-900/40 text-amber-300 border border-amber-800">audience: seller</span>
+              </div>
+              <p class="text-slate-400 text-[11.5px] line-clamp-2">
+                "Người bán có tối đa 02 ngày làm việc (48 giờ) để đồng ý hoàn tiền hoặc khiếu nại lại..."
+              </p>
+              <div class="text-[11px] text-red-300/90 pt-1 border-t border-red-500/10">
+                ⚠️ Top-1 vẫn đúng, nhưng hai vị trí còn lại lấy tài liệu buyer nên ngữ cảnh có nguy cơ lẫn chủ thể.
+              </div>
+            </div>
+
+            <div class="p-2.5 bg-[#0B1120]/60 rounded-lg border border-[rgba(148,163,184,0.06)] opacity-70 font-mono text-[11px]">
+              <div class="flex justify-between">
+                <span>#02 shopee-general-return-policy#2</span>
+                <span class="text-slate-400">score 0.2513 (buyer)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Variant B: With Filter -->
+        <div class="bg-[#111827] border border-emerald-500/30 rounded-xl p-5 space-y-3 shadow-sm">
+          <div class="flex items-center justify-between pb-2 border-b border-[rgba(148,163,184,0.1)]">
+            <div>
+              <h3 class="text-xs font-bold text-emerald-400 uppercase font-mono tracking-wider flex items-center gap-1.5">
+                <span>✅ Variant B: Pre-filtering (audience: seller)</span>
+              </h3>
+              <p class="text-[11px] text-slate-400 font-mono mt-0.5">store.search_with_filter(query, {"audience": "seller"})</p>
+            </div>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-800">
+              Loại nhiễu đối tượng
+            </span>
+          </div>
+
+          <div class="space-y-2.5 text-xs">
+            <div class="p-3 bg-[#0B1120] rounded-lg border border-emerald-500/30 space-y-1.5">
+              <div class="flex justify-between items-center font-mono">
+                <span class="font-semibold text-emerald-300">#01 shopee-seller-return-processing-policy#0</span>
+                <span class="text-emerald-400 font-bold">score 0.2983</span>
+              </div>
+              <div class="flex gap-2 text-[10px] font-mono">
+                <span class="px-1.5 py-0.2 rounded bg-amber-900/40 text-amber-300 border border-amber-800">audience: seller</span>
+              </div>
+              <p class="text-slate-200 text-[11.5px]">
+                "Người bán có tối đa <strong>02 ngày làm việc (48 giờ)</strong> kể từ khi nhận thông báo. Quá hạn, Shopee tự động chấp nhận yêu cầu..."
+              </p>
+              <div class="text-[11px] text-emerald-300 pt-1 border-t border-emerald-500/20 font-medium">
+                🎯 Lọc trước thu hẹp không gian từ 48 xuống 29 chunk seller; top-3 không còn tài liệu buyer.
+              </div>
+            </div>
+
+            <div class="p-2.5 bg-[#0B1120]/60 rounded-lg border border-[rgba(148,163,184,0.06)] opacity-70 font-mono text-[11px]">
+              <div class="flex justify-between">
+                <span>#02 shopee-mall-seller-terms-of-service#1</span>
+                <span class="text-slate-400">score 0.2201 (seller)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ======================================================================= -->
+    <!-- 16. TAB 5: EVALUATION & TEST RUNNER (45/45 VERIFIED)                     -->
+    <!-- ======================================================================= -->
+    <div id="section-evaluation" class="hidden space-y-5">
+      
+      <!-- Top Big Pass Card -->
+      <div class="bg-[#111827] border border-emerald-500/25 rounded-xl p-5 shadow-sm flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+            <h2 class="text-lg font-bold text-white font-mono">
+              Evaluation Summary — 45 / 45 Tests Passing
+            </h2>
+          </div>
+          <p class="text-xs text-slate-400 mt-1 font-mono">
+            Platform win32 · Python 3.12.14 · pytest-9.1.1 · Total Runtime: 0.09s
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-3 py-1 rounded-lg bg-emerald-950/60 text-emerald-300 border border-emerald-800 text-xs font-mono font-semibold">
+            100% Pass Rate
+          </span>
+          <span class="px-3 py-1 rounded-lg bg-[#172033] text-slate-200 border border-[rgba(148,163,184,0.12)] text-xs font-mono font-semibold">
+            Rubric: chưa chấm chính thức
+          </span>
+        </div>
+      </div>
+
+      <!-- Test Suites Breakdown & Rubric -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        
+        <!-- Left: 12 Test Suites Breakdown (7 cols) -->
+        <div class="lg:col-span-7 space-y-3">
+          <h3 class="text-xs font-semibold uppercase text-slate-400 font-mono tracking-wider">
+            Automated Unit Test Suites (tests/test_solution.py + test_heading.py)
+          </h3>
+
+          <div class="space-y-2 text-xs font-mono" id="test-suites-container">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Right: Official Course Rubric (5 cols) -->
+        <div class="lg:col-span-5 space-y-4">
+          <h3 class="text-xs font-semibold uppercase text-slate-400 font-mono tracking-wider">
+            Rubric & Self-Grading Breakdown
+          </h3>
+
+          <div class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-4 space-y-3 text-xs">
+            <div class="flex items-center justify-between pb-2 border-b border-[rgba(148,163,184,0.1)]">
+              <span class="font-semibold text-white">Phần Cá Nhân (Individual)</span>
+              <span class="font-mono text-amber-400 font-bold">Chờ hoàn thiện báo cáo</span>
+            </div>
+            <ul class="space-y-2 text-slate-300 text-[11.5px]">
+              <li class="flex justify-between items-center">
+                <span>Core Implementation (42/42 test bắt buộc)</span>
+                <span class="font-mono text-emerald-400">Đã xác minh</span>
+              </li>
+              <li class="flex justify-between items-center">
+                <span>My Approach & Architecture Explain</span>
+                <span class="font-mono text-amber-400">Cần điền báo cáo</span>
+              </li>
+              <li class="flex justify-between items-center">
+                <span>Competition Results (5/5 evidence proxy)</span>
+                <span class="font-mono text-amber-400">Chưa chấm agent</span>
+              </li>
+              <li class="flex justify-between items-center">
+                <span>Warm-up Math & Chunking Metrics</span>
+                <span class="font-mono text-amber-400">Cần điền báo cáo</span>
+              </li>
+              <li class="flex justify-between items-center">
+                <span>Similarity Predictions & Reflection</span>
+                <span class="font-mono text-amber-400">Cần điền báo cáo</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-4 space-y-3 text-xs">
+            <div class="flex items-center justify-between pb-2 border-b border-[rgba(148,163,184,0.1)]">
+              <span class="font-semibold text-white">Phần Nhóm (Group)</span>
+              <span class="font-mono text-amber-400 font-bold">Đang thực hiện CP5–CP6</span>
+            </div>
+            <ul class="space-y-2 text-slate-300 text-[11.5px]">
+              <li class="flex justify-between items-center">
+                <span>Strategy Design (Heading 1400)</span>
+                <span class="font-mono text-emerald-400">Đã có benchmark</span>
+              </li>
+              <li class="flex justify-between items-center">
+                <span>Document Set Quality (7 docs, sources.csv)</span>
+                <span class="font-mono text-emerald-400">Đã chuẩn bị</span>
+              </li>
+              <li class="flex justify-between items-center">
+                <span>Retrieval Quality (5/5 evidence proxy)</span>
+                <span class="font-mono text-amber-400">Cần agent/hold-out</span>
+              </li>
+              <li class="flex justify-between items-center">
+                <span>Thuyết trình & Live Playground Demo</span>
+                <span class="font-mono text-amber-400">Chưa nghiệm thu</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30 flex items-center justify-between">
+            <span class="text-xs font-semibold text-emerald-300 font-mono">TRẠNG THÁI KỸ THUẬT:</span>
+            <span class="text-sm font-bold text-emerald-400 font-mono">45/45 TEST PASS · HEADING 1400</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER                                                                    -->
+  <!-- ========================================================================= -->
+  <footer class="border-t border-[rgba(148,163,184,0.08)] bg-[#0B1120] py-3 text-center text-xs text-slate-500 font-mono">
+    Lab 07: Data Foundations — Embedding & Vector Store · Antigravity AI Console
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- LOGIC & DATASET                                                           -->
+  <!-- ========================================================================= -->
+  <script>
+    // ---------------------------------------------------------------------------
+    // Benchmark Queries & RAG Ground Truth Data
+    // ---------------------------------------------------------------------------
+    const LEGACY_DEMO_DATA = [
+      {
+        id: 1,
+        short_title: "Q1: Thời gian Shopee xử lý",
+        query: "Đối với yêu cầu Trả hàng/Hoàn tiền ở trạng thái Shopee đang xem xét, thời gian Shopee xử lý và gửi kết quả là bao lâu?",
+        filter: "buyer",
+        key_fact: "Trong vòng 3–5 ngày làm việc (không tính T7, CN, Lễ/Tết)",
+        gold: "Trong vòng 3-5 ngày làm việc (không tính thứ Bảy, Chủ Nhật và các ngày nghỉ lễ/Tết) qua Thông báo hoặc email.",
+        chunks: [
+          {
+            id: "shopee-buyer-return-request-guide#5",
+            doc_id: "shopee-buyer-return-request-guide",
+            audience: "buyer",
+            score: 0.2073,
+            title: "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+            snippet: "## 2. Thời gian xử lý và Hoàn tiền cho Người mua\n- Bộ phận Chăm sóc khách hàng Shopee xử lý yêu cầu của Người mua trong vòng 3 - 5 ngày làm việc.\n- Kết quả được gửi qua mục Thông báo > Cập nhật đơn hàng trên ứng dụng và Email đăng ký của Người mua."
+          },
+          {
+            id: "shopee-general-return-policy#8",
+            doc_id: "shopee-general-return-policy",
+            audience: "buyer",
+            score: 0.1948,
+            title: "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+            snippet: "Yêu cầu Trả hàng/Hoàn tiền sẽ được phản hồi trong vòng 3–5 ngày làm việc. Ngày làm việc không bao gồm thứ Bảy, Chủ Nhật và các ngày nghỉ lễ/Tết theo quy định của pháp luật áp dụng."
+          },
+          {
+            id: "shopee-general-return-policy#1",
+            doc_id: "shopee-general-return-policy",
+            audience: "buyer",
+            score: 0.1637,
+            title: "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+            snippet: "## 1. Điều kiện Trả hàng/Hoàn tiền của Shopee: Người mua có thể gửi yêu cầu sau khi đã nhận hàng hoặc từ chối nhận hàng khi đồng kiểm theo đúng quy định hiện hành."
+          }
+        ],
+        agent_answer: "Theo tài liệu hướng dẫn của Shopee [1], [2], đối với yêu cầu Trả hàng/Hoàn tiền đang ở trạng thái Shopee xem xét, bộ phận CSKH Shopee sẽ xử lý và gửi kết quả trong vòng **3–5 ngày làm việc** (không tính thứ Bảy, Chủ Nhật và các ngày nghỉ lễ/Tết) qua mục Thông báo trên ứng dụng hoặc Email đăng ký."
+      },
+      {
+        id: 2,
+        short_title: "Q2: Hạn hoàn tất gửi trả hàng",
+        query: "Nếu Shopee đồng ý cho Người mua Trả hàng & Hoàn tiền, Người mua phải hoàn tất gửi trả hàng trong bao lâu?",
+        filter: "buyer",
+        key_fact: "Trong vòng 6 ngày kể từ thời điểm nhận thông báo",
+        gold: "Trong vòng 6 ngày kể từ thời điểm nhận được thông báo gửi trả hàng từ Shopee.",
+        chunks: [
+          {
+            id: "shopee-buyer-return-request-guide#5",
+            doc_id: "shopee-buyer-return-request-guide",
+            audience: "buyer",
+            score: 0.1903,
+            title: "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+            snippet: "Sau khi Shopee đồng ý yêu cầu Trả hàng & Hoàn tiền, Người mua cần hoàn tất đóng gói và bàn giao kiện hàng cho bưu tá hoặc bưu cục trong vòng 6 ngày."
+          },
+          {
+            id: "shopee-return-shipping-fee-policy#2",
+            doc_id: "shopee-return-shipping-fee-policy",
+            audience: "buyer",
+            score: 0.1494,
+            title: "Chính sách phí vận chuyển khi trả hàng",
+            snippet: "Người mua xuất trình mã vận đơn trả hàng trên ứng dụng để gửi miễn phí qua đối tác vận chuyển SPX Express, Viettel Post hoặc đơn vị hợp tác khác..."
+          },
+          {
+            id: "shopee-general-return-policy#2",
+            doc_id: "shopee-general-return-policy",
+            audience: "buyer",
+            score: 0.1453,
+            title: "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+            snippet: "Quy trình gửi hàng hoàn trả: đảm bảo nguyên trạng sản phẩm, đầy đủ tem mác phụ kiện kèm theo và gửi trả đúng thời hạn quy định."
+          }
+        ],
+        agent_answer: "Dựa theo quy định của sàn Shopee [1], khi yêu cầu Trả hàng/Hoàn tiền được chấp thuận, Người mua có thời hạn tối đa là **6 ngày** kể từ ngày nhận được thông báo để hoàn tất đóng gói và bàn giao hàng cho đơn vị vận chuyển."
+      },
+      {
+        id: 3,
+        short_title: "Q3: Phản hồi Hoàn Tiền Ngay (A/B Test)",
+        query: "Khi Shopee thông báo quyết định hoàn tiền, Người Bán có thời hạn bao lâu để gửi phản hồi nếu không đồng ý?",
+        filter: "seller",
+        key_fact: "Trong vòng 02 ngày lịch kể từ ngày nhận được thông báo",
+        gold: "Trong vòng 02 ngày lịch kể từ ngày nhận được thông báo của Shopee.",
+        chunks: [
+          {
+            id: "shopee-mall-seller-terms-of-service#22",
+            doc_id: "shopee-mall-seller-terms-of-service",
+            audience: "seller",
+            score: 0.3077,
+            title: "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+            snippet: "### 1.1. Phản hồi yêu cầu Hoàn Tiền Ngay: Nếu Shopee chủ động chấp nhận Hoàn Tiền Ngay cho Người mua, Người bán phải phản hồi hoặc khiếu nại trong vòng 02 ngày lịch kể từ ngày nhận được yêu cầu. Hết thời hạn này xem như đồng ý."
+          },
+          {
+            id: "shopee-mall-seller-terms-of-service#19",
+            doc_id: "shopee-mall-seller-terms-of-service",
+            audience: "seller",
+            score: 0.2290,
+            title: "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+            snippet: "Trong quá trình xác minh yêu cầu Trả hàng/Hoàn tiền, Người bán có trách nhiệm cung cấp tài liệu chứng từ bổ sung trong vòng tối đa 24 giờ kể từ khi có thông báo."
+          },
+          {
+            id: "shopee-mall-seller-terms-of-service#12",
+            doc_id: "shopee-mall-seller-terms-of-service",
+            audience: "seller",
+            score: 0.1583,
+            title: "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+            snippet: "Người bán chịu trách nhiệm đối với sự không tuân thủ, khiếm khuyết hoặc yêu cầu thu hồi liên quan đến các khiếu nại đổi trả sản phẩm."
+          }
+        ],
+        agent_answer: "Theo Điều khoản Dịch vụ Shopee Mall dành cho Người bán [1], nếu Shopee thông báo quyết định hoàn tiền cho Người mua, Người bán có thời hạn tối đa là **02 ngày lịch** kể từ ngày nhận thông báo để gửi phản hồi hoặc khiếu nại nếu không đồng ý."
+      },
+      {
+        id: 4,
+        short_title: "Q4: Tỷ lệ hoàn tiền tự thỏa thuận",
+        query: "Mức hoàn tiền ngay do Người Bán tự thỏa thuận và đề xuất với Người Mua không được thấp hơn bao nhiêu % giá trị sản phẩm?",
+        filter: "seller",
+        key_fact: "Không được thấp hơn 50% giá trị của Sản Phẩm Hoàn Trả",
+        gold: "Không được thấp hơn 50% giá trị của Sản Phẩm Hoàn Trả.",
+        chunks: [
+          {
+            id: "shopee-mall-seller-terms-of-service#15",
+            doc_id: "shopee-mall-seller-terms-of-service",
+            audience: "seller",
+            score: 0.2913,
+            title: "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+            snippet: "Người bán có thể chủ động thương lượng hoàn tiền một phần mà Người mua không cần gửi lại sản phẩm; mức hoàn tiền do Người bán tự đề xuất không được thấp hơn 50% giá trị của Sản Phẩm Hoàn Trả."
+          },
+          {
+            id: "shopee-mall-seller-terms-of-service#23",
+            doc_id: "shopee-mall-seller-terms-of-service",
+            audience: "seller",
+            score: 0.2367,
+            title: "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+            snippet: "Quy định về đóng gói và thỏa thuận hoàn trả hàng giữa Người bán và Người mua trên hệ thống..."
+          },
+          {
+            id: "shopee-mall-seller-terms-of-service#22",
+            doc_id: "shopee-mall-seller-terms-of-service",
+            audience: "seller",
+            score: 0.2170,
+            title: "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+            snippet: "Chế tài xử phạt và bồi hoàn chi phí khi Người bán vi phạm quy định xử lý khiếu nại hoàn tiền."
+          }
+        ],
+        agent_answer: "Theo quy định xử lý khiếu nại của Shopee Mall [1], mức hoàn tiền tự thỏa thuận do Người Bán đề xuất với Người Mua (không cần thu hồi sản phẩm) không được thấp hơn **50% giá trị** của Sản Phẩm Hoàn Trả."
+      },
+      {
+        id: 5,
+        short_title: "Q5: Thực phẩm tươi sống (24h)",
+        query: "Thời hạn chuẩn để Người Mua gửi yêu cầu trả hàng/hoàn tiền là bao lâu và đối với thực phẩm tươi sống là bao lâu?",
+        filter: "buyer",
+        key_fact: "Chuẩn: 15 ngày (Mall) / 07 ngày; Tươi sống & đông lạnh: 24 giờ",
+        gold: "Thời hạn chuẩn là trong vòng 15 ngày kể từ khi đơn hàng giao thành công; riêng thực phẩm tươi sống và đông lạnh là trong vòng 24 giờ.",
+        chunks: [
+          {
+            id: "shopee-return-shipping-fee-policy#0",
+            doc_id: "shopee-return-shipping-fee-policy",
+            audience: "buyer",
+            score: 0.2082,
+            title: "Chính sách chi phí vận chuyển khi trả hàng",
+            snippet: "# Chính sách chi phí vận chuyển khi trả hàng dành cho Người mua\nĐơn hàng Shopee Mall được áp dụng thời hạn trả hàng trong vòng 15 ngày..."
+          },
+          {
+            id: "shopee-buyer-return-request-guide#5",
+            doc_id: "shopee-buyer-return-request-guide",
+            audience: "buyer",
+            score: 0.2016,
+            title: "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+            snippet: "Thời gian xử lý và tiếp nhận yêu cầu từ người mua theo từng phân loại hàng hóa trên Shopee."
+          },
+          {
+            id: "shopee-buyer-return-timeline-policy#3",
+            doc_id: "shopee-buyer-return-timeline-policy",
+            audience: "buyer",
+            score: 0.1896,
+            title: "Quy định thời hạn và điều kiện trả hàng",
+            snippet: "Thời hạn gửi yêu cầu là 15 ngày đối với Shopee Mall, 07 ngày đối với Shop thông thường; riêng thực phẩm tươi sống và đông lạnh là trong vòng 24 giờ kể từ lúc giao hàng thành công."
+          }
+        ],
+        agent_answer: "Căn cứ theo Chính sách Trả hàng Shopee [1], [3], thời hạn chuẩn để Người Mua gửi khiếu nại trả hàng là **15 ngày** đối với Shopee Mall (07 ngày với Shop thường). Riêng đối với mặt hàng thực phẩm tươi sống và đông lạnh, thời hạn gửi yêu cầu bắt buộc là trong vòng **24 giờ** kể từ lúc đơn hàng giao thành công."
+      }
+    ];
+
+    // The current group benchmark. Results are requested live from /api/chat;
+    // no retrieved chunks or answers are stored in this array.
+    const BENCHMARK_DATA = [
+      {
+        id: 1,
+        short_title: "Q1: Gửi yêu cầu trên ứng dụng",
+        query: "Tôi cần thực hiện những bước nào để gửi yêu cầu Trả hàng/Hoàn tiền trực tiếp trên ứng dụng Shopee?",
+        filter: "buyer",
+        gold: "Mở ứng dụng Shopee > Tôi > Chờ giao hàng hoặc Đã giao > chọn đơn > Trả hàng/Hoàn tiền > chọn tình huống, sản phẩm và lý do > tải bằng chứng > Gửi yêu cầu."
+      },
+      {
+        id: 2,
+        short_title: "Q2: Hạn phản hồi của seller",
+        query: "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+        filter: "seller",
+        gold: "Người bán có tối đa 02 ngày làm việc (48 giờ); quá hạn Shopee tự động chấp nhận yêu cầu của người mua."
+      },
+      {
+        id: 3,
+        short_title: "Q3: Xử lý hàng giả Shopee Mall",
+        query: "Nếu Người bán Shopee Mall vi phạm quy định bán hàng giả, hàng nhái thì bị phạt bao nhiêu tiền và xử lý như thế nào?",
+        filter: "seller",
+        gold: "9.818.180 VND hoặc 100% giá trị sản phẩm, tùy mức cao hơn; thanh toán trong 07 ngày lịch và bị loại khỏi Shopee Mall nếu vi phạm 02 lần."
+      },
+      {
+        id: 4,
+        short_title: "Q4: Miễn phí vận chuyển trả hàng",
+        query: "Trường hợp nào Người mua được miễn 100% cước phí vận chuyển hoàn trả hàng?",
+        filter: "buyer",
+        gold: "Miễn phí khi lấy hàng tại nhà hoặc gửi tại bưu cục thuộc hệ thống SPX/đối tác Shopee với mã vận đơn trả hàng."
+      },
+      {
+        id: 5,
+        short_title: "Q5: Ngoại lệ lý do đổi ý",
+        query: "Những trường hợp/lý do nào không được áp dụng chính sách trả hàng với lý do Đổi ý?",
+        filter: "buyer",
+        gold: "Sản phẩm thuộc danh sách hạn chế trả hàng, sản phẩm mua tại Shopee Mart và một số sản phẩm riêng biệt do Shopee quyết định theo từng thời điểm."
+      }
+    ];
+
+    // ---------------------------------------------------------------------------
+    // Data Corpus Documents
+    // ---------------------------------------------------------------------------
+    const CORPUS_DATA = [
+      {
+        id: "shopee-buyer-return-request-guide",
+        title: "Hướng dẫn gửi yêu cầu Trả hàng và Hoàn tiền",
+        audience: "buyer",
+        category: "returns-guide",
+        url: "https://help.shopee.vn/portal/4/article/79233",
+        chars: "~2,500 chars",
+        chunks_count: 6,
+        version: "2024-v2",
+        desc: "Hướng dẫn chi tiết các bước Người mua gửi khiếu nại qua ứng dụng Shopee, các mốc thời hạn xử lý 3-5 ngày và hoàn tiền qua ShopeePay/Thẻ."
+      },
+      {
+        id: "shopee-buyer-return-timeline-policy",
+        title: "Quy định thời hạn và điều kiện trả hàng",
+        audience: "buyer",
+        category: "returns-policy",
+        url: "https://help.shopee.vn/portal/4/article/77244",
+        chars: "~1,800 chars",
+        chunks_count: 4,
+        version: "2024-v1",
+        desc: "Quy định thời hạn gửi khiếu nại (Mall: 15 ngày, Shop thường: 7 ngày, tươi sống: 24h) và điều kiện chấp nhận trả hàng (lỗi NSX, vỡ hỏng, sai hàng, hàng nhái)."
+      },
+      {
+        id: "shopee-return-shipping-fee-policy",
+        title: "Chính sách chi phí vận chuyển khi trả hàng",
+        audience: "buyer",
+        category: "shipping-policy",
+        url: "https://help.shopee.vn/portal/4/article/77247",
+        chars: "~1,500 chars",
+        chunks_count: 4,
+        version: "not-stated",
+        desc: "Chính sách miễn phí 100% cước phí trả hàng qua hình thức Pickup hoặc Drop-off; hoàn tối đa 40.000 VNĐ Xu nếu tự vận chuyển ngoại mạng."
+      },
+      {
+        id: "shopee-seller-return-processing-policy",
+        title: "Quy định thời hạn xử lý khiếu nại Người bán",
+        audience: "seller",
+        category: "seller-policy",
+        url: "https://help.shopee.vn/portal/4/article/77245",
+        chars: "~2,100 chars",
+        chunks_count: 5,
+        version: "2024-v1",
+        desc: "Quy định Người bán phản hồi khiếu nại trong 02 ngày làm việc (48h), quy trình kiểm tra kiện hàng hoàn trong 02 ngày và chế tài phạt điểm Sao Quả Tạ."
+      },
+      {
+        id: "shopee-seller-warranty-responsibility",
+        title: "Quy định bảo hành sản phẩm & nghĩa vụ Người bán",
+        audience: "seller",
+        category: "warranty-policy",
+        url: "https://help.shopee.vn/portal/4/article/77246",
+        chars: "~1,900 chars",
+        chunks_count: 4,
+        version: "2024-v1",
+        desc: "Nghĩa vụ kích hoạt bảo hành điện tử trong 03 ngày, tiếp nhận trong 05 ngày, sửa chữa tối đa 14 ngày và chế tài phạt 200.000 VNĐ / đơn vi phạm."
+      },
+      {
+        id: "shopee-general-return-policy",
+        title: "Quy định chung về Trả hàng Hoàn tiền Shopee",
+        audience: "buyer",
+        category: "returns",
+        url: "https://help.shopee.vn/portal/4/article/188931",
+        chars: "~7,700 chars",
+        chunks_count: 16,
+        version: "not-stated",
+        desc: "Văn bản pháp lý nền tảng của Shopee Đảm Bảo: điều kiện trả hàng, danh sách lý do chấp thuận, ngoại lệ lý do đổi ý và quy tắc hoàn tiền."
+      },
+      {
+        id: "shopee-mall-seller-terms-of-service",
+        title: "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+        audience: "seller",
+        category: "terms",
+        url: "https://help.shopee.vn/portal/4/article/77262",
+        chars: "~16,100 chars",
+        chunks_count: 32,
+        version: "not-stated",
+        desc: "Điều khoản riêng Shopee Mall: chính sách đổi trả 15 ngày, phản hồi hoàn tiền ngay trong 02 ngày lịch, mức hoàn thỏa thuận >= 50%."
+      }
+    ];
+
+    // ---------------------------------------------------------------------------
+    // Automated Unit Tests Data (45 Tests in 12 Suites)
+    // ---------------------------------------------------------------------------
+    const TEST_SUITES = [
+      { name: "TestProjectStructure", count: 2, desc: "Kiểm tra root main.py và package src/__init__.py tồn tại" },
+      { name: "TestClassBasedInterfaces", count: 2, desc: "Khởi tạo FixedSize, Sentence, Recursive chunkers & MockEmbedder" },
+      { name: "TestFixedSizeChunker", count: 7, desc: "Cắt chuỗi đúng kích thước, overlap, kiểm tra danh sách trả về, empty input" },
+      { name: "TestSentenceChunker", count: 4, desc: "Cắt chuỗi theo số lượng câu tối đa (max_sentences), bảo toàn ngữ pháp" },
+      { name: "TestRecursiveChunker", count: 4, desc: "Cắt đệ quy theo tầng phân cách [\\n\\n, \\n, ' '], fallback gracefully" },
+      { name: "TestEmbeddingStore", count: 8, desc: "Lưu trữ document, tăng kích thước, tìm kiếm top_k, sắp xếp cosine giảm dần" },
+      { name: "TestKnowledgeBaseAgent", count: 2, desc: "RAG Agent truy xuất ngữ cảnh và sinh câu trả lời có căn cứ" },
+      { name: "TestComputeSimilarity", count: 4, desc: "Tính cosine similarity: đồng hướng (1.0), vuông góc (0.0), ngược hướng (-1.0), vector 0" },
+      { name: "TestCompareChunkingStrategies", count: 3, desc: "So sánh định lượng 3 chiến lược chunking về count, avg_length" },
+      { name: "TestEmbeddingStoreSearchWithFilter", count: 3, desc: "Lọc metadata tiền truy xuất (department, audience), trả về đúng top_k" },
+      { name: "TestEmbeddingStoreDeleteDocument", count: 3, desc: "Xóa tài liệu khỏi vector store, giảm collection size, trả về boolean" }
+      ,{ name: "TestHeadingPolicy", count: 3, desc: "Giữ heading cha–con, không lẫn sibling/frontmatter và giữ trọn quy trình khi vừa kích thước" }
+    ];
+
+    // ---------------------------------------------------------------------------
+    // Live Chunking Comparison Dashboard
+    // ---------------------------------------------------------------------------
+    let comparisonData = null;
+
+    async function loadChunkingComparison(forceRefresh = false) {
+      const loading = document.getElementById('compare-loading');
+      const error = document.getElementById('compare-error');
+      const content = document.getElementById('compare-content');
+      loading.classList.remove('hidden');
+      loading.innerText = forceRefresh ? 'Đang chạy lại benchmark trên 6 chiến lược…' : 'Đang tải số liệu benchmark…';
+      error.classList.add('hidden');
+
+      try {
+        const response = await fetch('/api/compare', {
+          method: forceRefresh ? 'POST' : 'GET',
+          headers: { 'Content-Type': 'application/json' },
+          cache: 'no-store'
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Không tải được benchmark');
+        comparisonData = data;
+        renderChunkingComparison();
+        content.classList.remove('hidden');
+      } catch (requestError) {
+        error.innerText = `Không thể tải dữ liệu so sánh: ${requestError.message}`;
+        error.classList.remove('hidden');
+      } finally {
+        loading.classList.add('hidden');
+      }
+    }
+
+    function renderChunkingComparison() {
+      const data = comparisonData;
+      if (!data) return;
+
+      document.getElementById('compare-backend').innerText = `Benchmark backend: ${data.backend}`;
+      document.getElementById('compare-corpus-count').innerText = `${data.corpus_documents} tài liệu`;
+      document.getElementById('compare-query-count').innerText = `${data.benchmark_queries} câu hỏi`;
+      document.getElementById('compare-strategy-count').innerText = `${data.strategies.length} phương pháp`;
+
+      const apiBadge = document.getElementById('compare-api-status');
+      if (data.api.configured) {
+        apiBadge.innerText = `API + Base URL configured · ${data.api.model}`;
+        apiBadge.className = 'text-[10px] font-mono px-2 py-1 rounded bg-emerald-950/40 text-emerald-300 border border-emerald-500/30';
+      } else {
+        apiBadge.innerText = 'API chưa đủ cấu hình · benchmark vẫn chạy offline';
+        apiBadge.className = 'text-[10px] font-mono px-2 py-1 rounded bg-amber-950/30 text-amber-300 border border-amber-500/20';
+      }
+
+      const metricColors = ['text-blue-400', 'text-purple-400', 'text-orange-400', 'text-emerald-400'];
+      document.getElementById('metric-definitions').innerHTML = data.metrics.map((metric, index) => `
+        <article class="p-4 rounded-xl bg-[#111827] border border-[rgba(148,163,184,0.12)] space-y-2">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-mono uppercase tracking-wider ${metricColors[index]}">M${index + 1}</span>
+            <code class="text-[9px] text-slate-600">${escapeHtml(metric.id)}</code>
+          </div>
+          <h4 class="text-xs font-semibold text-white">${escapeHtml(metric.label)}</h4>
+          <p class="text-[11px] text-slate-300 leading-relaxed">${escapeHtml(metric.formula)}</p>
+          <p class="text-[10px] text-slate-500 leading-relaxed">${escapeHtml(metric.purpose)}</p>
+        </article>
+      `).join('');
+
+      renderStrategyBars();
+      renderComparisonTable();
+      renderQuerySelector();
+      renderRecommendation();
+    }
+
+    function renderStrategyBars() {
+      const container = document.getElementById('strategy-bars');
+      container.innerHTML = comparisonData.strategies.map(strategy => {
+        const evidenceWidth = strategy.evidence_complete_at_3 / comparisonData.benchmark_queries * 100;
+        const top1Width = strategy.top1_complete / comparisonData.benchmark_queries * 100;
+        const recommended = strategy.id === comparisonData.recommended_strategy;
+        return `
+          <article class="grid grid-cols-1 lg:grid-cols-[190px_1fr_130px] gap-3 lg:items-center ${recommended ? 'p-3 -mx-3 rounded-lg bg-emerald-950/15 border border-emerald-500/20' : ''}">
+            <div>
+              <div class="flex items-center gap-2"><span class="text-xs font-semibold text-white">${escapeHtml(strategy.label)}</span>${recommended ? '<span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-700">Đề xuất</span>' : ''}</div>
+              <div class="text-[10px] font-mono text-slate-500 mt-0.5">${escapeHtml(strategy.config)}</div>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center gap-2"><span class="w-20 text-[10px] text-slate-500">Evidence@3</span><div class="h-2 flex-1 rounded-full bg-[#0B1120] overflow-hidden"><div class="h-full bg-blue-500 rounded-full score-bar-fill" style="width:${evidenceWidth}%"></div></div><span class="w-8 text-right text-[10px] font-mono text-blue-300">${strategy.evidence_complete_at_3}/5</span></div>
+              <div class="flex items-center gap-2"><span class="w-20 text-[10px] text-slate-500">Top-1</span><div class="h-2 flex-1 rounded-full bg-[#0B1120] overflow-hidden"><div class="h-full bg-[#EE4D2D] rounded-full score-bar-fill" style="width:${top1Width}%"></div></div><span class="w-8 text-right text-[10px] font-mono text-orange-300">${strategy.top1_complete}/5</span></div>
+            </div>
+            <div class="text-left lg:text-right"><div class="text-xs font-mono text-slate-200">${strategy.chunk_count} chunks</div><div class="text-[10px] text-slate-500">avg ${strategy.avg_chars.toFixed(1)} chars</div></div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function renderComparisonTable() {
+      if (!comparisonData) return;
+      const mode = document.getElementById('comparison-sort-select').value;
+      const strategies = [...comparisonData.strategies];
+      if (mode === 'chunks') strategies.sort((a, b) => a.chunk_count - b.chunk_count);
+      else if (mode === 'latency') strategies.sort((a, b) => a.avg_query_ms - b.avg_query_ms);
+      else strategies.sort((a, b) => b.top1_complete - a.top1_complete || b.evidence_complete_at_3 - a.evidence_complete_at_3 || a.chunk_count - b.chunk_count);
+
+      const scoreClass = score => score === 5 ? 'text-emerald-400' : score >= 4 ? 'text-amber-300' : 'text-red-400';
+      document.getElementById('comparison-table-body').innerHTML = strategies.map(strategy => {
+        const recommended = strategy.id === comparisonData.recommended_strategy;
+        return `
+          <tr class="${recommended ? 'bg-emerald-950/10' : 'hover:bg-slate-800/20'}">
+            <td class="py-3 px-4"><div class="flex items-center gap-2"><span class="font-semibold ${recommended ? 'text-emerald-300' : 'text-white'}">${escapeHtml(strategy.label)}</span>${recommended ? '<span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-700">Đề xuất</span>' : ''}</div><div class="text-[10px] font-mono text-slate-500 mt-0.5">${escapeHtml(strategy.config)}</div><div class="text-[10px] text-slate-600 mt-1 max-w-xs">${escapeHtml(strategy.principle)}</div></td>
+            <td class="py-3 px-3 text-center font-mono text-white">${strategy.chunk_count}</td>
+            <td class="py-3 px-3 text-center font-mono">${strategy.avg_chars.toFixed(1)}</td>
+            <td class="py-3 px-3 text-center font-mono ${scoreClass(strategy.document_hit_at_3)}">${strategy.document_hit_at_3}/5</td>
+            <td class="py-3 px-3 text-center font-mono ${scoreClass(strategy.evidence_complete_at_3)}">${strategy.evidence_complete_at_3}/5</td>
+            <td class="py-3 px-3 text-center font-mono ${scoreClass(strategy.top1_complete)}">${strategy.top1_complete}/5</td>
+            <td class="py-3 px-3 text-center font-mono">${strategy.avg_evidence_coverage_pct.toFixed(0)}%</td>
+            <td class="py-3 px-3 text-center font-mono text-slate-400">${strategy.avg_query_ms.toFixed(3)}</td>
+          </tr>`;
+      }).join('');
+    }
+
+    function renderQuerySelector() {
+      const select = document.getElementById('compare-query-select');
+      const queries = comparisonData.strategies[0]?.queries || [];
+      select.innerHTML = queries.map(query => `<option value="${query.id}">Q${query.id} · ${escapeHtml(query.question.slice(0, 52))}${query.question.length > 52 ? '…' : ''}</option>`).join('');
+      renderQueryMatrix();
+    }
+
+    function renderQueryMatrix() {
+      if (!comparisonData) return;
+      const queryId = Number(document.getElementById('compare-query-select').value || 1);
+      const first = comparisonData.strategies[0].queries.find(item => item.id === queryId);
+      document.getElementById('compare-query-text').innerHTML = `<span class="font-mono text-orange-400 mr-2">Q${queryId}</span>${escapeHtml(first?.question || '')}`;
+      document.getElementById('query-matrix').innerHTML = comparisonData.strategies.map(strategy => {
+        const result = strategy.queries.find(item => item.id === queryId);
+        const state = result.top1_complete ? { label: 'Top-1 đầy đủ', badge: 'text-emerald-300 bg-emerald-950/50 border-emerald-700', border: 'border-emerald-500/25' }
+          : result.evidence_complete ? { label: 'Đủ trong Top-3', badge: 'text-blue-300 bg-blue-950/50 border-blue-700', border: 'border-blue-500/25' }
+          : { label: 'Thiếu bằng chứng', badge: 'text-red-300 bg-red-950/40 border-red-800', border: 'border-red-500/20' };
+        return `
+          <article class="p-3 rounded-lg bg-[#0B1120] border ${state.border} space-y-2">
+            <div class="flex items-center justify-between gap-2"><div><span class="text-xs font-semibold text-white">${escapeHtml(strategy.label)}</span><span class="ml-1.5 text-[10px] font-mono text-slate-500">${escapeHtml(strategy.config)}</span></div><span class="text-[9px] font-mono px-1.5 py-0.5 rounded border ${state.badge}">${state.label}</span></div>
+            <div class="grid grid-cols-3 gap-2 text-[10px]"><div><span class="text-slate-600 block">Coverage</span><span class="font-mono text-slate-200">${result.evidence_coverage_pct.toFixed(0)}%</span></div><div><span class="text-slate-600 block">Top score</span><span class="font-mono text-slate-200">${result.top_score.toFixed(4)}</span></div><div><span class="text-slate-600 block">Doc hit</span><span class="font-mono ${result.document_hit ? 'text-emerald-400' : 'text-red-400'}">${result.document_hit ? 'Có' : 'Không'}</span></div></div>
+            <div class="text-[10px] font-mono text-slate-600 truncate">top-1: ${escapeHtml(result.top_doc_id || 'none')}</div>
+          </article>`;
+      }).join('');
+    }
+
+    function renderRecommendation() {
+      const strategy = comparisonData.strategies.find(item => item.id === comparisonData.recommended_strategy);
+      document.getElementById('compare-recommendation').innerHTML = `
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div><div class="text-[10px] uppercase tracking-wider font-mono text-emerald-400">Kết luận có thể trình bày</div><h3 class="text-base font-bold text-white mt-1">Chọn ${escapeHtml(strategy.label)} · ${escapeHtml(strategy.config)}</h3><p class="text-[11px] text-slate-400 mt-1">Đạt ${strategy.evidence_complete_at_3}/5 Complete Evidence@3 và ${strategy.top1_complete}/5 Complete Top-1, đồng thời giữ cấu trúc heading cha–con. Đây là kết quả trên tập 5 query dùng để phát triển, chưa phải đánh giá hold-out.</p></div>
+          <div class="flex gap-4 text-center shrink-0"><div><div class="text-xl font-bold text-emerald-300">${strategy.top1_complete}/5</div><div class="text-[9px] text-slate-500 uppercase">Top-1</div></div><div><div class="text-xl font-bold text-white">${strategy.chunk_count}</div><div class="text-[9px] text-slate-500 uppercase">Chunks</div></div><div><div class="text-xl font-bold text-white">${strategy.avg_chars.toFixed(0)}</div><div class="text-[9px] text-slate-500 uppercase">Avg chars</div></div></div>
+        </div>`;
+    }
+
+    // ---------------------------------------------------------------------------
+    // Navigation Controller
+    // ---------------------------------------------------------------------------
+    function switchTab(tabName) {
+      ['playground', 'corpus', 'chunking', 'metadata', 'evaluation'].forEach(t => {
+        const sec = document.getElementById('section-' + t);
+        const btn = document.getElementById('nav-btn-' + t);
+        if (sec && btn) {
+          sec.classList.add('hidden');
+          btn.classList.remove('active');
+        }
+      });
+
+      const activeSec = document.getElementById('section-' + tabName);
+      const activeBtn = document.getElementById('nav-btn-' + tabName);
+      if (activeSec && activeBtn) {
+        activeSec.classList.remove('hidden');
+        activeBtn.classList.add('active');
+      }
+    }
+
+    // ---------------------------------------------------------------------------
+    // Benchmark Chips Controller
+    // ---------------------------------------------------------------------------
+    let currentBenchmarkId = 1;
+
+    function renderBenchmarkChips() {
+      const container = document.getElementById('benchmark-chips-container');
+      container.innerHTML = '';
+
+      BENCHMARK_DATA.forEach(item => {
+        const btn = document.createElement('button');
+        const isSelected = item.id === currentBenchmarkId;
+        btn.className = `px-2.5 py-1 rounded-lg text-xs font-mono transition flex items-center gap-1.5 border ${
+          isSelected 
+            ? 'bg-[#EE4D2D]/20 text-orange-300 border-[#EE4D2D]/50 font-semibold' 
+            : 'bg-[#0B1120] text-slate-400 hover:text-white border-[rgba(148,163,184,0.12)]'
+        }`;
+        
+        btn.innerHTML = `
+          <span class="w-1.5 h-1.5 rounded-full ${isSelected ? 'bg-[#EE4D2D]' : 'bg-slate-600'}"></span>
+          <span>${item.short_title}</span>
+        `;
+        btn.onclick = () => selectBenchmark(item.id);
+        container.appendChild(btn);
+      });
+    }
+
+    function selectBenchmark(id) {
+      currentBenchmarkId = id;
+      renderBenchmarkChips();
+
+      const matched = BENCHMARK_DATA.find(d => d.id === id);
+      if (matched) {
+        document.getElementById('query-input').value = matched.query;
+        document.getElementById('filter-select').value = matched.filter;
+        triggerSearch();
+      }
+    }
+
+    // ---------------------------------------------------------------------------
+    // Search & Retrieval Runner
+    // ---------------------------------------------------------------------------
+    async function triggerSearch() {
+      const spinner = document.getElementById('search-spinner');
+      const btnText = document.getElementById('btn-cta-text');
+      const pipelineStatus = document.getElementById('pipeline-status');
+      const query = document.getElementById('query-input').value.trim();
+      const audience = document.getElementById('filter-select').value;
+      const topK = parseInt(document.getElementById('topk-select').value, 10);
+
+      if (!query) {
+        pipelineStatus.innerText = 'Vui lòng nhập câu hỏi';
+        pipelineStatus.className = 'text-red-400';
+        return;
+      }
+
+      if (spinner && btnText) {
+        spinner.classList.remove('hidden');
+        btnText.innerText = 'Đang truy xuất...';
+      }
+      if (pipelineStatus) {
+        pipelineStatus.innerText = 'Đang gọi live retrieval API...';
+        pipelineStatus.className = 'text-orange-400 animate-pulse';
+      }
+
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query, audience, top_k: topK })
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Live API error');
+        executeRetrieval(data);
+        pipelineStatus.innerText = `Live trace complete · ${data.latency_ms.toFixed(2)} ms`;
+        pipelineStatus.className = 'text-emerald-400';
+      } catch (error) {
+        pipelineStatus.innerText = `Backend chưa sẵn sàng: ${error.message}`;
+        pipelineStatus.className = 'text-red-400';
+        document.getElementById('generated-answer-container').innerText =
+          'Không kết nối được live backend. Hãy chạy: python demo_server.py';
+      } finally {
+        if (spinner && btnText) {
+          spinner.classList.add('hidden');
+          btnText.innerText = 'Run Live Retrieval →';
+        }
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>'"]/g, char => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+      })[char]);
+    }
+
+    function executeRetrieval(data) {
+      const qText = data.query;
+      const filter = data.filter || 'none';
+      const topk = data.top_k;
+      const matched = BENCHMARK_DATA.find(d => d.query === qText);
+
+      // Update Metrics
+      document.getElementById('metric-latency').innerText = `${data.latency_ms.toFixed(2)} ms`;
+      document.getElementById('metric-topk').innerText = topk;
+      document.getElementById('metric-filter').innerText = filter === 'none' ? 'None (All)' : `audience: ${filter}`;
+      document.getElementById('metric-space').innerText = `${data.candidate_count} / ${data.total_count} chunks`;
+
+      document.getElementById('context-subtitle').innerText = `(${data.chunks.length} chunks retrieved · Live TF-IDF Cosine)`;
+      document.getElementById('context-meta-badge').innerText = filter === 'none' ? 'Filter: none' : `Filter: audience=${filter}`;
+
+      // Render Retrieved Chunks
+      const chunksList = document.getElementById('retrieved-chunks-list');
+      chunksList.innerHTML = '';
+
+      const visibleChunks = data.chunks;
+
+      visibleChunks.forEach((chunk, index) => {
+        const rank = String(index + 1).padStart(2, '0');
+        const audBadge = chunk.audience === 'buyer' 
+          ? '<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-500/10 text-blue-400 border border-blue-500/20 font-medium">audience: buyer</span>'
+          : '<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20 font-medium">audience: seller</span>';
+
+        // Normalized score bar
+        const scorePercent = Math.min(Math.round((chunk.score / 0.35) * 100), 100);
+
+        const card = document.createElement('div');
+        card.id = `chunk-card-${index + 1}`;
+        card.className = "bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-4 space-y-2.5 transition duration-200 hover:border-[rgba(148,163,184,0.24)] group";
+        
+        card.innerHTML = `
+          <!-- Card Header -->
+          <div class="flex items-center justify-between flex-wrap gap-2">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-mono font-bold text-slate-400">#${rank}</span>
+              <span class="font-mono text-xs font-semibold text-slate-100 group-hover:text-orange-300 transition">
+                ${escapeHtml(chunk.doc_id)}
+              </span>
+              ${audBadge}
+            </div>
+            <div class="flex items-center gap-2 text-xs font-mono">
+              <span class="text-slate-400 text-[11px]">Cosine similarity</span>
+              <span class="text-orange-400 font-bold">${chunk.score.toFixed(4)}</span>
+            </div>
+          </div>
+
+          <!-- Thin Elegant Score Bar -->
+          <div class="w-full bg-[#0B1120] rounded-full h-1 overflow-hidden">
+            <div class="score-bar-fill bg-gradient-to-r from-[#EE4D2D] to-orange-400 h-1 rounded-full" style="width: ${scorePercent}%"></div>
+          </div>
+
+          <!-- Relevant Passage Text -->
+          <p class="text-xs text-slate-300 leading-relaxed bg-[#0B1120] p-3 rounded-lg border border-[rgba(148,163,184,0.08)] font-sans whitespace-pre-line">
+            ${escapeHtml(chunk.snippet)}
+          </p>
+
+          <!-- Card Footer -->
+          <div class="flex items-center justify-between pt-1 text-[11px] font-mono text-slate-500">
+            <span class="text-slate-400">ID: ${escapeHtml(chunk.id)}</span>
+            <span class="text-slate-400 hover:text-slate-200 transition">${escapeHtml(chunk.section_path || chunk.title)}</span>
+          </div>
+        `;
+
+        chunksList.appendChild(card);
+      });
+
+      // Render Answer with Interactive Citation Badges
+      const answerContainer = document.getElementById('generated-answer-container');
+      const formattedAnswer = escapeHtml(data.answer).replace(/\n/g, '<br>').replace(
+        /\[(\d+)\]/g, 
+        '<button onclick="highlightChunk($1)" class="inline-flex items-center justify-center font-mono font-bold px-1.5 py-0.5 mx-0.5 rounded text-[11px] bg-[#EE4D2D]/20 hover:bg-[#EE4D2D]/40 text-orange-300 border border-[#EE4D2D]/40 transition active:scale-95" title="Jump to chunk #$1">[$1]</button>'
+      );
+      answerContainer.innerHTML = formattedAnswer;
+
+      // Render Evidence Sources
+      const evidenceContainer = document.getElementById('evidence-sources-list');
+      evidenceContainer.innerHTML = '';
+      visibleChunks.forEach((c, idx) => {
+        const item = document.createElement('div');
+        item.className = "flex items-center justify-between p-1.5 rounded bg-[#0B1120] border border-[rgba(148,163,184,0.08)] hover:border-slate-600 transition cursor-pointer text-[11px]";
+        item.onclick = () => highlightChunk(idx + 1);
+        item.innerHTML = `
+          <div class="flex items-center gap-1.5 truncate">
+            <span class="text-orange-400 font-bold">[${idx + 1}]</span>
+            <span class="text-slate-300 truncate">${escapeHtml(c.doc_id)}</span>
+          </div>
+          <span class="text-slate-500 text-[10px]">${c.id.split('#')[1] ? '#' + c.id.split('#')[1] : ''}</span>
+        `;
+        evidenceContainer.appendChild(item);
+      });
+
+      // Gold answer exists only for the five agreed benchmark questions.
+      document.getElementById('eval-extracted-fact').innerText =
+        matched ? 'Live answer generated from the retrieved top-1 chunk' : 'Câu hỏi tự do — chưa có gold answer';
+      document.getElementById('eval-ground-truth').innerText =
+        matched ? `"${matched.gold}"` : 'Chỉ hiển thị retrieval; không tự tuyên bố câu trả lời đã đúng.';
+    }
+
+    // Interactive Citation Click / Highlight
+    function highlightChunk(rank) {
+      const card = document.getElementById(`chunk-card-${rank}`);
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        card.classList.remove('chunk-highlight-active');
+        void card.offsetWidth; // trigger reflow
+        card.classList.add('chunk-highlight-active');
+      }
+    }
+
+    // ---------------------------------------------------------------------------
+    // Data Corpus Renderer
+    // ---------------------------------------------------------------------------
+    let activeCorpusFilter = 'all';
+
+    function filterCorpus(type) {
+      activeCorpusFilter = type;
+      ['all', 'buyer', 'seller'].forEach(t => {
+        const btn = document.getElementById('corpus-filter-' + t);
+        if (btn) {
+          if (t === type) {
+            btn.className = "corpus-filter-btn active px-3 py-1 rounded-lg bg-[#172033] text-white border border-[#EE4D2D]/40 font-medium transition";
+          } else {
+            btn.className = "corpus-filter-btn px-3 py-1 rounded-lg bg-[#0B1120] text-slate-400 hover:text-white border border-[rgba(148,163,184,0.12)] transition";
+          }
+        }
+      });
+      renderCorpusCards();
+    }
+
+    function renderCorpusCards() {
+      const container = document.getElementById('corpus-grid-container');
+      container.innerHTML = '';
+
+      const filtered = activeCorpusFilter === 'all' 
+        ? CORPUS_DATA 
+        : CORPUS_DATA.filter(d => d.audience === activeCorpusFilter);
+
+      filtered.forEach((doc, idx) => {
+        const isBuyer = doc.audience === 'buyer';
+        const badgeClass = isBuyer
+          ? 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+          : 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+
+        const card = document.createElement('div');
+        card.className = "bg-[#111827] border border-[rgba(148,163,184,0.12)] rounded-xl p-4 flex flex-col justify-between space-y-3 hover:border-[rgba(148,163,184,0.24)] transition shadow-sm";
+        
+        card.innerHTML = `
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-mono font-bold text-slate-500">#0${idx + 1}</span>
+              <div class="flex items-center gap-1.5 font-mono text-[10px]">
+                <span class="px-2 py-0.5 rounded border ${badgeClass}">audience: ${doc.audience}</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-400">${doc.category}</span>
+              </div>
+            </div>
+
+            <h3 class="text-sm font-semibold text-white leading-snug">
+              ${doc.title}
+            </h3>
+
+            <p class="text-xs text-slate-400 leading-relaxed font-sans">
+              ${doc.desc}
+            </p>
+          </div>
+
+          <div class="pt-3 border-t border-[rgba(148,163,184,0.08)] flex items-center justify-between text-[11px] font-mono text-slate-400">
+            <div>
+              <span>${doc.chunks_count} Chunks</span> · <span>${doc.chars}</span>
+            </div>
+            <a href="${doc.url}" target="_blank" rel="noopener noreferrer" class="text-orange-400 hover:text-orange-300 underline flex items-center gap-1">
+              Source ↗
+            </a>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // ---------------------------------------------------------------------------
+    // Evaluation Tab Renderer (Test Suites Breakdown)
+    // ---------------------------------------------------------------------------
+    function renderTestSuites() {
+      const container = document.getElementById('test-suites-container');
+      container.innerHTML = '';
+
+      TEST_SUITES.forEach((suite, i) => {
+        const item = document.createElement('div');
+        item.className = "p-2.5 rounded-lg bg-[#0B1120] border border-[rgba(148,163,184,0.1)] flex items-center justify-between gap-3";
+        item.innerHTML = `
+          <div class="flex items-center gap-2 truncate">
+            <span class="text-emerald-400 text-xs">✓</span>
+            <span class="font-semibold text-slate-200">${suite.name}</span>
+            <span class="text-slate-500 text-[10.5px] hidden sm:inline truncate">— ${suite.desc}</span>
+          </div>
+          <span class="px-2 py-0.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800/80 text-[11px] whitespace-nowrap">
+            ${suite.count} passed
+          </span>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    // ---------------------------------------------------------------------------
+    // Keyboard Shortcut Handler (Ctrl+Enter / Cmd+Enter)
+    // ---------------------------------------------------------------------------
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        const queryInput = document.getElementById('query-input');
+        if (queryInput && document.activeElement === queryInput) {
+          e.preventDefault();
+          triggerSearch();
+        }
+      }
+    });
+
+    // ---------------------------------------------------------------------------
+    // App Initialization
+    // ---------------------------------------------------------------------------
+    window.addEventListener('DOMContentLoaded', () => {
+      renderBenchmarkChips();
+      renderCorpusCards();
+      renderTestSuites();
+      loadChunkingComparison();
+    });
+  </script>
+
+</body>
+</html>

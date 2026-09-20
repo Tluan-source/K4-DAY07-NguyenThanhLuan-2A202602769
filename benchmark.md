@@ -1,0 +1,11 @@
+# Câu hỏi đánh giá & Câu trả lời chuẩn (nhóm thống nhất)
+
+> **Đúng 5 câu hỏi**, đa dạng, có thể kiểm chứng; **ít nhất 1 câu** cần lọc metadata mới trả lời tốt. Đây là bộ câu hỏi chung cho mọi thành viên chạy.
+
+| # | Câu hỏi (Query) | Câu trả lời chuẩn (Gold Answer) | Chunk nào chứa thông tin? |
+| --- | --- | --- | --- |
+| 1 | Tôi cần thực hiện những bước nào để gửi yêu cầu Trả hàng/Hoàn tiền trực tiếp trên ứng dụng Shopee? | Mở ứng dụng Shopee > chọn mục "Tôi" > chọn "Chờ giao hàng" hoặc "Đã giao" > chọn đơn hàng cần xử lý > bấm "Trả hàng/Hoàn tiền" > chọn tình huống gặp phải > chọn sản phẩm, lý do khiếu nại > tải bằng chứng (ảnh/video unboxing) và mô tả > chọn "Gửi yêu cầu". | `shopee-buyer-return-request-guide.md` (Mục 1, Cách 1) |
+| 2 | Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày? *(Cần **`metadata_filter={"audience": "seller"}`**)* | Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua. | `shopee-seller-return-processing-policy.md` (Mục 1) |
+| 3 | Nếu Người bán Shopee Mall vi phạm quy định bán hàng giả, hàng nhái thì bị phạt bao nhiêu tiền và xử lý như thế nào? | Shopee có quyền yêu cầu khoản phí phạt bằng 9.818.180 VND hoặc 100% giá trị sản phẩm cho mỗi sản phẩm vi phạm (tùy giá trị nào cao hơn), thanh toán trong vòng 07 ngày lịch. Ngoài ra, Người bán sẽ bị loại khỏi Shopee Mall nếu vi phạm 02 lần. | `shopee-mall-seller-terms-of-service.md` (Mục 3.3) |
+| 4 | Trường hợp nào Người mua được miễn 100% cước phí vận chuyển hoàn trả hàng? | Người mua được miễn 100% cước phí vận chuyển trả hàng khi sử dụng hình thức Lấy hàng tại nhà (đối tác SPX, Viettel Post, GHTK đến lấy) hoặc Gửi hàng tại bưu cục thuộc hệ thống SPX/đối tác Shopee có xuất trình mã vận đơn trả hàng. | `shopee-return-shipping-fee-policy.md` (Mục 1) |
+| 5 | Những trường hợp/lý do nào không được áp dụng chính sách trả hàng với lý do "Đổi ý"? | Lý do đổi ý không áp dụng cho: (1) Sản phẩm thuộc danh sách hạn chế trả hàng; (2) Sản phẩm mua tại Shopee Mart; (3) Một số sản phẩm riêng biệt được Shopee ghi nhận và quyết định theo từng thời điểm. | `shopee-general-return-policy.md` (Mục 1.3) |

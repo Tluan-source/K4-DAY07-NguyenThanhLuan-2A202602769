@@ -1,0 +1,2526 @@
+{
+  "backend": "mock embeddings fallback",
+  "evaluation": "evidence proxy; no LLM evaluation",
+  "strategies": {
+    "fixed": {
+      "count": 31,
+      "avg_length": 897.6129032258065,
+      "results": [
+        {
+          "id": 1,
+          "question": "Tôi cần thực hiện những bước nào để gửi yêu cầu Trả hàng/Hoàn tiền trực tiếp trên ứng dụng Shopee?",
+          "gold_answer": "Mở ứng dụng Shopee > chọn mục \"Tôi\" > chọn \"Chờ giao hàng\" hoặc \"Đã giao\" > chọn đơn hàng cần xử lý > bấm \"Trả hàng/Hoàn tiền\" > chọn tình huống gặp phải > chọn sản phẩm, lý do khiếu nại > tải bằng chứng (ảnh/video unboxing) và mô tả > chọn \"Gửi yêu cầu\".",
+          "doc_id": "shopee-buyer-return-request-guide",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#5",
+              "content": "e phải thanh toán cho Người bán hoặc áp dụng biện pháp phù hợp để thu hồi.\n\n### 2.4. Tuân thủ quyết định Trả hàng/Hoàn tiền\n\nQuyết định của Shopee đối với việc Trả hàng/Hoàn tiền có giá trị ràng buộc đối với Người bán. Người bán phải thực hiện các hành động cần thiết để hoàn tất yêu cầu đã được Shopee chấp thuận.\n\nNếu yêu cầu hoàn tiền kèm trả hàng được chấp thuận, Shopee sắp xếp giao hàng hoàn đến địa chỉ trong lãnh thổ Việt Nam do Người bán cung cấp. Nếu Người bán không cung cấp địa chỉ trong nước hoặc không nhận hàng trong khoảng thời gian hợp lý, Shopee có quyền định đoạt sản phẩm và Người bán được xem là đã từ bỏ quyền đối với sản phẩm đó.\n\n## 3. Quy định về hàng chính hãng\n\n### 3.1. Cam kết của Người bán\n\nNgười bán cam kết rằng tất cả sản phẩm cung cấp qua Shopee Mall:\n\n- Là hàng chính hãng và chưa qua sử dụng.\n- Không thuộc hàng hóa bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển.\n- Không vi phạm Chính sách Cấm/Hạn chế Sản phẩm và Chính sách Vận chuyển của Shopee.\n\nNgườ",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 5,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.2727009648744433
+            },
+            {
+              "id": "shopee-general-return-policy#1",
+              "content": "àng khác: **15 ngày** kể từ lúc đơn hàng được cập nhật trạng thái “Giao hàng thành công”.\n\n#### Lưu ý về thời hạn\n\n- Người mua vẫn có thể gửi yêu cầu Trả hàng/Hoàn tiền sau khi bấm “Đã nhận được hàng” nếu vẫn còn trong thời hạn 15 ngày theo quy định của Shopee.\n- Yêu cầu Trả hàng/Hoàn tiền sẽ được phản hồi trong vòng **3–5 ngày làm việc**. Ngày làm việc không bao gồm thứ Bảy, Chủ Nhật và các ngày nghỉ lễ/Tết theo quy định của pháp luật áp dụng.\n- Với sản phẩm thuộc danh sách hạn chế trả hàng, Shopee sẽ xem xét từng vấn đề khiếu nại của Người mua để đưa ra quyết định cuối cùng.\n\n### 1.3. Các lý do người mua có thể yêu cầu Trả hàng/Hoàn tiền\n\n| Lý do | Trường hợp áp dụng | Điều kiện áp dụng |\n|---|---|---|\n| Chưa nhận được hàng | Chưa nhận được gói hàng nhưng ứng dụng đã cập nhật giao hàng thành công; hoặc đơn thanh toán trả trước đã quá thời hạn giao hàng dự kiến | Tất cả sản phẩm |\n| Thiếu hàng | Gói hàng thiếu một hoặc một số sản phẩm, bộ phận, phụ kiện hoặc quà tặng kèm | Tất cả sản ",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.14709780660204846
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#12",
+              "content": "thực hiện thành công, hoặc đơn hàng có yêu cầu Trả hàng/Hoàn tiền được Người bán/Shopee chấp nhận “Hoàn tiền ngay”, trừ lý do chưa nhận được hàng. Người bán có nghĩa vụ chi trả Phí Cố định và các khoản thuế, lệ phí liên quan.\n\n**Cách tính:**\n\n`Phí Cố định = (Giá sản phẩm trước Shopee trợ giá - Khuyến mãi Người bán áp dụng) × Tỷ lệ Phí Cố định theo ngành hàng.`\n\n### 8.4. Phí Dịch vụ\n\nPhí Dịch vụ áp dụng cho các dịch vụ hỗ trợ hoạt động kinh doanh trên Shopee, bao gồm chương trình, tính năng hoặc hạ tầng do Shopee triển khai. Hình thức và mức thu được quy định riêng cho từng dịch vụ.\n\nTrang nguồn nêu thuế suất thuế GTGT áp dụng từ ngày 01/07/2025 là **8%**.\n\n## 9. Chính sách Mã ưu đãi đối với Người bán\n\n- Người bán có thể chủ động thực hiện chương trình khuyến mại dưới hình thức phát hành mã ưu đãi cho Người mua.\n- Người bán có thể cùng Shopee đồng tài trợ mã ưu đãi theo tỷ lệ chia sẻ áp dụng cho từng chương trình.\n- Người bán phải bảo đảm tuân thủ pháp luật hiện hành và Chính sách Shope",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 12,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.1467272354062725
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#7",
+              "content": " mô tả sản phẩm.\n\n### 3.3. Phí và biện pháp xử lý hàng không chính hãng\n\n- Nếu phát hiện Người bán bán hàng giả, hàng nhái, hàng không rõ xuất xứ hoặc phân phối bất hợp pháp, Shopee có quyền yêu cầu khoản phí bằng **9.818.180 VND** hoặc **100% giá trị sản phẩm** cho mỗi sản phẩm vi phạm, tùy giá trị nào cao hơn.\n- Người bán phải thanh toán trong vòng **07 ngày lịch** kể từ ngày nhận yêu cầu của Shopee.\n- Shopee có quyền xác định vi phạm dựa trên tài liệu chứng minh quyền phân phối, hóa đơn và mã số sê-ri do Người bán cung cấp.\n- Người bán bị loại khỏi Shopee Mall nếu bị phát hiện có **02 lần vi phạm** liên quan đến hàng giả, hàng nhái, hàng không rõ xuất xứ hoặc phân phối bất hợp pháp.\n\n## 4. Quy định đóng gói\n\n- Không sử dụng túi, hộp hoặc băng keo mang tên/logo của sàn thương mại điện tử cạnh tranh với Shopee.\n- Mỗi đơn hàng chỉ được đóng thành một gói/hộp.\n- Trên bao bì phải có Phiếu gửi in từ Kênh Người bán, thể hiện rõ mã vận đơn, mã đơn hàng và địa chỉ Người mua.\n- Phải chèn lót ",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 7,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.2306858835753324
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#12",
+              "content": "thực hiện thành công, hoặc đơn hàng có yêu cầu Trả hàng/Hoàn tiền được Người bán/Shopee chấp nhận “Hoàn tiền ngay”, trừ lý do chưa nhận được hàng. Người bán có nghĩa vụ chi trả Phí Cố định và các khoản thuế, lệ phí liên quan.\n\n**Cách tính:**\n\n`Phí Cố định = (Giá sản phẩm trước Shopee trợ giá - Khuyến mãi Người bán áp dụng) × Tỷ lệ Phí Cố định theo ngành hàng.`\n\n### 8.4. Phí Dịch vụ\n\nPhí Dịch vụ áp dụng cho các dịch vụ hỗ trợ hoạt động kinh doanh trên Shopee, bao gồm chương trình, tính năng hoặc hạ tầng do Shopee triển khai. Hình thức và mức thu được quy định riêng cho từng dịch vụ.\n\nTrang nguồn nêu thuế suất thuế GTGT áp dụng từ ngày 01/07/2025 là **8%**.\n\n## 9. Chính sách Mã ưu đãi đối với Người bán\n\n- Người bán có thể chủ động thực hiện chương trình khuyến mại dưới hình thức phát hành mã ưu đãi cho Người mua.\n- Người bán có thể cùng Shopee đồng tài trợ mã ưu đãi theo tỷ lệ chia sẻ áp dụng cho từng chương trình.\n- Người bán phải bảo đảm tuân thủ pháp luật hiện hành và Chính sách Shope",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 12,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.1859674331762311
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#0",
+              "content": "# Điều khoản Dịch vụ Shopee Mall cho Người bán\n\nTài liệu này trích lọc các điều khoản áp dụng trực tiếp cho Người bán tại Shopee Mall từ trang nguồn. Các điều khoản chỉ hướng tới quyền và thời hạn thao tác của Người mua đã được loại khỏi tài liệu này để hỗ trợ lọc theo `audience: seller`.\n\n## 1. Nghĩa vụ của Người bán khi xử lý Trả hàng/Hoàn tiền\n\n### 1.1. Phản hồi yêu cầu “Hoàn Tiền Ngay”\n\n- Nếu Shopee chủ động chấp nhận “Hoàn Tiền Ngay”, Người bán phải phản hồi hoặc khiếu nại trong vòng **02 ngày lịch** kể từ ngày nhận được yêu cầu. Nếu không phản hồi hoặc khiếu nại trong thời hạn này, Người bán được xem là đã đồng ý với quyết định của Shopee.\n- Nếu Người bán chủ động chấp nhận “Hoàn Tiền Ngay”, Người bán được xem là đã chấp nhận cho Người mua được hoàn tiền mà không cần hoàn trả sản phẩm và không có khiếu nại đối với quyết định này.\n\n### 1.2. Cung cấp bằng chứng cho Shopee\n\nTrong quá trình xác minh yêu cầu Trả hàng/Hoàn tiền, Shopee có quyền yêu cầu Người bán cung cấp bằng chứng liê",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.172051744800981
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "Nếu Người bán Shopee Mall vi phạm quy định bán hàng giả, hàng nhái thì bị phạt bao nhiêu tiền và xử lý như thế nào?",
+          "gold_answer": "Shopee có quyền yêu cầu khoản phí phạt bằng 9.818.180 VND hoặc 100% giá trị sản phẩm cho mỗi sản phẩm vi phạm (tùy giá trị nào cao hơn), thanh toán trong vòng 07 ngày lịch. Ngoài ra, Người bán sẽ bị loại khỏi Shopee Mall nếu vi phạm 02 lần.",
+          "doc_id": "shopee-mall-seller-terms-of-service",
+          "filter": null,
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 0.25,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#10",
+              "content": "huyển | 981.820 VND/hàng hóa vi phạm |\n| Tự mình hoặc thông qua người khác đặt mua hàng của chính Người bán | 9.818.180 VND/đơn hàng vi phạm |\n| Tăng giá trước khuyến mại, giảm số lượng sản phẩm khuyến mại hoặc tự ý hủy/yêu cầu hủy đơn khuyến mại | 490.910 VND/sản phẩm vi phạm hoặc đơn hàng bị hủy |\n| Đóng gói bằng bao bì mang tên/logo của sàn cạnh tranh | 196.360 VND/đơn hàng |\n\nNgười bán có thể đề nghị Shopee xem xét lại phí phát sinh theo lần trong vòng **14 ngày** kể từ khi nhận thông báo thu phí hoặc thanh toán phí. Sau thời hạn này, Shopee không xem xét hoặc điều chỉnh phí.\n\n## 8. Các loại phí của Shopee Mall\n\n### 8.1. Nguyên tắc cấn trừ\n\nNgười bán đồng ý và ủy quyền cho Shopee cấn trừ các khoản phí vào Tài khoản Đảm bảo Shopee, Số dư Tài khoản Shopee, khoản đặt cọc hoặc khoản tiền Shopee giữ thay/nhận hộ. Các khoản phí được cấn trừ trên từng đơn hàng trước khi tiền bán hàng được chuyển vào Số dư Tài khoản Shopee.\n\n### 8.2. Phí Xử lý Giao dịch\n\nPhí Xử lý Giao dịch áp dụng cho đơn",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 10,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.21638364320129946
+            },
+            {
+              "id": "shopee-seller-return-processing-policy#1",
+              "content": "Sau khi Người mua gửi trả hàng thành công, đơn hàng sẽ được giao trả về địa chỉ gian hàng của Người bán trong vòng **07 - 14 ngày làm việc**.\n- Người bán có thời hạn **02 ngày** tính từ khi bưu tá giao hàng hoàn trả thành công để kiểm tra tình trạng hàng hóa.\n- Nếu hàng hoàn trả bị hư hỏng, tráo đổi hoặc mất tem niêm phong, Người bán cần bấm nút **Khiếu nại Shopee** trên Kênh Người Bán và cung cấp video quay cảnh mở kiện hàng hoàn (video unboxing).\n\n## 3. Chế tài xử phạt Người bán vi phạm quy định trả hàng\n\n- Người bán từ chối nhận hàng hoàn trả không có lý do hợp lệ sẽ bị tính **01 điểm phạt Sao Quả Quả (Penalty point)**.\n- Gian hàng có tỷ lệ đơn hàng khiếu nại trả hàng do lỗi Người bán > 10% trong tháng sẽ bị tạm khóa tính năng Đăng bán sản phẩm mới.",
+              "metadata": {
+                "doc_id": "shopee-seller-return-processing-policy",
+                "title": "Quy định thời hạn xử lý khiếu nại trả hàng dành cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77245",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "seller-policy",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.16958661475300635
+            },
+            {
+              "id": "shopee-buyer-return-timeline-policy#0",
+              "content": "# Quy định thời hạn và điều kiện trả hàng dành cho Người mua\n\n## 1. Thời hạn gửi yêu cầu Trả hàng / Hoàn tiền\n\nNgười mua có quyền gửi yêu cầu Trả hàng/Hoàn tiền trong khoảng thời gian quy định tính từ thời điểm đơn hàng được cập nhật trạng thái **Giao hàng thành công**:\n\n- **Đơn hàng trên Shopee Mall:** Người mua được gửi yêu cầu trả hàng trong vòng **15 ngày**.\n- **Đơn hàng trên Shop thường / Shop Yêu thích:** Người mua được gửi yêu cầu trả hàng trong vòng **07 ngày**.\n- **Chương trình Shopee Choice / Hàng từ nước ngoài:** Thời hạn gửi khiếu nại trả hàng là **07 ngày**.\n\nQuá thời hạn trên, nút \"Trả hàng/Hoàn tiền\" trên ứng dụng sẽ tự động ẩn và đơn hàng được chuyển sang trạng thái Hoàn thành. Shopee không hỗ trợ giải quyết khiếu nại sau khi đơn hàng đã hoàn thành.\n\n## 2. Điều kiện chấp nhận Trả hàng / Hoàn tiền\n\nShopee chấp nhận yêu cầu trả hàng từ Người mua trong các trường hợp sau:\n\n- Sản phẩm bị lỗi kỹ thuật, hỏng hóc do nhà sản xuất.\n- Sản phẩm bị móp vỡ, hư hỏng trong quá trình v",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-timeline-policy",
+                "title": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua",
+                "source_url": "https://help.shopee.vn/portal/4/article/77244",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "buyer",
+                "category": "returns-policy",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.1086707598878101
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "question": "Trường hợp nào Người mua được miễn 100% cước phí vận chuyển hoàn trả hàng?",
+          "gold_answer": "Người mua được miễn 100% cước phí vận chuyển trả hàng khi sử dụng hình thức Lấy hàng tại nhà (đối tác SPX, Viettel Post, GHTK đến lấy) hoặc Gửi hàng tại bưu cục thuộc hệ thống SPX/đối tác Shopee có xuất trình mã vận đơn trả hàng.",
+          "doc_id": "shopee-return-shipping-fee-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-buyer-return-request-guide#2",
+              "content": "/ Số dư Tài khoản Shopee:** Hoàn tiền trong vòng 24 giờ làm việc.\n- **Thẻ tín dụng / Thẻ ghi nợ:** Hoàn tiền từ 7 đến 14 ngày làm việc (tùy ngân hàng phát hành).\n- **Thanh toán khi nhận hàng (COD):** Tiền hoàn chuyển vào Số dư Tài khoản Shopee trong 24 giờ.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-request-guide",
+                "title": "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+                "source_url": "https://help.shopee.vn/portal/4/article/79233",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v2",
+                "audience": "buyer",
+                "category": "returns-guide",
+                "language": "vi",
+                "chunk_index": 2,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.23374931777759853
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#4",
+              "content": "## 2.2. Chất lượng, bảo hành và trách nhiệm sản phẩm\n\nNgười bán bảo đảm sản phẩm chào bán và giao cho Người mua:\n\n- Tuân thủ pháp luật áp dụng.\n- Phù hợp với thông số kỹ thuật được đăng tải, bao gồm quy định bảo hành, bản vẽ, mẫu, tiêu chuẩn thực hiện và yêu cầu về chất lượng, an toàn, vệ sinh.\n- Không phải là sản phẩm bị lỗi.\n\nNgười bán chịu trách nhiệm đối với sự không tuân thủ, khiếm khuyết hoặc yêu cầu thu hồi liên quan đến sản phẩm và phải bảo đảm Shopee không bị thiệt hại từ những vấn đề này.\n\n### 2.3. Sản phẩm bị cấm hoặc hạn chế\n\nNếu Người bán chào bán hoặc bán sản phẩm bị hạn chế theo Chính sách Cấm/Hạn chế Sản phẩm, Shopee có quyền:\n\n- Gỡ sản phẩm vi phạm khỏi Shopee Mall.\n- Hoàn tiền và thực hiện các điều chỉnh cho Người mua.\n- Yêu cầu Người bán bồi hoàn toàn bộ số tiền, chi phí và lệ phí có liên quan mà Shopee đã hoàn cho Người mua.\n- Khấu trừ các khoản đó từ khoản tiền Shopee phải thanh toán cho Người bán hoặc áp dụng biện pháp phù hợp để thu hồi.\n\n### 2.4. Tuân thủ quyết ",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 4,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.22660645762685144
+            },
+            {
+              "id": "shopee-buyer-return-request-guide#1",
+              "content": " bằng chứng rõ ràng (hình ảnh góc quay nét, video mở hộp unboxing) và mô tả chi tiết tình trạng.\n- **Bước 6:** Nhấn **Gửi yêu cầu** để hoàn tất.\n\n### Cách 2: Gửi yêu cầu qua Trò chuyện với Shopee\n- **Bước 1:** Tại trang chủ Shopee, chọn mục **Tôi** > chọn **Trò Chuyện Với Shopee**.\n- **Bước 2:** Chọn **Khiếu nại trả hàng hoàn tiền** và chọn đơn hàng tương ứng.\n- **Bước 3:** Cung cấp thông tin tình trạng nhận hàng, lý do và tải bằng chứng theo hướng dẫn của hệ thống.\n\n## 2. Thời gian xử lý và Hoàn tiền cho Người mua\n\n### Thời gian xử lý khiếu nại\n- Bộ phận Chăm sóc khách hàng Shopee xử lý yêu cầu của Người mua trong vòng **3 - 5 ngày làm việc**.\n- Kết quả được gửi qua mục **Thông báo > Cập nhật đơn hàng** trên ứng dụng và Email đăng ký.\n\n### Thời gian nhận lại tiền hoàn\nNếu yêu cầu trả hàng/hoàn tiền được duyệt, tiền sẽ được hoàn trả cho Người mua theo các mốc thời gian:\n- **Ví ShopeePay / Số dư Tài khoản Shopee:** Hoàn tiền trong vòng 24 giờ làm việc.\n- **Thẻ tín dụng / Thẻ ghi nợ:** H",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-request-guide",
+                "title": "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+                "source_url": "https://help.shopee.vn/portal/4/article/79233",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v2",
+                "audience": "buyer",
+                "category": "returns-guide",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.20959867483832903
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "question": "Những trường hợp/lý do nào không được áp dụng chính sách trả hàng với lý do \"Đổi ý\"?",
+          "gold_answer": "Lý do đổi ý không áp dụng cho: (1) Sản phẩm thuộc danh sách hạn chế trả hàng; (2) Sản phẩm mua tại Shopee Mart; (3) Một số sản phẩm riêng biệt được Shopee ghi nhận và quyết định theo từng thời điểm.",
+          "doc_id": "shopee-general-return-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#2",
+              "content": "n không cung cấp địa chỉ đúng, hoặc Người bán không nhận hàng/không thể liên lạc được trong **05 ngày làm việc** kể từ khi nhận thông báo gửi trả, Người bán được xem là đã từ bỏ sản phẩm và các quyền lợi liên quan. Shopee có quyền xử lý sản phẩm mà không phải thanh toán hoặc bồi thường.\n- Người bán đồng ý rằng quyết định giải quyết yêu cầu Trả hàng/Hoàn tiền của Shopee là quyết định cuối cùng và có giá trị thi hành.\n\n### 1.4. Chi phí vận chuyển hàng hoàn\n\n- Người bán chịu chi phí vận chuyển chiều hoàn trả nếu đơn hàng không chuyển phát được hoặc phát sinh Trả hàng/Hoàn tiền.\n- Shopee có thể điều chỉnh việc thu phí vận chuyển và xử lý hàng hoàn hoặc đơn giao không thành công, nhưng phải thông báo cho Người bán tối thiểu **07 ngày lịch** trước ngày áp dụng điều chỉnh.\n\n### 1.5. Kiểm tra và khiếu nại Sản phẩm Hoàn trả\n\n- Khi nhận hàng hoàn, Người bán phải kiểm tra và ký xác nhận với đại diện đơn vị vận chuyển về tình trạng nguyên vẹn bên ngoài của bưu kiện.\n- Nếu bưu kiện không còn nguyên",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 2,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.255936576292659
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#4",
+              "content": "## 2.2. Chất lượng, bảo hành và trách nhiệm sản phẩm\n\nNgười bán bảo đảm sản phẩm chào bán và giao cho Người mua:\n\n- Tuân thủ pháp luật áp dụng.\n- Phù hợp với thông số kỹ thuật được đăng tải, bao gồm quy định bảo hành, bản vẽ, mẫu, tiêu chuẩn thực hiện và yêu cầu về chất lượng, an toàn, vệ sinh.\n- Không phải là sản phẩm bị lỗi.\n\nNgười bán chịu trách nhiệm đối với sự không tuân thủ, khiếm khuyết hoặc yêu cầu thu hồi liên quan đến sản phẩm và phải bảo đảm Shopee không bị thiệt hại từ những vấn đề này.\n\n### 2.3. Sản phẩm bị cấm hoặc hạn chế\n\nNếu Người bán chào bán hoặc bán sản phẩm bị hạn chế theo Chính sách Cấm/Hạn chế Sản phẩm, Shopee có quyền:\n\n- Gỡ sản phẩm vi phạm khỏi Shopee Mall.\n- Hoàn tiền và thực hiện các điều chỉnh cho Người mua.\n- Yêu cầu Người bán bồi hoàn toàn bộ số tiền, chi phí và lệ phí có liên quan mà Shopee đã hoàn cho Người mua.\n- Khấu trừ các khoản đó từ khoản tiền Shopee phải thanh toán cho Người bán hoặc áp dụng biện pháp phù hợp để thu hồi.\n\n### 2.4. Tuân thủ quyết ",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 4,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.19914270657025324
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#3",
+              "content": "n đơn vị vận chuyển về tình trạng nguyên vẹn bên ngoài của bưu kiện.\n- Nếu bưu kiện không còn nguyên vẹn, có dấu hiệu bị mở, ướt, rách, móp méo hoặc hư hại, Người bán phải từ chối nhận hàng và thông báo cho Shopee trong vòng **24 giờ** kể từ thời điểm nhận hàng.\n- Nếu Sản phẩm Hoàn trả bị hư hại do vận chuyển, Người bán phải gửi email khiếu nại kèm ảnh hoặc video bằng chứng trong vòng tối đa **02 ngày lịch** kể từ ngày nhận sản phẩm.\n- Nếu Shopee yêu cầu bổ sung thông tin hoặc tài liệu, Người bán phải cung cấp trong vòng **24 giờ** kể từ khi nhận thông báo. Không tuân thủ thời hạn này được xem là không cung cấp thông tin/tài liệu.\n\n## 2. Điều kiện và trách nhiệm của Người bán tại Shopee Mall\n\n### 2.1. Tham gia Shopee Mall\n\nNgười bán được Shopee thông báo riêng qua Trang Shopee hoặc email về việc lựa chọn tham gia Shopee Mall và phải thực hiện các hướng dẫn, thủ tục trong thông báo đó.\n\n### 2.2. Chất lượng, bảo hành và trách nhiệm sản phẩm\n\nNgười bán bảo đảm sản phẩm chào bán và giao ch",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 3,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.17129065004394267
+            }
+          ]
+        }
+      ],
+      "filter_ab": [
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": false,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#7",
+              "content": " mô tả sản phẩm.\n\n### 3.3. Phí và biện pháp xử lý hàng không chính hãng\n\n- Nếu phát hiện Người bán bán hàng giả, hàng nhái, hàng không rõ xuất xứ hoặc phân phối bất hợp pháp, Shopee có quyền yêu cầu khoản phí bằng **9.818.180 VND** hoặc **100% giá trị sản phẩm** cho mỗi sản phẩm vi phạm, tùy giá trị nào cao hơn.\n- Người bán phải thanh toán trong vòng **07 ngày lịch** kể từ ngày nhận yêu cầu của Shopee.\n- Shopee có quyền xác định vi phạm dựa trên tài liệu chứng minh quyền phân phối, hóa đơn và mã số sê-ri do Người bán cung cấp.\n- Người bán bị loại khỏi Shopee Mall nếu bị phát hiện có **02 lần vi phạm** liên quan đến hàng giả, hàng nhái, hàng không rõ xuất xứ hoặc phân phối bất hợp pháp.\n\n## 4. Quy định đóng gói\n\n- Không sử dụng túi, hộp hoặc băng keo mang tên/logo của sàn thương mại điện tử cạnh tranh với Shopee.\n- Mỗi đơn hàng chỉ được đóng thành một gói/hộp.\n- Trên bao bì phải có Phiếu gửi in từ Kênh Người bán, thể hiện rõ mã vận đơn, mã đơn hàng và địa chỉ Người mua.\n- Phải chèn lót ",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 7,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.2306858835753324
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#12",
+              "content": "thực hiện thành công, hoặc đơn hàng có yêu cầu Trả hàng/Hoàn tiền được Người bán/Shopee chấp nhận “Hoàn tiền ngay”, trừ lý do chưa nhận được hàng. Người bán có nghĩa vụ chi trả Phí Cố định và các khoản thuế, lệ phí liên quan.\n\n**Cách tính:**\n\n`Phí Cố định = (Giá sản phẩm trước Shopee trợ giá - Khuyến mãi Người bán áp dụng) × Tỷ lệ Phí Cố định theo ngành hàng.`\n\n### 8.4. Phí Dịch vụ\n\nPhí Dịch vụ áp dụng cho các dịch vụ hỗ trợ hoạt động kinh doanh trên Shopee, bao gồm chương trình, tính năng hoặc hạ tầng do Shopee triển khai. Hình thức và mức thu được quy định riêng cho từng dịch vụ.\n\nTrang nguồn nêu thuế suất thuế GTGT áp dụng từ ngày 01/07/2025 là **8%**.\n\n## 9. Chính sách Mã ưu đãi đối với Người bán\n\n- Người bán có thể chủ động thực hiện chương trình khuyến mại dưới hình thức phát hành mã ưu đãi cho Người mua.\n- Người bán có thể cùng Shopee đồng tài trợ mã ưu đãi theo tỷ lệ chia sẻ áp dụng cho từng chương trình.\n- Người bán phải bảo đảm tuân thủ pháp luật hiện hành và Chính sách Shope",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 12,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.1859674331762311
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#0",
+              "content": "# Điều khoản Dịch vụ Shopee Mall cho Người bán\n\nTài liệu này trích lọc các điều khoản áp dụng trực tiếp cho Người bán tại Shopee Mall từ trang nguồn. Các điều khoản chỉ hướng tới quyền và thời hạn thao tác của Người mua đã được loại khỏi tài liệu này để hỗ trợ lọc theo `audience: seller`.\n\n## 1. Nghĩa vụ của Người bán khi xử lý Trả hàng/Hoàn tiền\n\n### 1.1. Phản hồi yêu cầu “Hoàn Tiền Ngay”\n\n- Nếu Shopee chủ động chấp nhận “Hoàn Tiền Ngay”, Người bán phải phản hồi hoặc khiếu nại trong vòng **02 ngày lịch** kể từ ngày nhận được yêu cầu. Nếu không phản hồi hoặc khiếu nại trong thời hạn này, Người bán được xem là đã đồng ý với quyết định của Shopee.\n- Nếu Người bán chủ động chấp nhận “Hoàn Tiền Ngay”, Người bán được xem là đã chấp nhận cho Người mua được hoàn tiền mà không cần hoàn trả sản phẩm và không có khiếu nại đối với quyết định này.\n\n### 1.2. Cung cấp bằng chứng cho Shopee\n\nTrong quá trình xác minh yêu cầu Trả hàng/Hoàn tiền, Shopee có quyền yêu cầu Người bán cung cấp bằng chứng liê",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "",
+                "strategy": "fixed"
+              },
+              "score": 0.172051744800981
+            }
+          ]
+        }
+      ]
+    },
+    "sentence": {
+      "count": 68,
+      "avg_length": 372.20588235294116,
+      "results": [
+        {
+          "id": 1,
+          "question": "Tôi cần thực hiện những bước nào để gửi yêu cầu Trả hàng/Hoàn tiền trực tiếp trên ứng dụng Shopee?",
+          "gold_answer": "Mở ứng dụng Shopee > chọn mục \"Tôi\" > chọn \"Chờ giao hàng\" hoặc \"Đã giao\" > chọn đơn hàng cần xử lý > bấm \"Trả hàng/Hoàn tiền\" > chọn tình huống gặp phải > chọn sản phẩm, lý do khiếu nại > tải bằng chứng (ảnh/video unboxing) và mô tả > chọn \"Gửi yêu cầu\".",
+          "doc_id": "shopee-buyer-return-request-guide",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#28",
+              "content": "- Nếu Shopee chấp thuận khiếu nại sau khi đã thanh toán cho Người bán, Shopee có quyền điều chỉnh khoản thanh toán để hoàn lại tiền cho Người mua. ## 7. Một số phí phát sinh theo lần\n\n| Vi phạm của Người bán | Phí |\n|---|---:|\n| Hủy đơn do hết hàng, không xác nhận đơn hoặc yêu cầu Người mua hủy đơn | 196.360 VND/đơn hàng |\n| Hủy đơn do đăng sai giá sản phẩm | 490.910 VND/đơn hàng |\n| Gửi hàng bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển | 981.820 VND/hàng hóa vi phạm |\n| Tự mình hoặc thông qua người khác đặt mua hàng của chính Người bán | 9.818.180 VND/đơn hàng vi phạm |\n| Tăng giá trước khuyến mại, giảm số lượng sản phẩm khuyến mại hoặc tự ý hủy/yêu cầu hủy đơn khuyến mại | 490.910 VND/sản phẩm vi phạm hoặc đơn hàng bị hủy |\n| Đóng gói bằng bao bì mang tên/logo của sàn cạnh tranh | 196.360 VND/đơn hàng |\n\nNgười bán có thể đề nghị Shopee xem xét lại phí phát sinh theo lần trong vòng **14 ngày** kể từ khi nhận thông báo thu phí hoặc thanh toán phí.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 28,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.31054270528500233
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#17",
+              "content": "Người bán phải sở hữu quyền phân phối, dưới hình thức độc quyền hoặc được ủy quyền, đối với sản phẩm cung cấp trên Shopee Mall. Shopee có quyền yêu cầu tài liệu chứng minh quyền phân phối. ### 3.2.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 17,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.2499711173106601
+            },
+            {
+              "id": "shopee-return-shipping-fee-policy#1",
+              "content": "## 2. Quy định với trường hợp Người mua tự vận chuyển ngoại mạng\n\n- Nếu Người mua tự lựa chọn đơn vị vận chuyển bên ngoài không nằm trong hệ thống Shopee tích hợp mà chưa có sự đồng ý bằng văn bản từ Shopee, Người mua phải tự thanh toán trước cước phí gửi hàng. - Shopee chỉ hoàn lại tiền cước vận chuyển tự gửi (tối đa **40.000 VNĐ / đơn hàng**) dưới dạng Voucher Shopee Xu sau khi kiện hàng trả về đến tay Người bán an toàn và khiếu nại được xác minh hợp lệ.",
+              "metadata": {
+                "doc_id": "shopee-return-shipping-fee-policy",
+                "title": "Chính sách phí vận chuyển khi trả hàng dành cho Người mua",
+                "source_url": "https://help.shopee.vn/portal/4/article/77247",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "shipping-policy",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.2431724502143682
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#33",
+              "content": "**Cách tính:**\n\n`Phí Cố định = (Giá sản phẩm trước Shopee trợ giá - Khuyến mãi Người bán áp dụng) × Tỷ lệ Phí Cố định theo ngành hàng.`\n\n### 8.4. Phí Dịch vụ\n\nPhí Dịch vụ áp dụng cho các dịch vụ hỗ trợ hoạt động kinh doanh trên Shopee, bao gồm chương trình, tính năng hoặc hạ tầng do Shopee triển khai. Hình thức và mức thu được quy định riêng cho từng dịch vụ.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 33,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.3725391429956602
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#10",
+              "content": "Tham gia Shopee Mall\n\nNgười bán được Shopee thông báo riêng qua Trang Shopee hoặc email về việc lựa chọn tham gia Shopee Mall và phải thực hiện các hướng dẫn, thủ tục trong thông báo đó. ### 2.2. Chất lượng, bảo hành và trách nhiệm sản phẩm\n\nNgười bán bảo đảm sản phẩm chào bán và giao cho Người mua:\n\n- Tuân thủ pháp luật áp dụng.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 10,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.28644078585201227
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#17",
+              "content": "Người bán phải sở hữu quyền phân phối, dưới hình thức độc quyền hoặc được ủy quyền, đối với sản phẩm cung cấp trên Shopee Mall. Shopee có quyền yêu cầu tài liệu chứng minh quyền phân phối. ### 3.2.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 17,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.274010879238383
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "Nếu Người bán Shopee Mall vi phạm quy định bán hàng giả, hàng nhái thì bị phạt bao nhiêu tiền và xử lý như thế nào?",
+          "gold_answer": "Shopee có quyền yêu cầu khoản phí phạt bằng 9.818.180 VND hoặc 100% giá trị sản phẩm cho mỗi sản phẩm vi phạm (tùy giá trị nào cao hơn), thanh toán trong vòng 07 ngày lịch. Ngoài ra, Người bán sẽ bị loại khỏi Shopee Mall nếu vi phạm 02 lần.",
+          "doc_id": "shopee-mall-seller-terms-of-service",
+          "filter": null,
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#8",
+              "content": "- Nếu bưu kiện không còn nguyên vẹn, có dấu hiệu bị mở, ướt, rách, móp méo hoặc hư hại, Người bán phải từ chối nhận hàng và thông báo cho Shopee trong vòng **24 giờ** kể từ thời điểm nhận hàng. - Nếu Sản phẩm Hoàn trả bị hư hại do vận chuyển, Người bán phải gửi email khiếu nại kèm ảnh hoặc video bằng chứng trong vòng tối đa **02 ngày lịch** kể từ ngày nhận sản phẩm. - Nếu Shopee yêu cầu bổ sung thông tin hoặc tài liệu, Người bán phải cung cấp trong vòng **24 giờ** kể từ khi nhận thông báo.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 8,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.3552903064207771
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#4",
+              "content": "### 1.3. Nhận lại Sản phẩm Hoàn trả\n\n- Khi Shopee đồng ý với yêu cầu hoàn tiền kèm trả hàng, Shopee gửi sản phẩm về cho Người bán trong vòng **07 ngày làm việc** kể từ ngày đưa ra quyết định cuối cùng. - Người bán có nghĩa vụ nhận lại Sản phẩm Hoàn trả trong vòng **07 ngày làm việc** kể từ khi nhận được quyết định cuối cùng của Shopee.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 4,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.24154810993839942
+            },
+            {
+              "id": "shopee-seller-warranty-responsibility#1",
+              "content": "Nghĩa vụ kích hoạt và tiếp nhận bảo hành\n\n- **Thời hạn cung cấp phiếu / kích hoạt bảo hành:** Người bán phải gửi kèm thẻ/phiếu bảo hành giấy hoặc hoàn tất kích hoạt bảo hành điện tử cho Người mua trong vòng **03 ngày làm việc** kể từ ngày đơn hàng giao thành công. - **Thời hạn xử lý sản phẩm bảo hành:** \n  - Người bán phải tiếp nhận và phản hồi tình trạng sản phẩm bảo hành cho Người mua trong vòng **05 ngày làm việc** kể từ khi nhận được sản phẩm gửi về trung tâm bảo hành. - Thời gian sửa chữa hoặc đổi mới sản phẩm không được vượt quá **14 ngày làm việc**.",
+              "metadata": {
+                "doc_id": "shopee-seller-warranty-responsibility",
+                "title": "Quy định bảo hành sản phẩm và nghĩa vụ của Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77246",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "warranty-policy",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.21605798331401796
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "question": "Trường hợp nào Người mua được miễn 100% cước phí vận chuyển hoàn trả hàng?",
+          "gold_answer": "Người mua được miễn 100% cước phí vận chuyển trả hàng khi sử dụng hình thức Lấy hàng tại nhà (đối tác SPX, Viettel Post, GHTK đến lấy) hoặc Gửi hàng tại bưu cục thuộc hệ thống SPX/đối tác Shopee có xuất trình mã vận đơn trả hàng.",
+          "doc_id": "shopee-return-shipping-fee-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-general-return-policy#8",
+              "content": "- Mã giảm giá được hoàn trong vòng **48 giờ**, không kể thứ Bảy, Chủ Nhật và ngày lễ, kể từ khi yêu cầu Trả hàng/Hoàn tiền được chấp nhận hoàn tiền. - Mã giảm giá được hoàn có giá trị ưu đãi tương đương mã đã sử dụng; thời gian và điều kiện sử dụng được cập nhật theo chương trình khuyến mãi tại từng thời điểm. - Shopee Xu được hoàn ngay sau khi khiếu nại hoàn tất và yêu cầu hoàn tiền của Người mua được chấp nhận.",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 8,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.27086925071362855
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#23",
+              "content": "- Trên bao bì phải có Phiếu gửi in từ Kênh Người bán, thể hiện rõ mã vận đơn, mã đơn hàng và địa chỉ Người mua. - Phải chèn lót các khe hở bằng túi bóng khí, mút xốp hoặc giấy báo để sản phẩm không va đập trong quá trình vận chuyển. - Hàng dễ vỡ phải được chèn mút xốp đủ sáu mặt tiếp xúc với hộp ngoài cùng.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 23,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.2655116742344976
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#35",
+              "content": "- Người bán có thể cùng Shopee đồng tài trợ mã ưu đãi theo tỷ lệ chia sẻ áp dụng cho từng chương trình. - Người bán phải bảo đảm tuân thủ pháp luật hiện hành và Chính sách Shopee khi thực hiện chương trình khuyến mại. ## 10.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 35,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.21648434433390626
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "question": "Những trường hợp/lý do nào không được áp dụng chính sách trả hàng với lý do \"Đổi ý\"?",
+          "gold_answer": "Lý do đổi ý không áp dụng cho: (1) Sản phẩm thuộc danh sách hạn chế trả hàng; (2) Sản phẩm mua tại Shopee Mart; (3) Một số sản phẩm riêng biệt được Shopee ghi nhận và quyết định theo từng thời điểm.",
+          "doc_id": "shopee-general-return-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#36",
+              "content": "Ngày đăng tải và hiệu lực được nguồn công bố\n\nTrang nguồn nêu Điều khoản Dịch vụ Shopee Mall được đăng tải ngày **24/04/2026** và có hiệu lực từ ngày **08/05/2026**. Trang nguồn không nêu số hiệu phiên bản, vì vậy `document_version` được ghi là `not-stated`.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 36,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.22784808824457095
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#13",
+              "content": "- Yêu cầu Người bán bồi hoàn toàn bộ số tiền, chi phí và lệ phí có liên quan mà Shopee đã hoàn cho Người mua. - Khấu trừ các khoản đó từ khoản tiền Shopee phải thanh toán cho Người bán hoặc áp dụng biện pháp phù hợp để thu hồi. ### 2.4.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 13,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.2178222376578011
+            },
+            {
+              "id": "shopee-buyer-return-timeline-policy#2",
+              "content": "## 2. Điều kiện chấp nhận Trả hàng / Hoàn tiền\n\nShopee chấp nhận yêu cầu trả hàng từ Người mua trong các trường hợp sau:\n\n- Sản phẩm bị lỗi kỹ thuật, hỏng hóc do nhà sản xuất. - Sản phẩm bị móp vỡ, hư hỏng trong quá trình vận chuyển.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-timeline-policy",
+                "title": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua",
+                "source_url": "https://help.shopee.vn/portal/4/article/77244",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "buyer",
+                "category": "returns-policy",
+                "language": "vi",
+                "chunk_index": 2,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.20060422784196696
+            }
+          ]
+        }
+      ],
+      "filter_ab": [
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": false,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#33",
+              "content": "**Cách tính:**\n\n`Phí Cố định = (Giá sản phẩm trước Shopee trợ giá - Khuyến mãi Người bán áp dụng) × Tỷ lệ Phí Cố định theo ngành hàng.`\n\n### 8.4. Phí Dịch vụ\n\nPhí Dịch vụ áp dụng cho các dịch vụ hỗ trợ hoạt động kinh doanh trên Shopee, bao gồm chương trình, tính năng hoặc hạ tầng do Shopee triển khai. Hình thức và mức thu được quy định riêng cho từng dịch vụ.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 33,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.3725391429956602
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#10",
+              "content": "Tham gia Shopee Mall\n\nNgười bán được Shopee thông báo riêng qua Trang Shopee hoặc email về việc lựa chọn tham gia Shopee Mall và phải thực hiện các hướng dẫn, thủ tục trong thông báo đó. ### 2.2. Chất lượng, bảo hành và trách nhiệm sản phẩm\n\nNgười bán bảo đảm sản phẩm chào bán và giao cho Người mua:\n\n- Tuân thủ pháp luật áp dụng.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 10,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.28644078585201227
+            },
+            {
+              "id": "shopee-buyer-return-request-guide#4",
+              "content": "Thời gian xử lý và Hoàn tiền cho Người mua\n\n### Thời gian xử lý khiếu nại\n- Bộ phận Chăm sóc khách hàng Shopee xử lý yêu cầu của Người mua trong vòng **3 - 5 ngày làm việc**. - Kết quả được gửi qua mục **Thông báo > Cập nhật đơn hàng** trên ứng dụng và Email đăng ký. ### Thời gian nhận lại tiền hoàn\nNếu yêu cầu trả hàng/hoàn tiền được duyệt, tiền sẽ được hoàn trả cho Người mua theo các mốc thời gian:\n- **Ví ShopeePay / Số dư Tài khoản Shopee:** Hoàn tiền trong vòng 24 giờ làm việc.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-request-guide",
+                "title": "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+                "source_url": "https://help.shopee.vn/portal/4/article/79233",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v2",
+                "audience": "buyer",
+                "category": "returns-guide",
+                "language": "vi",
+                "chunk_index": 4,
+                "section_path": "",
+                "strategy": "sentence"
+              },
+              "score": 0.2790858805023186
+            }
+          ]
+        }
+      ]
+    },
+    "recursive": {
+      "count": 33,
+      "avg_length": 768.939393939394,
+      "results": [
+        {
+          "id": 1,
+          "question": "Tôi cần thực hiện những bước nào để gửi yêu cầu Trả hàng/Hoàn tiền trực tiếp trên ứng dụng Shopee?",
+          "gold_answer": "Mở ứng dụng Shopee > chọn mục \"Tôi\" > chọn \"Chờ giao hàng\" hoặc \"Đã giao\" > chọn đơn hàng cần xử lý > bấm \"Trả hàng/Hoàn tiền\" > chọn tình huống gặp phải > chọn sản phẩm, lý do khiếu nại > tải bằng chứng (ảnh/video unboxing) và mô tả > chọn \"Gửi yêu cầu\".",
+          "doc_id": "shopee-buyer-return-request-guide",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#9",
+              "content": "- Không sử dụng túi, hộp hoặc băng keo mang tên/logo của sàn thương mại điện tử cạnh tranh với Shopee.\n- Mỗi đơn hàng chỉ được đóng thành một gói/hộp.\n- Trên bao bì phải có Phiếu gửi in từ Kênh Người bán, thể hiện rõ mã vận đơn, mã đơn hàng và địa chỉ Người mua.\n- Phải chèn lót các khe hở bằng túi bóng khí, mút xốp hoặc giấy báo để sản phẩm không va đập trong quá trình vận chuyển.\n- Hàng dễ vỡ phải được chèn mút xốp đủ sáu mặt tiếp xúc với hộp ngoài cùng.\n- Quy trình vận chuyển còn phải tuân thủ Chính sách Vận chuyển của Shopee.\n\n## 5. Tiêu chuẩn vận hành\n\nNgười bán phải:\n\n- Giữ tỷ lệ đơn hàng không thành công và tỷ lệ giao hàng trễ dưới mức cho phép.\n- Không vi phạm khi đăng bán sản phẩm.\n- Không lợi dụng chính sách sàn giao dịch.\n- Không đăng bán hàng giả hoặc hàng nhái.\n\nShopee đánh giá các tiêu chuẩn này dựa trên Hệ thống Sao Quả Tạ. Người bán có thể bị gỡ nhãn Shopee Mall nếu điểm tạ vượt mức cho phép hoặc vi phạm bán hàng giả/nhái lần thứ hai.\n\n## 6. Thanh toán và hoàn tiền",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 9,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.21796394145404627
+            },
+            {
+              "id": "shopee-general-return-policy#0",
+              "content": "# Quy định chung về Trả hàng Hoàn tiền của Shopee\n\n## 1. Điều kiện Trả hàng/Hoàn tiền của Shopee\n\n### 1.1. Nguyên tắc chung\n\nShopee hiện chưa hỗ trợ yêu cầu đổi hàng. Nếu hàng nhận được có vấn đề (khác với mô tả, hư hỏng,...), bạn có thể từ chối nhận hàng khi đồng kiểm đối với đơn hàng được đồng kiểm, hoặc gửi yêu cầu Trả hàng/Hoàn tiền sau khi đã nhận hàng.\n\n### 1.2. Thời gian tối đa để người mua gửi yêu cầu\n\nThời gian để Shopee tiếp nhận yêu cầu Trả hàng/Hoàn tiền từ người mua:\n\n- Đơn hàng giao thực phẩm tươi sống và đông lạnh, trừ lý do chưa nhận được hàng: trong vòng **24 giờ** kể từ lúc đơn hàng được cập nhật trạng thái “Giao hàng thành công”.\n- Đơn hàng do Người bán tự vận chuyển:\n  - **15 ngày** kể từ lúc người mua bấm “Đã nhận được hàng”; hoặc\n  - **20 ngày** kể từ lúc đơn hàng được cập nhật trạng thái “Lấy hàng thành công” nếu người mua không bấm “Đã nhận được hàng”.\n- Các đơn hàng khác: **15 ngày** kể từ lúc đơn hàng được cập nhật trạng thái “Giao hàng thành công”.",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.17102892625567137
+            },
+            {
+              "id": "shopee-return-shipping-fee-policy#0",
+              "content": "# Chính sách chi phí vận chuyển khi trả hàng dành cho Người mua\n\n## 1. Quy định về miễn phí cước vận chuyển trả hàng\n\nKhi yêu cầu Trả hàng/Hoàn tiền được Shopee chấp nhận, Người mua được hỗ trợ **miễn phí 100% cước phí vận chuyển hoàn trả** khi thực hiện qua các phương thức giao nhận được Shopee tích hợp:\n\n- **Hình thức Lấy hàng tại nhà (Pickup):** Bưu tá của đối tác vận chuyển (SPX Express, Viettel Post, GHTK) sẽ đến lấy hàng trả tại địa chỉ của Người mua mà không thu bất kỳ khoản phí nào.\n- **Hình thức Gửi hàng tại bưu cục (Drop-off):** Người mua mang kiện hàng đã đóng gói đến điểm gửi hàng thuộc hệ thống SPX hoặc đối tác vận chuyển của Shopee, xuất trình mã vận đơn trả hàng trên ứng dụng để gửi miễn phí.\n\n## 2. Quy định với trường hợp Người mua tự vận chuyển ngoại mạng",
+              "metadata": {
+                "doc_id": "shopee-return-shipping-fee-policy",
+                "title": "Chính sách phí vận chuyển khi trả hàng dành cho Người mua",
+                "source_url": "https://help.shopee.vn/portal/4/article/77247",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "shipping-policy",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.16726110677518452
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-seller-return-processing-policy#1",
+              "content": "- Sau khi Người mua gửi trả hàng thành công, đơn hàng sẽ được giao trả về địa chỉ gian hàng của Người bán trong vòng **07 - 14 ngày làm việc**.\n- Người bán có thời hạn **02 ngày** tính từ khi bưu tá giao hàng hoàn trả thành công để kiểm tra tình trạng hàng hóa.\n- Nếu hàng hoàn trả bị hư hỏng, tráo đổi hoặc mất tem niêm phong, Người bán cần bấm nút **Khiếu nại Shopee** trên Kênh Người Bán và cung cấp video quay cảnh mở kiện hàng hoàn (video unboxing).\n\n## 3. Chế tài xử phạt Người bán vi phạm quy định trả hàng\n\n- Người bán từ chối nhận hàng hoàn trả không có lý do hợp lệ sẽ bị tính **01 điểm phạt Sao Quả Quả (Penalty point)**.\n- Gian hàng có tỷ lệ đơn hàng khiếu nại trả hàng do lỗi Người bán > 10% trong tháng sẽ bị tạm khóa tính năng Đăng bán sản phẩm mới.",
+              "metadata": {
+                "doc_id": "shopee-seller-return-processing-policy",
+                "title": "Quy định thời hạn xử lý khiếu nại trả hàng dành cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77245",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "seller-policy",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.27264408865302503
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#9",
+              "content": "- Không sử dụng túi, hộp hoặc băng keo mang tên/logo của sàn thương mại điện tử cạnh tranh với Shopee.\n- Mỗi đơn hàng chỉ được đóng thành một gói/hộp.\n- Trên bao bì phải có Phiếu gửi in từ Kênh Người bán, thể hiện rõ mã vận đơn, mã đơn hàng và địa chỉ Người mua.\n- Phải chèn lót các khe hở bằng túi bóng khí, mút xốp hoặc giấy báo để sản phẩm không va đập trong quá trình vận chuyển.\n- Hàng dễ vỡ phải được chèn mút xốp đủ sáu mặt tiếp xúc với hộp ngoài cùng.\n- Quy trình vận chuyển còn phải tuân thủ Chính sách Vận chuyển của Shopee.\n\n## 5. Tiêu chuẩn vận hành\n\nNgười bán phải:\n\n- Giữ tỷ lệ đơn hàng không thành công và tỷ lệ giao hàng trễ dưới mức cho phép.\n- Không vi phạm khi đăng bán sản phẩm.\n- Không lợi dụng chính sách sàn giao dịch.\n- Không đăng bán hàng giả hoặc hàng nhái.\n\nShopee đánh giá các tiêu chuẩn này dựa trên Hệ thống Sao Quả Tạ. Người bán có thể bị gỡ nhãn Shopee Mall nếu điểm tạ vượt mức cho phép hoặc vi phạm bán hàng giả/nhái lần thứ hai.\n\n## 6. Thanh toán và hoàn tiền",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 9,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.19202098600213666
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#1",
+              "content": "Trong quá trình xác minh yêu cầu Trả hàng/Hoàn tiền, Shopee có quyền yêu cầu Người bán cung cấp bằng chứng liên quan, ví dụ:\n\n- Chứng từ nhập khẩu của hàng hóa cụ thể trong đơn hàng để chứng minh hàng chính hãng.\n- Hợp đồng đại lý với nhà sản xuất hoặc nhà phân phối.\n- Hóa đơn mua hàng hợp lệ từ nhà sản xuất hoặc nhà phân phối.\n\nNgười bán có trách nhiệm cung cấp bằng chứng trong vòng tối đa **24 giờ** kể từ khi nhận được yêu cầu của Shopee.\n\n### 1.3. Nhận lại Sản phẩm Hoàn trả",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.17385297350227744
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "Nếu Người bán Shopee Mall vi phạm quy định bán hàng giả, hàng nhái thì bị phạt bao nhiêu tiền và xử lý như thế nào?",
+          "gold_answer": "Shopee có quyền yêu cầu khoản phí phạt bằng 9.818.180 VND hoặc 100% giá trị sản phẩm cho mỗi sản phẩm vi phạm (tùy giá trị nào cao hơn), thanh toán trong vòng 07 ngày lịch. Ngoài ra, Người bán sẽ bị loại khỏi Shopee Mall nếu vi phạm 02 lần.",
+          "doc_id": "shopee-mall-seller-terms-of-service",
+          "filter": null,
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 1.0,
+          "evidence_complete": true,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#0",
+              "content": "# Điều khoản Dịch vụ Shopee Mall cho Người bán\n\nTài liệu này trích lọc các điều khoản áp dụng trực tiếp cho Người bán tại Shopee Mall từ trang nguồn. Các điều khoản chỉ hướng tới quyền và thời hạn thao tác của Người mua đã được loại khỏi tài liệu này để hỗ trợ lọc theo `audience: seller`.\n\n## 1. Nghĩa vụ của Người bán khi xử lý Trả hàng/Hoàn tiền\n\n### 1.1. Phản hồi yêu cầu “Hoàn Tiền Ngay”\n\n- Nếu Shopee chủ động chấp nhận “Hoàn Tiền Ngay”, Người bán phải phản hồi hoặc khiếu nại trong vòng **02 ngày lịch** kể từ ngày nhận được yêu cầu. Nếu không phản hồi hoặc khiếu nại trong thời hạn này, Người bán được xem là đã đồng ý với quyết định của Shopee.\n- Nếu Người bán chủ động chấp nhận “Hoàn Tiền Ngay”, Người bán được xem là đã chấp nhận cho Người mua được hoàn tiền mà không cần hoàn trả sản phẩm và không có khiếu nại đối với quyết định này.\n\n### 1.2. Cung cấp bằng chứng cho Shopee",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.3369681430515299
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#4",
+              "content": "- Khi nhận hàng hoàn, Người bán phải kiểm tra và ký xác nhận với đại diện đơn vị vận chuyển về tình trạng nguyên vẹn bên ngoài của bưu kiện.\n- Nếu bưu kiện không còn nguyên vẹn, có dấu hiệu bị mở, ướt, rách, móp méo hoặc hư hại, Người bán phải từ chối nhận hàng và thông báo cho Shopee trong vòng **24 giờ** kể từ thời điểm nhận hàng.\n- Nếu Sản phẩm Hoàn trả bị hư hại do vận chuyển, Người bán phải gửi email khiếu nại kèm ảnh hoặc video bằng chứng trong vòng tối đa **02 ngày lịch** kể từ ngày nhận sản phẩm.\n- Nếu Shopee yêu cầu bổ sung thông tin hoặc tài liệu, Người bán phải cung cấp trong vòng **24 giờ** kể từ khi nhận thông báo. Không tuân thủ thời hạn này được xem là không cung cấp thông tin/tài liệu.\n\n## 2. Điều kiện và trách nhiệm của Người bán tại Shopee Mall\n\n### 2.1. Tham gia Shopee Mall\n\nNgười bán được Shopee thông báo riêng qua Trang Shopee hoặc email về việc lựa chọn tham gia Shopee Mall và phải thực hiện các hướng dẫn, thủ tục trong thông báo đó.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 4,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.1630048264051728
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#8",
+              "content": "- Nếu phát hiện Người bán bán hàng giả, hàng nhái, hàng không rõ xuất xứ hoặc phân phối bất hợp pháp, Shopee có quyền yêu cầu khoản phí bằng **9.818.180 VND** hoặc **100% giá trị sản phẩm** cho mỗi sản phẩm vi phạm, tùy giá trị nào cao hơn.\n- Người bán phải thanh toán trong vòng **07 ngày lịch** kể từ ngày nhận yêu cầu của Shopee.\n- Shopee có quyền xác định vi phạm dựa trên tài liệu chứng minh quyền phân phối, hóa đơn và mã số sê-ri do Người bán cung cấp.\n- Người bán bị loại khỏi Shopee Mall nếu bị phát hiện có **02 lần vi phạm** liên quan đến hàng giả, hàng nhái, hàng không rõ xuất xứ hoặc phân phối bất hợp pháp.\n\n## 4. Quy định đóng gói",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 8,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.1409191231437813
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "question": "Trường hợp nào Người mua được miễn 100% cước phí vận chuyển hoàn trả hàng?",
+          "gold_answer": "Người mua được miễn 100% cước phí vận chuyển trả hàng khi sử dụng hình thức Lấy hàng tại nhà (đối tác SPX, Viettel Post, GHTK đến lấy) hoặc Gửi hàng tại bưu cục thuộc hệ thống SPX/đối tác Shopee có xuất trình mã vận đơn trả hàng.",
+          "doc_id": "shopee-return-shipping-fee-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#1",
+              "content": "Trong quá trình xác minh yêu cầu Trả hàng/Hoàn tiền, Shopee có quyền yêu cầu Người bán cung cấp bằng chứng liên quan, ví dụ:\n\n- Chứng từ nhập khẩu của hàng hóa cụ thể trong đơn hàng để chứng minh hàng chính hãng.\n- Hợp đồng đại lý với nhà sản xuất hoặc nhà phân phối.\n- Hóa đơn mua hàng hợp lệ từ nhà sản xuất hoặc nhà phân phối.\n\nNgười bán có trách nhiệm cung cấp bằng chứng trong vòng tối đa **24 giờ** kể từ khi nhận được yêu cầu của Shopee.\n\n### 1.3. Nhận lại Sản phẩm Hoàn trả",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.3223595797625785
+            },
+            {
+              "id": "shopee-general-return-policy#1",
+              "content": "#### Lưu ý về thời hạn\n\n- Người mua vẫn có thể gửi yêu cầu Trả hàng/Hoàn tiền sau khi bấm “Đã nhận được hàng” nếu vẫn còn trong thời hạn 15 ngày theo quy định của Shopee.\n- Yêu cầu Trả hàng/Hoàn tiền sẽ được phản hồi trong vòng **3–5 ngày làm việc**. Ngày làm việc không bao gồm thứ Bảy, Chủ Nhật và các ngày nghỉ lễ/Tết theo quy định của pháp luật áp dụng.\n- Với sản phẩm thuộc danh sách hạn chế trả hàng, Shopee sẽ xem xét từng vấn đề khiếu nại của Người mua để đưa ra quyết định cuối cùng.\n\n### 1.3. Các lý do người mua có thể yêu cầu Trả hàng/Hoàn tiền",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.22598615517700016
+            },
+            {
+              "id": "shopee-seller-return-processing-policy#1",
+              "content": "- Sau khi Người mua gửi trả hàng thành công, đơn hàng sẽ được giao trả về địa chỉ gian hàng của Người bán trong vòng **07 - 14 ngày làm việc**.\n- Người bán có thời hạn **02 ngày** tính từ khi bưu tá giao hàng hoàn trả thành công để kiểm tra tình trạng hàng hóa.\n- Nếu hàng hoàn trả bị hư hỏng, tráo đổi hoặc mất tem niêm phong, Người bán cần bấm nút **Khiếu nại Shopee** trên Kênh Người Bán và cung cấp video quay cảnh mở kiện hàng hoàn (video unboxing).\n\n## 3. Chế tài xử phạt Người bán vi phạm quy định trả hàng\n\n- Người bán từ chối nhận hàng hoàn trả không có lý do hợp lệ sẽ bị tính **01 điểm phạt Sao Quả Quả (Penalty point)**.\n- Gian hàng có tỷ lệ đơn hàng khiếu nại trả hàng do lỗi Người bán > 10% trong tháng sẽ bị tạm khóa tính năng Đăng bán sản phẩm mới.",
+              "metadata": {
+                "doc_id": "shopee-seller-return-processing-policy",
+                "title": "Quy định thời hạn xử lý khiếu nại trả hàng dành cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77245",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "seller-policy",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.1995187221652871
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "question": "Những trường hợp/lý do nào không được áp dụng chính sách trả hàng với lý do \"Đổi ý\"?",
+          "gold_answer": "Lý do đổi ý không áp dụng cho: (1) Sản phẩm thuộc danh sách hạn chế trả hàng; (2) Sản phẩm mua tại Shopee Mart; (3) Một số sản phẩm riêng biệt được Shopee ghi nhận và quyết định theo từng thời điểm.",
+          "doc_id": "shopee-general-return-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#6",
+              "content": "### 2.4. Tuân thủ quyết định Trả hàng/Hoàn tiền\n\nQuyết định của Shopee đối với việc Trả hàng/Hoàn tiền có giá trị ràng buộc đối với Người bán. Người bán phải thực hiện các hành động cần thiết để hoàn tất yêu cầu đã được Shopee chấp thuận.\n\nNếu yêu cầu hoàn tiền kèm trả hàng được chấp thuận, Shopee sắp xếp giao hàng hoàn đến địa chỉ trong lãnh thổ Việt Nam do Người bán cung cấp. Nếu Người bán không cung cấp địa chỉ trong nước hoặc không nhận hàng trong khoảng thời gian hợp lý, Shopee có quyền định đoạt sản phẩm và Người bán được xem là đã từ bỏ quyền đối với sản phẩm đó.\n\n## 3. Quy định về hàng chính hãng\n\n### 3.1. Cam kết của Người bán\n\nNgười bán cam kết rằng tất cả sản phẩm cung cấp qua Shopee Mall:\n\n- Là hàng chính hãng và chưa qua sử dụng.\n- Không thuộc hàng hóa bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển.\n- Không vi phạm Chính sách Cấm/Hạn chế Sản phẩm và Chính sách Vận chuyển của Shopee.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 6,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.2986801820108304
+            },
+            {
+              "id": "shopee-buyer-return-request-guide#1",
+              "content": "### Cách 1: Gửi yêu cầu trực tiếp trên đơn hàng (Ứng dụng Shopee)\n- **Bước 1:** Mở ứng dụng Shopee, truy cập mục **Tôi** > chọn thẻ **Chờ giao hàng** hoặc **Đã giao**.\n- **Bước 2:** Chọn đơn hàng cần khiếu nại và nhấn nút **Trả hàng/Hoàn tiền**.\n- **Bước 3:** Lựa chọn tình huống thực tế:\n  - *\"Tôi đã nhận hàng nhưng hàng có vấn đề (bể vỡ, sai mẫu, hàng lỗi, khác mô tả...)\"*: Áp dụng khi sản phẩm bị hư hỏng, thiếu linh kiện hoặc không đúng mô tả.\n  - *\"Tôi chưa nhận hàng / nhận thiếu hàng\"*: Áp dụng khi đơn hàng bị thất lạc hoặc giao thiếu số lượng.\n- **Bước 4:** Chọn sản phẩm cần khiếu nại và chọn lý do chi tiết.\n- **Bước 5:** Tải lên bằng chứng rõ ràng (hình ảnh góc quay nét, video mở hộp unboxing) và mô tả chi tiết tình trạng.\n- **Bước 6:** Nhấn **Gửi yêu cầu** để hoàn tất.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-request-guide",
+                "title": "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+                "source_url": "https://help.shopee.vn/portal/4/article/79233",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v2",
+                "audience": "buyer",
+                "category": "returns-guide",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.20843063877772788
+            },
+            {
+              "id": "shopee-general-return-policy#3",
+              "content": "| Hàng bể vỡ – khác | Các loại bể vỡ khác với những loại được liệt kê phía trên | Tất cả sản phẩm |\n| Hàng lỗi, không hoạt động | Sản phẩm không thực hiện được chức năng như mô tả của Người bán | Tất cả sản phẩm |\n| Khác với mô tả | Sản phẩm khác rõ ràng về chất liệu, màu sắc, thông số hoặc kiểu dáng so với mô tả của Người bán | Tất cả sản phẩm |\n| Hàng đã qua sử dụng | Sản phẩm có dấu hiệu đã qua sử dụng như bị bẩn, bị cạy mở hoặc không còn đủ dung tích | Ngoại trừ sản phẩm đã được Người bán công bố là hàng đã qua sử dụng và đăng bán đúng quy định |\n| Hàng giả/nhái | Sản phẩm có dấu hiệu làm giả hoặc nhái thương hiệu nổi tiếng/đã được bảo hộ | Tất cả sản phẩm |\n| Đổi ý | Sản phẩm còn nguyên trạng ban đầu, chưa bóc tem, khui hộp, sử dụng, lắp đặt hoặc tác động; còn đủ nhãn mác, phụ kiện và quà tặng | Từ ngày 24/11/2025 áp dụng cho Người mua hạng Kim Cương, Vàng và người dùng đăng ký thành công gói Shopee VIP; có các ngoại lệ bên dưới |",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 3,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.19448910887139084
+            }
+          ]
+        }
+      ],
+      "filter_ab": [
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": false,
+          "document_hit": true,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-seller-return-processing-policy#1",
+              "content": "- Sau khi Người mua gửi trả hàng thành công, đơn hàng sẽ được giao trả về địa chỉ gian hàng của Người bán trong vòng **07 - 14 ngày làm việc**.\n- Người bán có thời hạn **02 ngày** tính từ khi bưu tá giao hàng hoàn trả thành công để kiểm tra tình trạng hàng hóa.\n- Nếu hàng hoàn trả bị hư hỏng, tráo đổi hoặc mất tem niêm phong, Người bán cần bấm nút **Khiếu nại Shopee** trên Kênh Người Bán và cung cấp video quay cảnh mở kiện hàng hoàn (video unboxing).\n\n## 3. Chế tài xử phạt Người bán vi phạm quy định trả hàng\n\n- Người bán từ chối nhận hàng hoàn trả không có lý do hợp lệ sẽ bị tính **01 điểm phạt Sao Quả Quả (Penalty point)**.\n- Gian hàng có tỷ lệ đơn hàng khiếu nại trả hàng do lỗi Người bán > 10% trong tháng sẽ bị tạm khóa tính năng Đăng bán sản phẩm mới.",
+              "metadata": {
+                "doc_id": "shopee-seller-return-processing-policy",
+                "title": "Quy định thời hạn xử lý khiếu nại trả hàng dành cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77245",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "seller-policy",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.27264408865302503
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#9",
+              "content": "- Không sử dụng túi, hộp hoặc băng keo mang tên/logo của sàn thương mại điện tử cạnh tranh với Shopee.\n- Mỗi đơn hàng chỉ được đóng thành một gói/hộp.\n- Trên bao bì phải có Phiếu gửi in từ Kênh Người bán, thể hiện rõ mã vận đơn, mã đơn hàng và địa chỉ Người mua.\n- Phải chèn lót các khe hở bằng túi bóng khí, mút xốp hoặc giấy báo để sản phẩm không va đập trong quá trình vận chuyển.\n- Hàng dễ vỡ phải được chèn mút xốp đủ sáu mặt tiếp xúc với hộp ngoài cùng.\n- Quy trình vận chuyển còn phải tuân thủ Chính sách Vận chuyển của Shopee.\n\n## 5. Tiêu chuẩn vận hành\n\nNgười bán phải:\n\n- Giữ tỷ lệ đơn hàng không thành công và tỷ lệ giao hàng trễ dưới mức cho phép.\n- Không vi phạm khi đăng bán sản phẩm.\n- Không lợi dụng chính sách sàn giao dịch.\n- Không đăng bán hàng giả hoặc hàng nhái.\n\nShopee đánh giá các tiêu chuẩn này dựa trên Hệ thống Sao Quả Tạ. Người bán có thể bị gỡ nhãn Shopee Mall nếu điểm tạ vượt mức cho phép hoặc vi phạm bán hàng giả/nhái lần thứ hai.\n\n## 6. Thanh toán và hoàn tiền",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 9,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.19202098600213666
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#1",
+              "content": "Trong quá trình xác minh yêu cầu Trả hàng/Hoàn tiền, Shopee có quyền yêu cầu Người bán cung cấp bằng chứng liên quan, ví dụ:\n\n- Chứng từ nhập khẩu của hàng hóa cụ thể trong đơn hàng để chứng minh hàng chính hãng.\n- Hợp đồng đại lý với nhà sản xuất hoặc nhà phân phối.\n- Hóa đơn mua hàng hợp lệ từ nhà sản xuất hoặc nhà phân phối.\n\nNgười bán có trách nhiệm cung cấp bằng chứng trong vòng tối đa **24 giờ** kể từ khi nhận được yêu cầu của Shopee.\n\n### 1.3. Nhận lại Sản phẩm Hoàn trả",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "",
+                "strategy": "recursive"
+              },
+              "score": 0.17385297350227744
+            }
+          ]
+        }
+      ]
+    },
+    "heading_600": {
+      "count": 74,
+      "avg_length": 429.14864864864865,
+      "results": [
+        {
+          "id": 1,
+          "question": "Tôi cần thực hiện những bước nào để gửi yêu cầu Trả hàng/Hoàn tiền trực tiếp trên ứng dụng Shopee?",
+          "gold_answer": "Mở ứng dụng Shopee > chọn mục \"Tôi\" > chọn \"Chờ giao hàng\" hoặc \"Đã giao\" > chọn đơn hàng cần xử lý > bấm \"Trả hàng/Hoàn tiền\" > chọn tình huống gặp phải > chọn sản phẩm, lý do khiếu nại > tải bằng chứng (ảnh/video unboxing) và mô tả > chọn \"Gửi yêu cầu\".",
+          "doc_id": "shopee-buyer-return-request-guide",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#32",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 8. Các loại phí của Shopee Mall > 8.4. Phí Dịch vụ\n\nPhí Dịch vụ áp dụng cho các dịch vụ hỗ trợ hoạt động kinh doanh trên Shopee, bao gồm chương trình, tính năng hoặc hạ tầng do Shopee triển khai. Hình thức và mức thu được quy định riêng cho từng dịch vụ.\n\nTrang nguồn nêu thuế suất thuế GTGT áp dụng từ ngày 01/07/2025 là **8%**.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 32,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 8. Các loại phí của Shopee Mall > 8.4. Phí Dịch vụ",
+                "strategy": "heading_600"
+              },
+              "score": 0.34221998087095734
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#15",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán\n\nNgười bán cam kết rằng tất cả sản phẩm cung cấp qua Shopee Mall:\n\n- Là hàng chính hãng và chưa qua sử dụng.\n- Không thuộc hàng hóa bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển.\n- Không vi phạm Chính sách Cấm/Hạn chế Sản phẩm và Chính sách Vận chuyển của Shopee.\n\nNgười bán phải sở hữu quyền phân phối, dưới hình thức độc quyền hoặc được ủy quyền, đối với sản phẩm cung cấp trên Shopee Mall. Shopee có quyền yêu cầu tài liệu chứng minh quyền phân phối.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 15,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán",
+                "strategy": "heading_600"
+              },
+              "score": 0.33086166010160895
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#34",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 10. Ngày đăng tải và hiệu lực được nguồn công bố\n\nTrang nguồn nêu Điều khoản Dịch vụ Shopee Mall được đăng tải ngày **24/04/2026** và có hiệu lực từ ngày **08/05/2026**. Trang nguồn không nêu số hiệu phiên bản, vì vậy `document_version` được ghi là `not-stated`.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 34,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 10. Ngày đăng tải và hiệu lực được nguồn công bố",
+                "strategy": "heading_600"
+              },
+              "score": 0.26683806373023483
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#15",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán\n\nNgười bán cam kết rằng tất cả sản phẩm cung cấp qua Shopee Mall:\n\n- Là hàng chính hãng và chưa qua sử dụng.\n- Không thuộc hàng hóa bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển.\n- Không vi phạm Chính sách Cấm/Hạn chế Sản phẩm và Chính sách Vận chuyển của Shopee.\n\nNgười bán phải sở hữu quyền phân phối, dưới hình thức độc quyền hoặc được ủy quyền, đối với sản phẩm cung cấp trên Shopee Mall. Shopee có quyền yêu cầu tài liệu chứng minh quyền phân phối.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 15,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán",
+                "strategy": "heading_600"
+              },
+              "score": 0.28733964125682204
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#33",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 9. Chính sách Mã ưu đãi đối với Người bán\n\n- Người bán có thể chủ động thực hiện chương trình khuyến mại dưới hình thức phát hành mã ưu đãi cho Người mua.\n- Người bán có thể cùng Shopee đồng tài trợ mã ưu đãi theo tỷ lệ chia sẻ áp dụng cho từng chương trình.\n- Người bán phải bảo đảm tuân thủ pháp luật hiện hành và Chính sách Shopee khi thực hiện chương trình khuyến mại.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 33,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 9. Chính sách Mã ưu đãi đối với Người bán",
+                "strategy": "heading_600"
+              },
+              "score": 0.2398411469310512
+            },
+            {
+              "id": "shopee-seller-return-processing-policy#4",
+              "content": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 3. Chế tài xử phạt Người bán vi phạm quy định trả hàng\n\n- Người bán từ chối nhận hàng hoàn trả không có lý do hợp lệ sẽ bị tính **01 điểm phạt Sao Quả Quả (Penalty point)**.\n- Gian hàng có tỷ lệ đơn hàng khiếu nại trả hàng do lỗi Người bán > 10% trong tháng sẽ bị tạm khóa tính năng Đăng bán sản phẩm mới.",
+              "metadata": {
+                "doc_id": "shopee-seller-return-processing-policy",
+                "title": "Quy định thời hạn xử lý khiếu nại trả hàng dành cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77245",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "seller-policy",
+                "language": "vi",
+                "chunk_index": 4,
+                "section_path": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 3. Chế tài xử phạt Người bán vi phạm quy định trả hàng",
+                "strategy": "heading_600"
+              },
+              "score": 0.2080663171205003
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "Nếu Người bán Shopee Mall vi phạm quy định bán hàng giả, hàng nhái thì bị phạt bao nhiêu tiền và xử lý như thế nào?",
+          "gold_answer": "Shopee có quyền yêu cầu khoản phí phạt bằng 9.818.180 VND hoặc 100% giá trị sản phẩm cho mỗi sản phẩm vi phạm (tùy giá trị nào cao hơn), thanh toán trong vòng 07 ngày lịch. Ngoài ra, Người bán sẽ bị loại khỏi Shopee Mall nếu vi phạm 02 lần.",
+          "doc_id": "shopee-mall-seller-terms-of-service",
+          "filter": null,
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#4",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 1. Nghĩa vụ của Người bán khi xử lý Trả hàng/Hoàn tiền > 1.3. Nhận lại Sản phẩm Hoàn trả\n\n- Nếu địa chỉ đăng ký không chính xác và Người bán không cung cấp địa chỉ đúng, hoặc Người bán không nhận hàng/không thể liên lạc được trong **05 ngày làm việc** kể từ khi nhận thông báo gửi trả, Người bán được xem là đã từ bỏ sản phẩm và các quyền lợi liên quan. Shopee có quyền xử lý sản phẩm mà không phải thanh toán hoặc bồi thường.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 4,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 1. Nghĩa vụ của Người bán khi xử lý Trả hàng/Hoàn tiền > 1.3. Nhận lại Sản phẩm Hoàn trả",
+                "strategy": "heading_600"
+              },
+              "score": 0.23554363093150826
+            },
+            {
+              "id": "shopee-general-return-policy#11",
+              "content": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.3. Các lý do người mua có thể yêu cầu Trả hàng/Hoàn tiền > Ngoại lệ đối với lý do đổi ý\n\nLý do đổi ý không áp dụng cho:\n\n- Sản phẩm thuộc danh sách hạn chế trả hàng.\n- Sản phẩm mua tại Shopee Mart.\n- Một số sản phẩm riêng biệt được Shopee ghi nhận rõ ràng và quyết định theo từng thời điểm.",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 11,
+                "section_path": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.3. Các lý do người mua có thể yêu cầu Trả hàng/Hoàn tiền > Ngoại lệ đối với lý do đổi ý",
+                "strategy": "heading_600"
+              },
+              "score": 0.22356688046045461
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#14",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 2. Điều kiện và trách nhiệm của Người bán tại Shopee Mall > 2.4. Tuân thủ quyết định Trả hàng/Hoàn tiền\n\nNếu yêu cầu hoàn tiền kèm trả hàng được chấp thuận, Shopee sắp xếp giao hàng hoàn đến địa chỉ trong lãnh thổ Việt Nam do Người bán cung cấp. Nếu Người bán không cung cấp địa chỉ trong nước hoặc không nhận hàng trong khoảng thời gian hợp lý, Shopee có quyền định đoạt sản phẩm và Người bán được xem là đã từ bỏ quyền đối với sản phẩm đó.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 14,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 2. Điều kiện và trách nhiệm của Người bán tại Shopee Mall > 2.4. Tuân thủ quyết định Trả hàng/Hoàn tiền",
+                "strategy": "heading_600"
+              },
+              "score": 0.21942050751719794
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "question": "Trường hợp nào Người mua được miễn 100% cước phí vận chuyển hoàn trả hàng?",
+          "gold_answer": "Người mua được miễn 100% cước phí vận chuyển trả hàng khi sử dụng hình thức Lấy hàng tại nhà (đối tác SPX, Viettel Post, GHTK đến lấy) hoặc Gửi hàng tại bưu cục thuộc hệ thống SPX/đối tác Shopee có xuất trình mã vận đơn trả hàng.",
+          "doc_id": "shopee-return-shipping-fee-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-general-return-policy#7",
+              "content": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.3. Các lý do người mua có thể yêu cầu Trả hàng/Hoàn tiền\n\n| Người bán gửi sai hàng | Sản phẩm nhận được không phải sản phẩm đã đặt | Tất cả sản phẩm |\n| Hàng bể vỡ – bể/vỡ vụn | Sản phẩm bị bể vỡ nặng, không còn giá trị sử dụng | Tất cả sản phẩm |\n| Hàng bể vỡ – trầy/xước/nứt | Sản phẩm còn giá trị sử dụng nhưng ngoại quan bị trầy xước | Tất cả sản phẩm |\n| Hàng bể vỡ – rò rỉ chất lỏng | Sản phẩm chứa chất lỏng bị rò rỉ do bao bì bể vỡ trong quá trình vận chuyển | Tất cả sản phẩm |",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 7,
+                "section_path": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.3. Các lý do người mua có thể yêu cầu Trả hàng/Hoàn tiền",
+                "strategy": "heading_600"
+              },
+              "score": 0.24733131257908741
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#6",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 1. Nghĩa vụ của Người bán khi xử lý Trả hàng/Hoàn tiền > 1.4. Chi phí vận chuyển hàng hoàn\n\n- Người bán chịu chi phí vận chuyển chiều hoàn trả nếu đơn hàng không chuyển phát được hoặc phát sinh Trả hàng/Hoàn tiền.\n- Shopee có thể điều chỉnh việc thu phí vận chuyển và xử lý hàng hoàn hoặc đơn giao không thành công, nhưng phải thông báo cho Người bán tối thiểu **07 ngày lịch** trước ngày áp dụng điều chỉnh.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 6,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 1. Nghĩa vụ của Người bán khi xử lý Trả hàng/Hoàn tiền > 1.4. Chi phí vận chuyển hàng hoàn",
+                "strategy": "heading_600"
+              },
+              "score": 0.18614737571249007
+            },
+            {
+              "id": "shopee-general-return-policy#0",
+              "content": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.1. Nguyên tắc chung\n\nShopee hiện chưa hỗ trợ yêu cầu đổi hàng. Nếu hàng nhận được có vấn đề (khác với mô tả, hư hỏng,...), bạn có thể từ chối nhận hàng khi đồng kiểm đối với đơn hàng được đồng kiểm, hoặc gửi yêu cầu Trả hàng/Hoàn tiền sau khi đã nhận hàng.",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.1. Nguyên tắc chung",
+                "strategy": "heading_600"
+              },
+              "score": 0.1826666506791639
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "question": "Những trường hợp/lý do nào không được áp dụng chính sách trả hàng với lý do \"Đổi ý\"?",
+          "gold_answer": "Lý do đổi ý không áp dụng cho: (1) Sản phẩm thuộc danh sách hạn chế trả hàng; (2) Sản phẩm mua tại Shopee Mart; (3) Một số sản phẩm riêng biệt được Shopee ghi nhận và quyết định theo từng thời điểm.",
+          "doc_id": "shopee-general-return-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-seller-return-processing-policy#0",
+              "content": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 1. Thời hạn phản hồi khiếu nại dành cho Người bán\n\nKhi Người mua gửi yêu cầu Trả hàng/Hoàn tiền, hệ thống Shopee sẽ gửi thông báo đến Kênh Người Bán. Người bán có trách nhiệm xử lý theo đúng quy định mốc thời gian:",
+              "metadata": {
+                "doc_id": "shopee-seller-return-processing-policy",
+                "title": "Quy định thời hạn xử lý khiếu nại trả hàng dành cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77245",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "seller-policy",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 1. Thời hạn phản hồi khiếu nại dành cho Người bán",
+                "strategy": "heading_600"
+              },
+              "score": 0.2791150881731548
+            },
+            {
+              "id": "shopee-buyer-return-timeline-policy#3",
+              "content": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 3. Quy định về tình trạng hàng hóa khi hoàn trả\n\n- Sản phẩm hoàn trả phải còn nguyên tem, nhãn mác, seal niêm phong (nếu có).\n- Người mua phải gửi kèm đầy đủ phụ kiện, quà tặng kèm, hóa đơn và hộp đóng gói gốc.\n- Đối với hàng thời trang, sản phẩm không được có dấu hiệu đã qua giặt tẩy, sử dụng hoặc bị bẩn.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-timeline-policy",
+                "title": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua",
+                "source_url": "https://help.shopee.vn/portal/4/article/77244",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "buyer",
+                "category": "returns-policy",
+                "language": "vi",
+                "chunk_index": 3,
+                "section_path": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 3. Quy định về tình trạng hàng hóa khi hoàn trả",
+                "strategy": "heading_600"
+              },
+              "score": 0.270681754573207
+            },
+            {
+              "id": "shopee-general-return-policy#16",
+              "content": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 2. Hoàn lại Mã giảm giá và Shopee Xu > 2.3. Lưu ý về Voucher và Shopee Xu\n\n- Shopee Xu được hoàn ngay sau khi khiếu nại hoàn tất và yêu cầu hoàn tiền của Người mua được chấp nhận.",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 16,
+                "section_path": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 2. Hoàn lại Mã giảm giá và Shopee Xu > 2.3. Lưu ý về Voucher và Shopee Xu",
+                "strategy": "heading_600"
+              },
+              "score": 0.19597707696735517
+            }
+          ]
+        }
+      ],
+      "filter_ab": [
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": false,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-buyer-return-request-guide#0",
+              "content": "Hướng dẫn gửi yêu cầu Trả hàng và Hoàn tiền dành cho Người mua > 1. Phương thức gửi yêu cầu Trả hàng / Hoàn tiền\n\nKhi gặp sự cố với đơn hàng đã mua trên Shopee, Người mua có thể gửi yêu cầu trả hàng hoặc hoàn tiền thông qua một trong hai hình thức sau:",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-request-guide",
+                "title": "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+                "source_url": "https://help.shopee.vn/portal/4/article/79233",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v2",
+                "audience": "buyer",
+                "category": "returns-guide",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "Hướng dẫn gửi yêu cầu Trả hàng và Hoàn tiền dành cho Người mua > 1. Phương thức gửi yêu cầu Trả hàng / Hoàn tiền",
+                "strategy": "heading_600"
+              },
+              "score": 0.31287828320280114
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#15",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán\n\nNgười bán cam kết rằng tất cả sản phẩm cung cấp qua Shopee Mall:\n\n- Là hàng chính hãng và chưa qua sử dụng.\n- Không thuộc hàng hóa bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển.\n- Không vi phạm Chính sách Cấm/Hạn chế Sản phẩm và Chính sách Vận chuyển của Shopee.\n\nNgười bán phải sở hữu quyền phân phối, dưới hình thức độc quyền hoặc được ủy quyền, đối với sản phẩm cung cấp trên Shopee Mall. Shopee có quyền yêu cầu tài liệu chứng minh quyền phân phối.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 15,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán",
+                "strategy": "heading_600"
+              },
+              "score": 0.28733964125682204
+            },
+            {
+              "id": "shopee-buyer-return-timeline-policy#1",
+              "content": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 1. Thời hạn gửi yêu cầu Trả hàng / Hoàn tiền\n\nQuá thời hạn trên, nút \"Trả hàng/Hoàn tiền\" trên ứng dụng sẽ tự động ẩn và đơn hàng được chuyển sang trạng thái Hoàn thành. Shopee không hỗ trợ giải quyết khiếu nại sau khi đơn hàng đã hoàn thành.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-timeline-policy",
+                "title": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua",
+                "source_url": "https://help.shopee.vn/portal/4/article/77244",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "buyer",
+                "category": "returns-policy",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 1. Thời hạn gửi yêu cầu Trả hàng / Hoàn tiền",
+                "strategy": "heading_600"
+              },
+              "score": 0.26267522162688284
+            }
+          ]
+        }
+      ]
+    },
+    "heading_1000": {
+      "count": 50,
+      "avg_length": 575.52,
+      "results": [
+        {
+          "id": 1,
+          "question": "Tôi cần thực hiện những bước nào để gửi yêu cầu Trả hàng/Hoàn tiền trực tiếp trên ứng dụng Shopee?",
+          "gold_answer": "Mở ứng dụng Shopee > chọn mục \"Tôi\" > chọn \"Chờ giao hàng\" hoặc \"Đã giao\" > chọn đơn hàng cần xử lý > bấm \"Trả hàng/Hoàn tiền\" > chọn tình huống gặp phải > chọn sản phẩm, lý do khiếu nại > tải bằng chứng (ảnh/video unboxing) và mô tả > chọn \"Gửi yêu cầu\".",
+          "doc_id": "shopee-buyer-return-request-guide",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#20",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 8. Các loại phí của Shopee Mall > 8.4. Phí Dịch vụ\n\nPhí Dịch vụ áp dụng cho các dịch vụ hỗ trợ hoạt động kinh doanh trên Shopee, bao gồm chương trình, tính năng hoặc hạ tầng do Shopee triển khai. Hình thức và mức thu được quy định riêng cho từng dịch vụ.\n\nTrang nguồn nêu thuế suất thuế GTGT áp dụng từ ngày 01/07/2025 là **8%**.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 20,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 8. Các loại phí của Shopee Mall > 8.4. Phí Dịch vụ",
+                "strategy": "heading_1000"
+              },
+              "score": 0.34221998087095734
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#10",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán\n\nNgười bán cam kết rằng tất cả sản phẩm cung cấp qua Shopee Mall:\n\n- Là hàng chính hãng và chưa qua sử dụng.\n- Không thuộc hàng hóa bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển.\n- Không vi phạm Chính sách Cấm/Hạn chế Sản phẩm và Chính sách Vận chuyển của Shopee.\n\nNgười bán phải sở hữu quyền phân phối, dưới hình thức độc quyền hoặc được ủy quyền, đối với sản phẩm cung cấp trên Shopee Mall. Shopee có quyền yêu cầu tài liệu chứng minh quyền phân phối.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 10,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán",
+                "strategy": "heading_1000"
+              },
+              "score": 0.33086166010160895
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#22",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 10. Ngày đăng tải và hiệu lực được nguồn công bố\n\nTrang nguồn nêu Điều khoản Dịch vụ Shopee Mall được đăng tải ngày **24/04/2026** và có hiệu lực từ ngày **08/05/2026**. Trang nguồn không nêu số hiệu phiên bản, vì vậy `document_version` được ghi là `not-stated`.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 22,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 10. Ngày đăng tải và hiệu lực được nguồn công bố",
+                "strategy": "heading_1000"
+              },
+              "score": 0.26683806373023483
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#10",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán\n\nNgười bán cam kết rằng tất cả sản phẩm cung cấp qua Shopee Mall:\n\n- Là hàng chính hãng và chưa qua sử dụng.\n- Không thuộc hàng hóa bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển.\n- Không vi phạm Chính sách Cấm/Hạn chế Sản phẩm và Chính sách Vận chuyển của Shopee.\n\nNgười bán phải sở hữu quyền phân phối, dưới hình thức độc quyền hoặc được ủy quyền, đối với sản phẩm cung cấp trên Shopee Mall. Shopee có quyền yêu cầu tài liệu chứng minh quyền phân phối.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 10,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán",
+                "strategy": "heading_1000"
+              },
+              "score": 0.28733964125682204
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#21",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 9. Chính sách Mã ưu đãi đối với Người bán\n\n- Người bán có thể chủ động thực hiện chương trình khuyến mại dưới hình thức phát hành mã ưu đãi cho Người mua.\n- Người bán có thể cùng Shopee đồng tài trợ mã ưu đãi theo tỷ lệ chia sẻ áp dụng cho từng chương trình.\n- Người bán phải bảo đảm tuân thủ pháp luật hiện hành và Chính sách Shopee khi thực hiện chương trình khuyến mại.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 21,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 9. Chính sách Mã ưu đãi đối với Người bán",
+                "strategy": "heading_1000"
+              },
+              "score": 0.2398411469310512
+            },
+            {
+              "id": "shopee-seller-return-processing-policy#2",
+              "content": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 3. Chế tài xử phạt Người bán vi phạm quy định trả hàng\n\n- Người bán từ chối nhận hàng hoàn trả không có lý do hợp lệ sẽ bị tính **01 điểm phạt Sao Quả Quả (Penalty point)**.\n- Gian hàng có tỷ lệ đơn hàng khiếu nại trả hàng do lỗi Người bán > 10% trong tháng sẽ bị tạm khóa tính năng Đăng bán sản phẩm mới.",
+              "metadata": {
+                "doc_id": "shopee-seller-return-processing-policy",
+                "title": "Quy định thời hạn xử lý khiếu nại trả hàng dành cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77245",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "seller-policy",
+                "language": "vi",
+                "chunk_index": 2,
+                "section_path": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 3. Chế tài xử phạt Người bán vi phạm quy định trả hàng",
+                "strategy": "heading_1000"
+              },
+              "score": 0.2080663171205003
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "Nếu Người bán Shopee Mall vi phạm quy định bán hàng giả, hàng nhái thì bị phạt bao nhiêu tiền và xử lý như thế nào?",
+          "gold_answer": "Shopee có quyền yêu cầu khoản phí phạt bằng 9.818.180 VND hoặc 100% giá trị sản phẩm cho mỗi sản phẩm vi phạm (tùy giá trị nào cao hơn), thanh toán trong vòng 07 ngày lịch. Ngoài ra, Người bán sẽ bị loại khỏi Shopee Mall nếu vi phạm 02 lần.",
+          "doc_id": "shopee-mall-seller-terms-of-service",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-seller-return-processing-policy#0",
+              "content": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 1. Thời hạn phản hồi khiếu nại dành cho Người bán\n\nKhi Người mua gửi yêu cầu Trả hàng/Hoàn tiền, hệ thống Shopee sẽ gửi thông báo đến Kênh Người Bán. Người bán có trách nhiệm xử lý theo đúng quy định mốc thời gian:\n\n- **Thời hạn phản hồi đồng ý hoặc khiếu nại:** Người bán có tối đa **02 ngày làm việc** (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn một trong hai phương án:\n  - Đồng ý hoàn tiền cho Người mua (có trả hàng hoặc không cần trả hàng).\n  - Khiếu nại lại yêu cầu của Người mua (nếu thấy yêu cầu không vô lý hoặc sản phẩm giao đúng).\n- **Hậu quả khi trễ hạn:** Nếu Người bán không đưa ra phản hồi trong vòng **02 ngày làm việc**, hệ thống Shopee sẽ tự động chấp nhận yêu cầu của Người mua và tiến hành hoàn tiền từ Tài khoản Shopee của Người bán.",
+              "metadata": {
+                "doc_id": "shopee-seller-return-processing-policy",
+                "title": "Quy định thời hạn xử lý khiếu nại trả hàng dành cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77245",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "seller-policy",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 1. Thời hạn phản hồi khiếu nại dành cho Người bán",
+                "strategy": "heading_1000"
+              },
+              "score": 0.25638496605262034
+            },
+            {
+              "id": "shopee-general-return-policy#6",
+              "content": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.3. Các lý do người mua có thể yêu cầu Trả hàng/Hoàn tiền > Ngoại lệ đối với lý do đổi ý\n\nLý do đổi ý không áp dụng cho:\n\n- Sản phẩm thuộc danh sách hạn chế trả hàng.\n- Sản phẩm mua tại Shopee Mart.\n- Một số sản phẩm riêng biệt được Shopee ghi nhận rõ ràng và quyết định theo từng thời điểm.",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 6,
+                "section_path": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.3. Các lý do người mua có thể yêu cầu Trả hàng/Hoàn tiền > Ngoại lệ đối với lý do đổi ý",
+                "strategy": "heading_1000"
+              },
+              "score": 0.22356688046045461
+            },
+            {
+              "id": "shopee-buyer-return-timeline-policy#2",
+              "content": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 3. Quy định về tình trạng hàng hóa khi hoàn trả\n\n- Sản phẩm hoàn trả phải còn nguyên tem, nhãn mác, seal niêm phong (nếu có).\n- Người mua phải gửi kèm đầy đủ phụ kiện, quà tặng kèm, hóa đơn và hộp đóng gói gốc.\n- Đối với hàng thời trang, sản phẩm không được có dấu hiệu đã qua giặt tẩy, sử dụng hoặc bị bẩn.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-timeline-policy",
+                "title": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua",
+                "source_url": "https://help.shopee.vn/portal/4/article/77244",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "buyer",
+                "category": "returns-policy",
+                "language": "vi",
+                "chunk_index": 2,
+                "section_path": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 3. Quy định về tình trạng hàng hóa khi hoàn trả",
+                "strategy": "heading_1000"
+              },
+              "score": 0.2060270399071766
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "question": "Trường hợp nào Người mua được miễn 100% cước phí vận chuyển hoàn trả hàng?",
+          "gold_answer": "Người mua được miễn 100% cước phí vận chuyển trả hàng khi sử dụng hình thức Lấy hàng tại nhà (đối tác SPX, Viettel Post, GHTK đến lấy) hoặc Gửi hàng tại bưu cục thuộc hệ thống SPX/đối tác Shopee có xuất trình mã vận đơn trả hàng.",
+          "doc_id": "shopee-return-shipping-fee-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-seller-warranty-responsibility#1",
+              "content": "Quy định bảo hành sản phẩm và nghĩa vụ của Người bán > 2. Nghĩa vụ kích hoạt và tiếp nhận bảo hành\n\n- **Thời hạn cung cấp phiếu / kích hoạt bảo hành:** Người bán phải gửi kèm thẻ/phiếu bảo hành giấy hoặc hoàn tất kích hoạt bảo hành điện tử cho Người mua trong vòng **03 ngày làm việc** kể từ ngày đơn hàng giao thành công.\n- **Thời hạn xử lý sản phẩm bảo hành:** \n  - Người bán phải tiếp nhận và phản hồi tình trạng sản phẩm bảo hành cho Người mua trong vòng **05 ngày làm việc** kể từ khi nhận được sản phẩm gửi về trung tâm bảo hành.\n  - Thời gian sửa chữa hoặc đổi mới sản phẩm không được vượt quá **14 ngày làm việc**.",
+              "metadata": {
+                "doc_id": "shopee-seller-warranty-responsibility",
+                "title": "Quy định bảo hành sản phẩm và nghĩa vụ của Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77246",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "warranty-policy",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "Quy định bảo hành sản phẩm và nghĩa vụ của Người bán > 2. Nghĩa vụ kích hoạt và tiếp nhận bảo hành",
+                "strategy": "heading_1000"
+              },
+              "score": 0.23819530138272585
+            },
+            {
+              "id": "shopee-buyer-return-request-guide#1",
+              "content": "Hướng dẫn gửi yêu cầu Trả hàng và Hoàn tiền dành cho Người mua > 1. Phương thức gửi yêu cầu Trả hàng / Hoàn tiền > Cách 1: Gửi yêu cầu trực tiếp trên đơn hàng (Ứng dụng Shopee)\n\n- **Bước 1:** Mở ứng dụng Shopee, truy cập mục **Tôi** > chọn thẻ **Chờ giao hàng** hoặc **Đã giao**.\n- **Bước 2:** Chọn đơn hàng cần khiếu nại và nhấn nút **Trả hàng/Hoàn tiền**.\n- **Bước 3:** Lựa chọn tình huống thực tế:\n  - *\"Tôi đã nhận hàng nhưng hàng có vấn đề (bể vỡ, sai mẫu, hàng lỗi, khác mô tả...)\"*: Áp dụng khi sản phẩm bị hư hỏng, thiếu linh kiện hoặc không đúng mô tả.\n  - *\"Tôi chưa nhận hàng / nhận thiếu hàng\"*: Áp dụng khi đơn hàng bị thất lạc hoặc giao thiếu số lượng.\n- **Bước 4:** Chọn sản phẩm cần khiếu nại và chọn lý do chi tiết.\n- **Bước 5:** Tải lên bằng chứng rõ ràng (hình ảnh góc quay nét, video mở hộp unboxing) và mô tả chi tiết tình trạng.\n- **Bước 6:** Nhấn **Gửi yêu cầu** để hoàn tất.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-request-guide",
+                "title": "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+                "source_url": "https://help.shopee.vn/portal/4/article/79233",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v2",
+                "audience": "buyer",
+                "category": "returns-guide",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "Hướng dẫn gửi yêu cầu Trả hàng và Hoàn tiền dành cho Người mua > 1. Phương thức gửi yêu cầu Trả hàng / Hoàn tiền > Cách 1: Gửi yêu cầu trực tiếp trên đơn hàng (Ứng dụng Shopee)",
+                "strategy": "heading_1000"
+              },
+              "score": 0.2310563177379355
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#4",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 1. Nghĩa vụ của Người bán khi xử lý Trả hàng/Hoàn tiền > 1.4. Chi phí vận chuyển hàng hoàn\n\n- Người bán chịu chi phí vận chuyển chiều hoàn trả nếu đơn hàng không chuyển phát được hoặc phát sinh Trả hàng/Hoàn tiền.\n- Shopee có thể điều chỉnh việc thu phí vận chuyển và xử lý hàng hoàn hoặc đơn giao không thành công, nhưng phải thông báo cho Người bán tối thiểu **07 ngày lịch** trước ngày áp dụng điều chỉnh.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 4,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 1. Nghĩa vụ của Người bán khi xử lý Trả hàng/Hoàn tiền > 1.4. Chi phí vận chuyển hàng hoàn",
+                "strategy": "heading_1000"
+              },
+              "score": 0.18614737571249007
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "question": "Những trường hợp/lý do nào không được áp dụng chính sách trả hàng với lý do \"Đổi ý\"?",
+          "gold_answer": "Lý do đổi ý không áp dụng cho: (1) Sản phẩm thuộc danh sách hạn chế trả hàng; (2) Sản phẩm mua tại Shopee Mart; (3) Một số sản phẩm riêng biệt được Shopee ghi nhận và quyết định theo từng thời điểm.",
+          "doc_id": "shopee-general-return-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-buyer-return-timeline-policy#2",
+              "content": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 3. Quy định về tình trạng hàng hóa khi hoàn trả\n\n- Sản phẩm hoàn trả phải còn nguyên tem, nhãn mác, seal niêm phong (nếu có).\n- Người mua phải gửi kèm đầy đủ phụ kiện, quà tặng kèm, hóa đơn và hộp đóng gói gốc.\n- Đối với hàng thời trang, sản phẩm không được có dấu hiệu đã qua giặt tẩy, sử dụng hoặc bị bẩn.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-timeline-policy",
+                "title": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua",
+                "source_url": "https://help.shopee.vn/portal/4/article/77244",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "buyer",
+                "category": "returns-policy",
+                "language": "vi",
+                "chunk_index": 2,
+                "section_path": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 3. Quy định về tình trạng hàng hóa khi hoàn trả",
+                "strategy": "heading_1000"
+              },
+              "score": 0.270681754573207
+            },
+            {
+              "id": "shopee-general-return-policy#1",
+              "content": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.2. Thời gian tối đa để người mua gửi yêu cầu\n\nThời gian để Shopee tiếp nhận yêu cầu Trả hàng/Hoàn tiền từ người mua:\n\n- Đơn hàng giao thực phẩm tươi sống và đông lạnh, trừ lý do chưa nhận được hàng: trong vòng **24 giờ** kể từ lúc đơn hàng được cập nhật trạng thái “Giao hàng thành công”.\n- Đơn hàng do Người bán tự vận chuyển:\n  - **15 ngày** kể từ lúc người mua bấm “Đã nhận được hàng”; hoặc\n  - **20 ngày** kể từ lúc đơn hàng được cập nhật trạng thái “Lấy hàng thành công” nếu người mua không bấm “Đã nhận được hàng”.\n- Các đơn hàng khác: **15 ngày** kể từ lúc đơn hàng được cập nhật trạng thái “Giao hàng thành công”.",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.2. Thời gian tối đa để người mua gửi yêu cầu",
+                "strategy": "heading_1000"
+              },
+              "score": 0.22299020571059194
+            },
+            {
+              "id": "shopee-general-return-policy#10",
+              "content": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 2. Hoàn lại Mã giảm giá và Shopee Xu > 2.3. Lưu ý về Voucher và Shopee Xu\n\n- Shopee Xu được hoàn ngay sau khi khiếu nại hoàn tất và yêu cầu hoàn tiền của Người mua được chấp nhận.",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 10,
+                "section_path": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 2. Hoàn lại Mã giảm giá và Shopee Xu > 2.3. Lưu ý về Voucher và Shopee Xu",
+                "strategy": "heading_1000"
+              },
+              "score": 0.19597707696735517
+            }
+          ]
+        }
+      ],
+      "filter_ab": [
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": false,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-buyer-return-request-guide#0",
+              "content": "Hướng dẫn gửi yêu cầu Trả hàng và Hoàn tiền dành cho Người mua > 1. Phương thức gửi yêu cầu Trả hàng / Hoàn tiền\n\nKhi gặp sự cố với đơn hàng đã mua trên Shopee, Người mua có thể gửi yêu cầu trả hàng hoặc hoàn tiền thông qua một trong hai hình thức sau:",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-request-guide",
+                "title": "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+                "source_url": "https://help.shopee.vn/portal/4/article/79233",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v2",
+                "audience": "buyer",
+                "category": "returns-guide",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "Hướng dẫn gửi yêu cầu Trả hàng và Hoàn tiền dành cho Người mua > 1. Phương thức gửi yêu cầu Trả hàng / Hoàn tiền",
+                "strategy": "heading_1000"
+              },
+              "score": 0.31287828320280114
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#10",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán\n\nNgười bán cam kết rằng tất cả sản phẩm cung cấp qua Shopee Mall:\n\n- Là hàng chính hãng và chưa qua sử dụng.\n- Không thuộc hàng hóa bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển.\n- Không vi phạm Chính sách Cấm/Hạn chế Sản phẩm và Chính sách Vận chuyển của Shopee.\n\nNgười bán phải sở hữu quyền phân phối, dưới hình thức độc quyền hoặc được ủy quyền, đối với sản phẩm cung cấp trên Shopee Mall. Shopee có quyền yêu cầu tài liệu chứng minh quyền phân phối.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 10,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán",
+                "strategy": "heading_1000"
+              },
+              "score": 0.28733964125682204
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#21",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 9. Chính sách Mã ưu đãi đối với Người bán\n\n- Người bán có thể chủ động thực hiện chương trình khuyến mại dưới hình thức phát hành mã ưu đãi cho Người mua.\n- Người bán có thể cùng Shopee đồng tài trợ mã ưu đãi theo tỷ lệ chia sẻ áp dụng cho từng chương trình.\n- Người bán phải bảo đảm tuân thủ pháp luật hiện hành và Chính sách Shopee khi thực hiện chương trình khuyến mại.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 21,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 9. Chính sách Mã ưu đãi đối với Người bán",
+                "strategy": "heading_1000"
+              },
+              "score": 0.2398411469310512
+            }
+          ]
+        }
+      ]
+    },
+    "heading_1400": {
+      "count": 48,
+      "avg_length": 593.7083333333334,
+      "results": [
+        {
+          "id": 1,
+          "question": "Tôi cần thực hiện những bước nào để gửi yêu cầu Trả hàng/Hoàn tiền trực tiếp trên ứng dụng Shopee?",
+          "gold_answer": "Mở ứng dụng Shopee > chọn mục \"Tôi\" > chọn \"Chờ giao hàng\" hoặc \"Đã giao\" > chọn đơn hàng cần xử lý > bấm \"Trả hàng/Hoàn tiền\" > chọn tình huống gặp phải > chọn sản phẩm, lý do khiếu nại > tải bằng chứng (ảnh/video unboxing) và mô tả > chọn \"Gửi yêu cầu\".",
+          "doc_id": "shopee-buyer-return-request-guide",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#20",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 8. Các loại phí của Shopee Mall > 8.4. Phí Dịch vụ\n\nPhí Dịch vụ áp dụng cho các dịch vụ hỗ trợ hoạt động kinh doanh trên Shopee, bao gồm chương trình, tính năng hoặc hạ tầng do Shopee triển khai. Hình thức và mức thu được quy định riêng cho từng dịch vụ.\n\nTrang nguồn nêu thuế suất thuế GTGT áp dụng từ ngày 01/07/2025 là **8%**.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 20,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 8. Các loại phí của Shopee Mall > 8.4. Phí Dịch vụ",
+                "strategy": "heading_1400"
+              },
+              "score": 0.34221998087095734
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#10",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán\n\nNgười bán cam kết rằng tất cả sản phẩm cung cấp qua Shopee Mall:\n\n- Là hàng chính hãng và chưa qua sử dụng.\n- Không thuộc hàng hóa bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển.\n- Không vi phạm Chính sách Cấm/Hạn chế Sản phẩm và Chính sách Vận chuyển của Shopee.\n\nNgười bán phải sở hữu quyền phân phối, dưới hình thức độc quyền hoặc được ủy quyền, đối với sản phẩm cung cấp trên Shopee Mall. Shopee có quyền yêu cầu tài liệu chứng minh quyền phân phối.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 10,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán",
+                "strategy": "heading_1400"
+              },
+              "score": 0.33086166010160895
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#22",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 10. Ngày đăng tải và hiệu lực được nguồn công bố\n\nTrang nguồn nêu Điều khoản Dịch vụ Shopee Mall được đăng tải ngày **24/04/2026** và có hiệu lực từ ngày **08/05/2026**. Trang nguồn không nêu số hiệu phiên bản, vì vậy `document_version` được ghi là `not-stated`.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 22,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 10. Ngày đăng tải và hiệu lực được nguồn công bố",
+                "strategy": "heading_1400"
+              },
+              "score": 0.26683806373023483
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-mall-seller-terms-of-service#10",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán\n\nNgười bán cam kết rằng tất cả sản phẩm cung cấp qua Shopee Mall:\n\n- Là hàng chính hãng và chưa qua sử dụng.\n- Không thuộc hàng hóa bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển.\n- Không vi phạm Chính sách Cấm/Hạn chế Sản phẩm và Chính sách Vận chuyển của Shopee.\n\nNgười bán phải sở hữu quyền phân phối, dưới hình thức độc quyền hoặc được ủy quyền, đối với sản phẩm cung cấp trên Shopee Mall. Shopee có quyền yêu cầu tài liệu chứng minh quyền phân phối.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 10,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán",
+                "strategy": "heading_1400"
+              },
+              "score": 0.28733964125682204
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#21",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 9. Chính sách Mã ưu đãi đối với Người bán\n\n- Người bán có thể chủ động thực hiện chương trình khuyến mại dưới hình thức phát hành mã ưu đãi cho Người mua.\n- Người bán có thể cùng Shopee đồng tài trợ mã ưu đãi theo tỷ lệ chia sẻ áp dụng cho từng chương trình.\n- Người bán phải bảo đảm tuân thủ pháp luật hiện hành và Chính sách Shopee khi thực hiện chương trình khuyến mại.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 21,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 9. Chính sách Mã ưu đãi đối với Người bán",
+                "strategy": "heading_1400"
+              },
+              "score": 0.2398411469310512
+            },
+            {
+              "id": "shopee-seller-return-processing-policy#2",
+              "content": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 3. Chế tài xử phạt Người bán vi phạm quy định trả hàng\n\n- Người bán từ chối nhận hàng hoàn trả không có lý do hợp lệ sẽ bị tính **01 điểm phạt Sao Quả Quả (Penalty point)**.\n- Gian hàng có tỷ lệ đơn hàng khiếu nại trả hàng do lỗi Người bán > 10% trong tháng sẽ bị tạm khóa tính năng Đăng bán sản phẩm mới.",
+              "metadata": {
+                "doc_id": "shopee-seller-return-processing-policy",
+                "title": "Quy định thời hạn xử lý khiếu nại trả hàng dành cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77245",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "seller-policy",
+                "language": "vi",
+                "chunk_index": 2,
+                "section_path": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 3. Chế tài xử phạt Người bán vi phạm quy định trả hàng",
+                "strategy": "heading_1400"
+              },
+              "score": 0.2080663171205003
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "question": "Nếu Người bán Shopee Mall vi phạm quy định bán hàng giả, hàng nhái thì bị phạt bao nhiêu tiền và xử lý như thế nào?",
+          "gold_answer": "Shopee có quyền yêu cầu khoản phí phạt bằng 9.818.180 VND hoặc 100% giá trị sản phẩm cho mỗi sản phẩm vi phạm (tùy giá trị nào cao hơn), thanh toán trong vòng 07 ngày lịch. Ngoài ra, Người bán sẽ bị loại khỏi Shopee Mall nếu vi phạm 02 lần.",
+          "doc_id": "shopee-mall-seller-terms-of-service",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-seller-return-processing-policy#0",
+              "content": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 1. Thời hạn phản hồi khiếu nại dành cho Người bán\n\nKhi Người mua gửi yêu cầu Trả hàng/Hoàn tiền, hệ thống Shopee sẽ gửi thông báo đến Kênh Người Bán. Người bán có trách nhiệm xử lý theo đúng quy định mốc thời gian:\n\n- **Thời hạn phản hồi đồng ý hoặc khiếu nại:** Người bán có tối đa **02 ngày làm việc** (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn một trong hai phương án:\n  - Đồng ý hoàn tiền cho Người mua (có trả hàng hoặc không cần trả hàng).\n  - Khiếu nại lại yêu cầu của Người mua (nếu thấy yêu cầu không vô lý hoặc sản phẩm giao đúng).\n- **Hậu quả khi trễ hạn:** Nếu Người bán không đưa ra phản hồi trong vòng **02 ngày làm việc**, hệ thống Shopee sẽ tự động chấp nhận yêu cầu của Người mua và tiến hành hoàn tiền từ Tài khoản Shopee của Người bán.",
+              "metadata": {
+                "doc_id": "shopee-seller-return-processing-policy",
+                "title": "Quy định thời hạn xử lý khiếu nại trả hàng dành cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77245",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "seller-policy",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "Quy định thời hạn và nghĩa vụ xử lý khiếu nại trả hàng dành cho Người bán > 1. Thời hạn phản hồi khiếu nại dành cho Người bán",
+                "strategy": "heading_1400"
+              },
+              "score": 0.25638496605262034
+            },
+            {
+              "id": "shopee-general-return-policy#5",
+              "content": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.3. Các lý do người mua có thể yêu cầu Trả hàng/Hoàn tiền > Ngoại lệ đối với lý do đổi ý\n\nLý do đổi ý không áp dụng cho:\n\n- Sản phẩm thuộc danh sách hạn chế trả hàng.\n- Sản phẩm mua tại Shopee Mart.\n- Một số sản phẩm riêng biệt được Shopee ghi nhận rõ ràng và quyết định theo từng thời điểm.",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 5,
+                "section_path": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.3. Các lý do người mua có thể yêu cầu Trả hàng/Hoàn tiền > Ngoại lệ đối với lý do đổi ý",
+                "strategy": "heading_1400"
+              },
+              "score": 0.22356688046045461
+            },
+            {
+              "id": "shopee-buyer-return-timeline-policy#2",
+              "content": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 3. Quy định về tình trạng hàng hóa khi hoàn trả\n\n- Sản phẩm hoàn trả phải còn nguyên tem, nhãn mác, seal niêm phong (nếu có).\n- Người mua phải gửi kèm đầy đủ phụ kiện, quà tặng kèm, hóa đơn và hộp đóng gói gốc.\n- Đối với hàng thời trang, sản phẩm không được có dấu hiệu đã qua giặt tẩy, sử dụng hoặc bị bẩn.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-timeline-policy",
+                "title": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua",
+                "source_url": "https://help.shopee.vn/portal/4/article/77244",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "buyer",
+                "category": "returns-policy",
+                "language": "vi",
+                "chunk_index": 2,
+                "section_path": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 3. Quy định về tình trạng hàng hóa khi hoàn trả",
+                "strategy": "heading_1400"
+              },
+              "score": 0.2060270399071766
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "question": "Trường hợp nào Người mua được miễn 100% cước phí vận chuyển hoàn trả hàng?",
+          "gold_answer": "Người mua được miễn 100% cước phí vận chuyển trả hàng khi sử dụng hình thức Lấy hàng tại nhà (đối tác SPX, Viettel Post, GHTK đến lấy) hoặc Gửi hàng tại bưu cục thuộc hệ thống SPX/đối tác Shopee có xuất trình mã vận đơn trả hàng.",
+          "doc_id": "shopee-return-shipping-fee-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-seller-warranty-responsibility#1",
+              "content": "Quy định bảo hành sản phẩm và nghĩa vụ của Người bán > 2. Nghĩa vụ kích hoạt và tiếp nhận bảo hành\n\n- **Thời hạn cung cấp phiếu / kích hoạt bảo hành:** Người bán phải gửi kèm thẻ/phiếu bảo hành giấy hoặc hoàn tất kích hoạt bảo hành điện tử cho Người mua trong vòng **03 ngày làm việc** kể từ ngày đơn hàng giao thành công.\n- **Thời hạn xử lý sản phẩm bảo hành:** \n  - Người bán phải tiếp nhận và phản hồi tình trạng sản phẩm bảo hành cho Người mua trong vòng **05 ngày làm việc** kể từ khi nhận được sản phẩm gửi về trung tâm bảo hành.\n  - Thời gian sửa chữa hoặc đổi mới sản phẩm không được vượt quá **14 ngày làm việc**.",
+              "metadata": {
+                "doc_id": "shopee-seller-warranty-responsibility",
+                "title": "Quy định bảo hành sản phẩm và nghĩa vụ của Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77246",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "seller",
+                "category": "warranty-policy",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "Quy định bảo hành sản phẩm và nghĩa vụ của Người bán > 2. Nghĩa vụ kích hoạt và tiếp nhận bảo hành",
+                "strategy": "heading_1400"
+              },
+              "score": 0.23819530138272585
+            },
+            {
+              "id": "shopee-buyer-return-request-guide#1",
+              "content": "Hướng dẫn gửi yêu cầu Trả hàng và Hoàn tiền dành cho Người mua > 1. Phương thức gửi yêu cầu Trả hàng / Hoàn tiền > Cách 1: Gửi yêu cầu trực tiếp trên đơn hàng (Ứng dụng Shopee)\n\n- **Bước 1:** Mở ứng dụng Shopee, truy cập mục **Tôi** > chọn thẻ **Chờ giao hàng** hoặc **Đã giao**.\n- **Bước 2:** Chọn đơn hàng cần khiếu nại và nhấn nút **Trả hàng/Hoàn tiền**.\n- **Bước 3:** Lựa chọn tình huống thực tế:\n  - *\"Tôi đã nhận hàng nhưng hàng có vấn đề (bể vỡ, sai mẫu, hàng lỗi, khác mô tả...)\"*: Áp dụng khi sản phẩm bị hư hỏng, thiếu linh kiện hoặc không đúng mô tả.\n  - *\"Tôi chưa nhận hàng / nhận thiếu hàng\"*: Áp dụng khi đơn hàng bị thất lạc hoặc giao thiếu số lượng.\n- **Bước 4:** Chọn sản phẩm cần khiếu nại và chọn lý do chi tiết.\n- **Bước 5:** Tải lên bằng chứng rõ ràng (hình ảnh góc quay nét, video mở hộp unboxing) và mô tả chi tiết tình trạng.\n- **Bước 6:** Nhấn **Gửi yêu cầu** để hoàn tất.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-request-guide",
+                "title": "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+                "source_url": "https://help.shopee.vn/portal/4/article/79233",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v2",
+                "audience": "buyer",
+                "category": "returns-guide",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "Hướng dẫn gửi yêu cầu Trả hàng và Hoàn tiền dành cho Người mua > 1. Phương thức gửi yêu cầu Trả hàng / Hoàn tiền > Cách 1: Gửi yêu cầu trực tiếp trên đơn hàng (Ứng dụng Shopee)",
+                "strategy": "heading_1400"
+              },
+              "score": 0.2310563177379355
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#4",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 1. Nghĩa vụ của Người bán khi xử lý Trả hàng/Hoàn tiền > 1.4. Chi phí vận chuyển hàng hoàn\n\n- Người bán chịu chi phí vận chuyển chiều hoàn trả nếu đơn hàng không chuyển phát được hoặc phát sinh Trả hàng/Hoàn tiền.\n- Shopee có thể điều chỉnh việc thu phí vận chuyển và xử lý hàng hoàn hoặc đơn giao không thành công, nhưng phải thông báo cho Người bán tối thiểu **07 ngày lịch** trước ngày áp dụng điều chỉnh.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 4,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 1. Nghĩa vụ của Người bán khi xử lý Trả hàng/Hoàn tiền > 1.4. Chi phí vận chuyển hàng hoàn",
+                "strategy": "heading_1400"
+              },
+              "score": 0.18614737571249007
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "question": "Những trường hợp/lý do nào không được áp dụng chính sách trả hàng với lý do \"Đổi ý\"?",
+          "gold_answer": "Lý do đổi ý không áp dụng cho: (1) Sản phẩm thuộc danh sách hạn chế trả hàng; (2) Sản phẩm mua tại Shopee Mart; (3) Một số sản phẩm riêng biệt được Shopee ghi nhận và quyết định theo từng thời điểm.",
+          "doc_id": "shopee-general-return-policy",
+          "filter": null,
+          "filtered": true,
+          "document_hit": true,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-buyer-return-timeline-policy#2",
+              "content": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 3. Quy định về tình trạng hàng hóa khi hoàn trả\n\n- Sản phẩm hoàn trả phải còn nguyên tem, nhãn mác, seal niêm phong (nếu có).\n- Người mua phải gửi kèm đầy đủ phụ kiện, quà tặng kèm, hóa đơn và hộp đóng gói gốc.\n- Đối với hàng thời trang, sản phẩm không được có dấu hiệu đã qua giặt tẩy, sử dụng hoặc bị bẩn.",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-timeline-policy",
+                "title": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua",
+                "source_url": "https://help.shopee.vn/portal/4/article/77244",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v1",
+                "audience": "buyer",
+                "category": "returns-policy",
+                "language": "vi",
+                "chunk_index": 2,
+                "section_path": "Quy định thời hạn và điều kiện trả hàng dành cho Người mua > 3. Quy định về tình trạng hàng hóa khi hoàn trả",
+                "strategy": "heading_1400"
+              },
+              "score": 0.270681754573207
+            },
+            {
+              "id": "shopee-general-return-policy#1",
+              "content": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.2. Thời gian tối đa để người mua gửi yêu cầu\n\nThời gian để Shopee tiếp nhận yêu cầu Trả hàng/Hoàn tiền từ người mua:\n\n- Đơn hàng giao thực phẩm tươi sống và đông lạnh, trừ lý do chưa nhận được hàng: trong vòng **24 giờ** kể từ lúc đơn hàng được cập nhật trạng thái “Giao hàng thành công”.\n- Đơn hàng do Người bán tự vận chuyển:\n  - **15 ngày** kể từ lúc người mua bấm “Đã nhận được hàng”; hoặc\n  - **20 ngày** kể từ lúc đơn hàng được cập nhật trạng thái “Lấy hàng thành công” nếu người mua không bấm “Đã nhận được hàng”.\n- Các đơn hàng khác: **15 ngày** kể từ lúc đơn hàng được cập nhật trạng thái “Giao hàng thành công”.",
+              "metadata": {
+                "doc_id": "shopee-general-return-policy",
+                "title": "Quy định chung về Trả hàng Hoàn tiền của Shopee",
+                "source_url": "https://help.shopee.vn/portal/4/article/188931-%5BTr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n%5D-Nh%E1%BB%AFng-quy-%C4%91%E1%BB%8Bnh-chung-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng/Ho%C3%A0n-ti%E1%BB%81n-c%E1%BB%A7a-Shopee",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "buyer",
+                "category": "returns",
+                "language": "vi",
+                "chunk_index": 1,
+                "section_path": "Quy định chung về Trả hàng Hoàn tiền của Shopee > 1. Điều kiện Trả hàng/Hoàn tiền của Shopee > 1.2. Thời gian tối đa để người mua gửi yêu cầu",
+                "strategy": "heading_1400"
+              },
+              "score": 0.22299020571059194
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#11",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.2. Hàng giả, hàng nhái và sản phẩm OEM\n\nNghiêm cấm đăng bán hàng giả tại Shopee Mall. Hàng giả có thể bao gồm:\n\n- Sản phẩm vi phạm pháp luật tại nơi đăng bán.\n- Sản phẩm giả hoặc nhái sản phẩm đã có mặt chính thức trên thị trường.\n- Sản phẩm chưa từng được sản xuất bởi nhãn hàng có liên quan.\n- Sản phẩm sử dụng nhãn hiệu hoặc thiết kế được bảo hộ mà không có sự cho phép của chủ sở hữu.\n- Sản phẩm hoặc nội dung đăng bán có yếu tố gây nhầm lẫn với sản phẩm khác.\n\nSản phẩm của nhà sản xuất thiết bị gốc (OEM) được phép đăng bán nếu không chứa logo của nhãn hiệu chính thức khác trong hình ảnh, chỉ dẫn hoặc mô tả sản phẩm.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 11,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.2. Hàng giả, hàng nhái và sản phẩm OEM",
+                "strategy": "heading_1400"
+              },
+              "score": 0.19323767711266893
+            }
+          ]
+        }
+      ],
+      "filter_ab": [
+        {
+          "id": 2,
+          "question": "Thời hạn tối đa để xử lý và phản hồi khiếu nại Trả hàng/Hoàn tiền là bao nhiêu ngày?",
+          "gold_answer": "Người bán có tối đa 02 ngày làm việc (48 giờ) kể từ khi nhận được thông báo khiếu nại để chọn đồng ý hoàn tiền hoặc khiếu nại lại Shopee. Nếu quá 02 ngày làm việc không phản hồi, Shopee sẽ tự động chấp nhận yêu cầu của người mua.",
+          "doc_id": "shopee-seller-return-processing-policy",
+          "filter": {
+            "audience": "seller"
+          },
+          "filtered": false,
+          "document_hit": false,
+          "evidence_coverage": 0.0,
+          "evidence_complete": false,
+          "top1_complete": false,
+          "hits": [
+            {
+              "id": "shopee-buyer-return-request-guide#0",
+              "content": "Hướng dẫn gửi yêu cầu Trả hàng và Hoàn tiền dành cho Người mua > 1. Phương thức gửi yêu cầu Trả hàng / Hoàn tiền\n\nKhi gặp sự cố với đơn hàng đã mua trên Shopee, Người mua có thể gửi yêu cầu trả hàng hoặc hoàn tiền thông qua một trong hai hình thức sau:",
+              "metadata": {
+                "doc_id": "shopee-buyer-return-request-guide",
+                "title": "Hướng dẫn gửi yêu cầu trả hàng hoàn tiền",
+                "source_url": "https://help.shopee.vn/portal/4/article/79233",
+                "retrieved_at": "2026-09-20",
+                "document_version": "2024-v2",
+                "audience": "buyer",
+                "category": "returns-guide",
+                "language": "vi",
+                "chunk_index": 0,
+                "section_path": "Hướng dẫn gửi yêu cầu Trả hàng và Hoàn tiền dành cho Người mua > 1. Phương thức gửi yêu cầu Trả hàng / Hoàn tiền",
+                "strategy": "heading_1400"
+              },
+              "score": 0.31287828320280114
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#10",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán\n\nNgười bán cam kết rằng tất cả sản phẩm cung cấp qua Shopee Mall:\n\n- Là hàng chính hãng và chưa qua sử dụng.\n- Không thuộc hàng hóa bị cấm kinh doanh, hạn chế giao dịch hoặc cấm vận chuyển.\n- Không vi phạm Chính sách Cấm/Hạn chế Sản phẩm và Chính sách Vận chuyển của Shopee.\n\nNgười bán phải sở hữu quyền phân phối, dưới hình thức độc quyền hoặc được ủy quyền, đối với sản phẩm cung cấp trên Shopee Mall. Shopee có quyền yêu cầu tài liệu chứng minh quyền phân phối.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 10,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 3. Quy định về hàng chính hãng > 3.1. Cam kết của Người bán",
+                "strategy": "heading_1400"
+              },
+              "score": 0.28733964125682204
+            },
+            {
+              "id": "shopee-mall-seller-terms-of-service#21",
+              "content": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 9. Chính sách Mã ưu đãi đối với Người bán\n\n- Người bán có thể chủ động thực hiện chương trình khuyến mại dưới hình thức phát hành mã ưu đãi cho Người mua.\n- Người bán có thể cùng Shopee đồng tài trợ mã ưu đãi theo tỷ lệ chia sẻ áp dụng cho từng chương trình.\n- Người bán phải bảo đảm tuân thủ pháp luật hiện hành và Chính sách Shopee khi thực hiện chương trình khuyến mại.",
+              "metadata": {
+                "doc_id": "shopee-mall-seller-terms-of-service",
+                "title": "Điều khoản Dịch vụ Shopee Mall cho Người bán",
+                "source_url": "https://help.shopee.vn/portal/4/article/77262",
+                "retrieved_at": "2026-09-20",
+                "document_version": "not-stated",
+                "audience": "seller",
+                "category": "terms",
+                "language": "vi",
+                "chunk_index": 21,
+                "section_path": "Điều khoản Dịch vụ Shopee Mall cho Người bán > 9. Chính sách Mã ưu đãi đối với Người bán",
+                "strategy": "heading_1400"
+              },
+              "score": 0.2398411469310512
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

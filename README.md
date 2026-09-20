@@ -29,13 +29,26 @@ Nhóm cùng chọn một bộ tài liệu và thống nhất 5 câu hỏi đánh
 
 ## Thiết Lập Môi Trường
 
+### Chạy demo trên Windows
+
+Sau khi môi trường đã được cài đặt, nhấp đúp `run_demo.cmd`. Script sẽ khởi động
+server, đợi API sẵn sàng rồi tự mở giao diện tại
+`http://127.0.0.1:8766/src/demo.html`. Demo dùng TF-IDF cục bộ nên không cần API
+key hoặc kết nối Internet.
+
+Để chạy thủ công:
+
+```powershell
+.\.venv\Scripts\python.exe demo_server.py
+```
+
 ### Python 3.11 là chuẩn của Lab
 
 Phần bắt buộc được kiểm thử trên **Python 3.11**. Dùng đúng trình thông dịch (interpreter) này khi tạo môi trường ảo (virtual environment) (`py -3.11` trên Windows hoặc `python3.11` trên macOS/Linux); file `.python-version` cũng đã khai báo phiên bản chuẩn.
 
 ```bash
 pip install -r requirements.txt
-pytest tests/ -v          # Phần lớn bài kiểm thử sẽ THẤT BẠI (chưa được lập trình)
+pytest tests/ -v          # Bộ test hiện tại: 45/45 đạt khi pytest được cài đặt
 ```
 
 Mặc định, lab vẫn chạy với trình nhúng giả lập `_mock_embed` nên **không bắt buộc** cài đặt mô hình nhúng (embedder) thật.
